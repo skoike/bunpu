@@ -1,4 +1,6 @@
-#分布演算の環境を提供する
+
+#"分布演算の環境を提供する"
+
 #Providing an environment for distribution calculation
 
 
@@ -14,12 +16,12 @@
 このツールの目的は、バラツキがあるデータからヒストグラムで分布を抽出して、その分布を演算要素とする演算体系を構築することである。現時点でこのツールは、以下のことが可能である。
 ライセンスは、そのまま利用するだけであればフリー、変更する場合は公開前提で提供頂ければフリー、変更や参考としたものの配布や商用利用する場合は知財権利において有償とします。
 
-##ファイルの特定列から抽出したデータのヒストグラムと分布を生成
-##範囲や平均値、標準偏差を指定して分布を生成
-##四則演算（相関係数に応じた補正が可能）
-##分布のグラフ表示
-##分布要素をファイル出力
-##以上の1次元から3次元のベクトル分布処理
+###ファイルの特定列から抽出したデータのヒストグラムと分布を生成
+###範囲や平均値、標準偏差を指定して分布を生成
+###四則演算（相関係数に応じた補正が可能）
+###分布のグラフ表示
+###分布要素をファイル出力
+###以上の1次元から3次元のベクトル分布処理
 
 　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations, and as a real example of how to deal with it, I have been published in various papers in Japan.I have been proposing various application examples of this method for more than 20 years, but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use this time with the permisson of my company. I thought about it.
 
@@ -32,12 +34,12 @@ As a countermeasure, even for a small amount of data, by creating a distribution
 The method is to construct a calculation system in which the distributed data is distributed in a histogram and the distribution is used as a calculation element.
 At the moment this tool can:
 
-## Generate a distribution from the histogram of the measured data
-## Generate distribution by specifying range, mean, and standard deviation
-## Four arithmetic operations
-## Graph display of distribution
-## Output distribution elements to a file
-## 1D to 3D vector distribution processing above
+### Generate a distribution from the histogram of the measured data
+### Generate distribution by specifying range, mean, and standard deviation
+### Four arithmetic operations
+### Graph display of distribution
+### Output distribution elements to a file
+### 1D to 3D vector distribution processing above
 
 ##
 
