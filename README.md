@@ -1,120 +1,151 @@
-
-#"•ª•z‰‰Z‚ÌŠÂ‹«‚ğ’ñ‹Ÿ‚·‚é"
-
-#Providing an environment for distribution calculation
+# Ê¬ÉÛ±é»»¤Î´Ä¶­¤òÄó¶¡¤¹¤ë
+# Providing an environment for distribution calculation
 
 
-@ƒrƒbƒNƒf[ƒ^‚ğ‰ğÍ‚·‚é’†‚Å]—ˆ‚Ì”’l‰‰Z‚Å‚Í‘å‚«‚Èƒoƒ‰ƒcƒL‚ª‘¶İ‚·‚éŒ»À¢ŠE‚ğƒ‚ƒfƒ‹‰»‚·‚é‚É‚Í¸“xŒÀŠE‚ª‚ ‚é‚±‚Æ‚É‹C‚Ã‚«A‚»‚ê‚ğ‘Îô‚·‚é•û–@‚Ì‹ï‘Ì—á‚ğ—lX‚È˜_•¶‚É‚Ä”­•\‚µ‚Ä‚«‚½B
-‚»‚Ì•û–@‚Í25”NˆÈã‘O‚©‚ç—lX‚È‰—p—á‚ğ’ñˆÄ‚µ‚Ä‚«‚½‚ªA‚¢‚Ü‚¾‚É‚»‚Ì•K—v«‚ª—‰ğ‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅA¡‰ñA‰ïĞ‚Ì‹–‰Â‚ğ‚à‚ç‚Á‚Ä’N‚É‚Å‚àg‚¦‚éƒc[ƒ‹‚Æ‚µ‚ÄL‚­g‚Á‚Ä‚à‚ç‚¦‚é‚±‚Æ‚Å‚»‚Ì‰¿’l‚Ì—‰ğ‚ğ‘£i‚µ‚æ‚¤‚Æl‚¦‚½B
+¡¡¥Ó¥Ã¥¯¥Ç¡¼¥¿¤ò²òÀÏ¤¹¤ëÃæ¤Ç½¾Íè¤Î¿ôÃÍ±é»»¤Ç¤ÏÂç¤­¤Ê¥Ğ¥é¥Ä¥­¤¬Â¸ºß¤¹¤ë¸½¼ÂÀ¤³¦¤ò¥â¥Ç¥ë²½¤¹¤ë¤Ë¤ÏÀºÅÙ¸Â³¦¤¬¤¢¤ë¤³¤È¤Ëµ¤¤Å¤­¡¢¤½¤ì¤òÂĞºö¤¹¤ëÊıË¡¤È¤·¤ÆÊ¬ÉÛ±é»»¤òÄó°Æ¤·¤Æ¤­¤¿¡£
+¤½¤ì¤Ïº£¤Ş¤ÇÍÍ¡¹¤Ê±şÍÑÎã¤òÄó°Æ¤·¤Æ¤­¤¿¤¬¡¢ÀâÌÀ¤¹¤ë¤À¤±¤Ç¤Ï¤½¤ÎÉ¬Í×À­¤¬½½Ê¬¤ËÍı²ò¤µ¤ì¤Æ¤¤¤Ê¤¤¤Î¤Ç¡¢Ã¯¤Ë¤Ç¤â»È¤¨¤ë¥Ä¡¼¥ë¤È¤·¤Æ¹­¤¯»È¤Ã¤Æ¤â¤é¤¨¤ë¤³¤È¤Ç¤½¤Î²ÁÃÍ¤ÎÍı²ò¤òÂ¥¿Ê¤·¤è¤¦¤È¹Í¤¨¤¿¡£
 
-@]—ˆ‚Ì”’l‰‰Z‚ÍAƒoƒ‰ƒcƒL‚Ì‚ ‚é•¡”ƒf[ƒ^‚Ì‰‰ZŒ‹‰Ê‚©‚ç•ª•z‚ğ‹‚ß‚Ä‚àÄŒ»«‚Ì‚ ‚é•ª•z‚ª“¾‚ç‚ê‚È‚¢A‚»‚ê‚Íƒf[ƒ^”‚ğ‘‚â‚µ‚Ä‚à‰ü‘P‚µ‚È‚¢B‚»‚ê‚Íƒ‚ƒ“ƒeƒJƒ‹ƒƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ª³‚µ‚¢•ª•z‚ğ’ñ‹Ÿ‚Å‚«‚È‚¢‚±‚Æ‚Å
-’m‚ç‚ê‚Ä‚¢‚éB‚»‚Ì——R‚ÍA”’l‰‰Z‚©‚çƒoƒ‰ƒcƒL‚ğ”cˆ¬‚µ‚æ‚¤‚Æ‚µ‚Ä‚àA‘½­‚Å‚à“Æ—§«‚ª‚ ‚éƒpƒ‰ƒ[ƒ^ŠÔ‚Ì‰‰Z‚Å‚Íî•ñŒ‡‘¹‚ª‘å‚«‚¢‚Ì‚ÅA”ñŒ»À“I‚È”‚Ìç’·‚Èƒf[ƒ^‚ª–³‚¢‚Æ‚Ü‚Æ‚à‚È¸“x‚Ì•ª•z‚ª“¾‚ç‚ê‚È‚¢‚©‚ç‚Å‚ ‚éB
-‘Îô‚Æ‚µ‚ÄA­”‚Ìƒf[ƒ^‚Å‚àA‚»‚ê‚¼‚ê‚Ìƒpƒ‰ƒ[ƒ^‚ÌƒqƒXƒgƒOƒ‰ƒ€‚©‚ç•ª•z‚ğì¬‚µ‚ÄA•ª•z‰‰Z‚ğs‚¤‚±‚Æ‚ÅA”’l‰‰Z‚Ìî•ñŒ‡‘¹‚ª•âŠÔ‚³‚ê‚Ä¸“x‚Ì‚‚¢‰‰Z‚ª‰Â”\‚Æ‚È‚éB
-@¡‰ñ‚»‚Ìƒc[ƒ‹‚Ìˆê•”‚ğŒöŠJ‚·‚é‚ªAŒ»İ‚ÍƒxƒNƒgƒ‹‚Ìl‘¥‰‰Z‚â’Pƒ‚ÈÏ•ª‚ª‚Å‚«‚é’ö“x‚Å‚ ‚éB¡Œã—lX‚È•ª–ì‚Ì•û‚É‹¦—Í‚µ‚Ä’¸‚«AŠJ”­‚ği‚ß‚é‚±‚Æ‚ª‚Å‚«‚ê‚ÎA—lX‚È”÷•ª•û’ö®‚ğŠÜ‚Ş”Šw‘S‘Ì‚ÉŠg’£‚Å‚«‚é‚Æl‚¦‚Ä‚¢‚éB
-‚»‚Ì‚±‚Æ‚ÍƒiƒrƒGƒXƒg[ƒNƒX‚ğ‚Í‚¶‚ß‚Æ‚·‚éA—lX‚ÈŠî–{“I‚È•¨—‰ğÍ‹Zp‚É‰ü‘P‚ğ‚à‚½‚ç‚µA—‰ğ‚ğ[‚ß‚éƒXƒR[ƒv‚Æ‚µ‚ÄŠˆ—p‚Å‚«‚é‰Â”\«‚ª‚ ‚éB
+¡¡½¾Íè¤Î¿ôÃÍ±é»»¤Ç¤Ï¡¢¥Ğ¥é¥Ä¥­¤Î¤¢¤ë¥Ç¡¼¥¿´Ö¤Î±é»»·ë²Ì¤«¤éÊ¬ÉÛ¤òµá¤á¤Æ¤âºÆ¸½À­¤Î¤¢¤ëÊ¬ÉÛ¤¬ÆÀ¤é¤ì¤Ê¤¤¡¢¤½¤ì¤Ï¥Ç¡¼¥¿¿ô¤òÁı¤ä¤·¤Æ¤â²şÁ±¤·¤Ê¤¤¡£¤½¤ì¤Ï¥â¥ó¥Æ¥«¥ë¥í¥·¥ß¥å¥ì¡¼¥·¥ç¥ó¤¬Àµ¤·¤¤Ê¬ÉÛ¤òÄó¶¡¤Ç¤­¤Ê¤¤¤³¤È¤Ç
+ÃÎ¤é¤ì¤Æ¤¤¤ë¡£¤½¤ÎÍıÍ³¤Ï¡¢¿ôÃÍ±é»»¤«¤é¥Ğ¥é¥Ä¥­¤òÇÄ°®¤·¤è¤¦¤È¤·¤Æ¤â¡¢Â¿¾¯¤Ç¤âÆÈÎ©À­¤¬¤¢¤ë¥Ñ¥é¥á¡¼¥¿´Ö¤Î±é»»¤Ç¤Ï¡¢Ê¬ÉÛ¤ò·ÁÀ®¤¹¤ë¤¿¤á¤ËÉ¬Í×¤ÊÁÈ¹ç¤»¾ğÊó¤ËÂĞ¤·¤Æ·çÂ»¤·¤Æ¤¤¤ë¾ğÊóÎÌ¤Î³ä¹ç¤¬Âç¤­¤¤¤Î¤Ç¡¢
+¶öÁ³¤Ë¤è¤Ã¤ÆÊ¬ÉÛ¤Î·Á¾õ¤¬Âç¤­¤¯±Æ¶Á¤ò¼õ¤±¤ë²ÄÇ½À­¤¬¹â¤¤¡¢¥Ç¡¼¥¿ÎÌ¤ä±é»»ÎÌ¤¬Áı¤¨¤ë¤³¤È¤ÇÉ¬Í×¤ÊÁÈ¹ç¤»¾ğÊóÎÌ¤¬»Ø¿ôÅª¤ËÁı²Ã¤¹¤ë¤Î¤Ç¡¢¥Ç¡¼¥¿¤òÁı¤ä¤·¤Æ¤âÀµ¤·¤¤Ê¬ÉÛ¤ÏÆÀ¤é¤ì¤Ê¤¤¡£
+ÂĞºö¤È¤·¤Æ¡¢¾¯¿ô¤Î¥Ç¡¼¥¿¤Ç¤â¡¢¤½¤ì¤¾¤ì¤Î¥Ñ¥é¥á¡¼¥¿¤Î¥Ò¥¹¥È¥°¥é¥à¤«¤éÊ¬ÉÛ¤òºîÀ®¤·¤Æ¡¢Ê¬ÉÛ±é»»¤ò¹Ô¤¦¤³¤È¤Ç¡¢¿ôÃÍ±é»»¤Î¾ğÊó·çÂ»¤¬Êä´Ö¤µ¤ì¤ÆÀºÅÙ¤Î¹â¤¤±é»»¤¬²ÄÇ½¤È¤Ê¤ë¡£
 
-‚±‚Ìƒc[ƒ‹‚Ì–Ú“I‚ÍAƒoƒ‰ƒcƒL‚ª‚ ‚éƒf[ƒ^‚©‚çƒqƒXƒgƒOƒ‰ƒ€‚Å•ª•z‚ğ’Šo‚µ‚ÄA‚»‚Ì•ª•z‚ğ‰‰Z—v‘f‚Æ‚·‚é‰‰Z‘ÌŒn‚ğ\’z‚·‚é‚±‚Æ‚Å‚ ‚éBŒ»“_‚Å‚±‚Ìƒc[ƒ‹‚ÍAˆÈ‰º‚Ì‚±‚Æ‚ª‰Â”\‚Å‚ ‚éB
-ƒ‰ƒCƒZƒ“ƒX‚ÍA‚»‚Ì‚Ü‚Ü—˜—p‚·‚é‚¾‚¯‚Å‚ ‚ê‚ÎƒtƒŠ[A•ÏX‚·‚éê‡‚ÍŒöŠJ‘O’ñ‚Å’ñ‹Ÿ’¸‚¯‚ê‚ÎƒtƒŠ[A•ÏX‚âQl‚Æ‚µ‚½‚à‚Ì‚Ì”z•z‚â¤—p—˜—p‚·‚éê‡‚Í’màŒ —˜‚É‚¨‚¢‚Ä—L‚Æ‚µ‚Ü‚·B
+¡¡º£²ó¤½¤Î¥Ä¡¼¥ë¤Î°ìÉô¤ò¸ø³«¤¹¤ë¤¬¡¢¸½ºß¤Ï¥Ù¥¯¥È¥ë¤Î»ÍÂ§±é»»¤äÃ±½ã¤ÊÀÑÊ¬¤¬¤Ç¤­¤ëÄøÅÙ¤Ç¤¢¤ë¡£º£¸åÍÍ¡¹¤ÊÊ¬Ìî¤ÎÊı¤Ë¶¨ÎÏ¤·¤ÆÄº¤­¡¢³«È¯¤ò¿Ê¤á¤ë¤³¤È¤¬¤Ç¤­¤ì¤Ğ¡¢
+ÍÍ¡¹¤ÊÈùÊ¬ÊıÄø¼°¤ò´Ş¤à¿ô³ØÁ´ÂÎ¤Ë³ÈÄ¥¤Ç¤­¤ë¤È¹Í¤¨¤Æ¤¤¤ë¡£¤³¤Î¤³¤È¤ÏÍÍ¡¹¤Ê¥Ğ¥é¥Ä¥­¤ò°·¤¦ÊªÍı²òÀÏµ»½Ñ¤ä¼Ò²ñ¸½¾İ²òÀÏ¤Ë²şÁ±¤ò¤â¤¿¤é¤·¡¢Íı²ò¤ò¿¼¤á¤ë¥¹¥³¡¼¥×¤È¤·¤Æ³èÍÑ¤Ç¤­¤ë²ÄÇ½À­¤¬¤¢¤ë¡£
 
-###ƒtƒ@ƒCƒ‹‚Ì“Á’è—ñ‚©‚ç’Šo‚µ‚½ƒf[ƒ^‚ÌƒqƒXƒgƒOƒ‰ƒ€‚Æ•ª•z‚ğ¶¬
-###”ÍˆÍ‚â•½‹Ï’lA•W€•Î·‚ğw’è‚µ‚Ä•ª•z‚ğ¶¬
-###l‘¥‰‰Zi‘ŠŠÖŒW”‚É‰‚¶‚½•â³‚ª‰Â”\j
-###•ª•z‚ÌƒOƒ‰ƒt•\¦
-###•ª•z—v‘f‚ğƒtƒ@ƒCƒ‹o—Í
-###ˆÈã‚Ì1ŸŒ³‚©‚ç3ŸŒ³‚ÌƒxƒNƒgƒ‹•ª•zˆ—
+¤³¤Î¥Ä¡¼¥ë¤ÎÌÜÅª¤Ï¡¢¥Ğ¥é¥Ä¥­¤¬¤¢¤ë¥Ç¡¼¥¿¤«¤é¥Ò¥¹¥È¥°¥é¥à¤ÇÊ¬ÉÛ¤òÃê½Ğ¤·¤Æ¡¢¤½¤ÎÊ¬ÉÛ¤ò±é»»Í×ÁÇ¤È¤¹¤ë±é»»ÂÎ·Ï¤ò¹½ÃÛ¤¹¤ë¤³¤È¤Ç¤¢¤ë¡£¸½»şÅÀ¤Ç¤³¤Î¥Ä¡¼¥ë¤Ï¡¢°Ê²¼¤Î¤³¤È¤¬²ÄÇ½¤Ç¤¢¤ë¡£
 
-@While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations, and as a real example of how to deal with it, I have been published in various papers in Japan.I have been proposing various application examples of this method for more than 20 years, but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use this time with the permisson of my company. I thought about it.
+### ¥Ç¡¼¥¿¥Õ¥¡¥¤¥ë¤ÎÆÃÄêÎó¤«¤éÃê½Ğ¤·¤¿¥Ç¡¼¥¿¤Î¥Ò¥¹¥È¥°¥é¥à¤ÈÊ¬ÉÛ¤òÀ¸À®
+### ÈÏ°Ï¤äÊ¿¶ÑÃÍ¡¢É¸½àÊĞº¹¤ò»ØÄê¤·¤ÆÊ¬ÉÛ¤òÀ¸À®
+### Á°µ­À¸À®¤µ¤ì¤¿Ê¬ÉÛ¤Î»ÍÂ§±é»»¡ÊÁê´Ø·¸¿ô¤Ë±ş¤¸¤¿ÊäÀµ¤¬²ÄÇ½¡Ë
+### Ê¬ÉÛ¤Î¥°¥é¥ÕÉ½¼¨
+### Ê¬ÉÛÍ×ÁÇ¤ò¥Õ¥¡¥¤¥ë½ĞÎÏ
+### °Ê¾å¤Î1¼¡¸µ¤«¤é3¼¡¸µ¤Î¥Ù¥¯¥È¥ëÊ¬ÉÛ½èÍı
 
-In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained from the calculation results of a plurality of various data, which does not improve even if the number of data is increased. That is because the Monte Carlo simulation cannot provide the correct distribution, Are known.
-The reason is that even if we try to grasp the variation from the numerical calculation, the information loss is large in the calculation between the parameters that have some independence, so that a highly accurate distribution cannot be obtained without an unrealistic number of data.
-As a countermeasure, even for a small amount of data, by creating a distribution from the histogram of each parameter and performing the distribution calculation, the information loss of the numerical calculation is interpolated and the calculation with high accuracy becomes possible.
+¥é¥¤¥»¥ó¥¹¤Ï¡¢¤³¤Î¥½¥Õ¥È¤ò¤½¤Î¤Ş¤ŞÍøÍÑ¤¹¤ë¤À¤±¤Ç¤¢¤ì¤Ğ¥Õ¥ê¡¼¡¢¥½¥Õ¥È¤ÎÊÑ¹¹¤ä»²¹Í¤Ë¤·¤ÆºîÀ®¤·¤¿¤â¤Î¤ÎÇÛÉÛ¤ä¾¦ÍÑÍøÍÑ¤¹¤ë¾ì¹ç¤ÏÃÎºâ¸¢Íø¤Ë¤ª¤¤¤ÆÍ­½ş¤È¤·¤Ş¤¹¡£
 
- Currently, the method is limited to four arithmetic operations and simple integration of vectors, but I believe that it can be extended to the entire mathematics including various differential equations by advancing development.This may bring improvements to various basic physical analysis techniques such as Navier-Stokes and can be used as a scope to deepen understanding.
+
+¡¡While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
+and as a real example of how to deal with it, I have been published in various papers in Japan.I have been proposing various application examples of this method,
+but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it.
+
+In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
+from the calculation results of a plurality of various data, which does not improve even if the number of data is increased.
+That is because the Monte Carlo simulation cannot provide the correct distribution, Are known.
+The reason is that even if we try to grasp the variation from the numerical calculation, in operations between independent parameters,
+the ratio of the amount of missing information to the combinational information required to form the distribution is large,
+so there is a high possibility that the shape of the distribution will be greatly affected by chance.
+As the amount of data and the amount of calculation increase, the amount of combination information required increases exponentially,
+so even if the amount of data is increased, the correct distribution cannot be obtained.
+
+As a answer, even for a small amount of data, by creating a distribution from the histogram of each parameter and performing the distribution calculation,
+the information loss of the numerical calculation is interpolated and the calculation with high accuracy becomes possible.
+ Currently, the method is limited to four arithmetic operations and simple integration of vectors,
+ but I believe that it can be extended to the entire mathematics including various differential equations by advancing development.
+ This may bring improvements to various physical analysis technology and social phenomenon analysis that handle various variations
+ and can be used as a scope to deepen understanding.
 
 The method is to construct a calculation system in which the distributed data is distributed in a histogram and the distribution is used as a calculation element.
 At the moment this tool can:
 
 ### Generate a distribution from the histogram of the measured data
 ### Generate distribution by specifying range, mean, and standard deviation
-### Four arithmetic operations
+### Four arithmetic operations between generated distributions
 ### Graph display of distribution
 ### Output distribution elements to a file
-### 1D to 3D vector distribution processing above
+### 1D to 3D vector distribution processing above all
 
-##
+The license is free if you just use it as it is, If you change or use this soft as reference for a distribution or commercial purposes,
+you will be charged for the intellectual property rights.
 
 
-##˜_•¶
-##literature
+## ÏÀÊ¸
+## literature
 
-ƒrƒbƒNƒf[ƒ^‚ğŠˆ—p‚µ‚½§ŒäƒŠƒXƒNİŒv,©“®Ô‹Zp‰ï20”NH‹G‘å‰ïŠwpu‰‰‰ï
-Risk design of control system utilizing big data,Society of Automotive Engineers of Japan 
+- ¥Ó¥Ã¥¯¥Ç¡¼¥¿¤ò³èÍÑ¤·¤¿À©¸æ¥ê¥¹¥¯Àß·×,¼«Æ°¼Öµ»½Ñ²ñ20Ç¯½©µ¨Âç²ñ³Ø½Ñ¹Ö±é²ñ
+- Risk design of control system utilizing big data,Society of Automotive Engineers of Japan 
 
-##ƒvƒƒOƒ‰ƒ€Œ¾Œê‚ÆƒCƒ“ƒ|[ƒg‚·‚éƒ‚ƒWƒ…[ƒ‹
-python
-glob
-re
-csv
-os
-pandas
-copy
-scipy
-numpy
-matplotlib
-mpl_toolkits
-sklearn
+## URL
 
-##ƒc[ƒ‹‚Ì—˜—p•û–@
-##How to use
+- http://www.na.rim.or.jp/~syn/kakuritsu.html
 
-from bunpu import *   
-a=bunpu()
-a.bunpu_data('input','output',1,[1,2],0,[20,10],[0],1.5)
-b=bunpu()
-b.bunpu_gene([-1.0,2.0],[0.5,4.0],[-0.1,2.8],[0.2,0.3],[20,20],'b')
-c=bunpu()
-c.bunpu_gene([2.0],[4.0],[2.8],[0.3],[20],'c')
-d=bunpu()
-d=b*c+a
-d.bunpu_graph()
 
-    Šes‚Ì‹@”\
-    1 ƒc[ƒ‹‚ÌƒCƒ“ƒ|[ƒg
-    2,4,6,8 •ª•zƒƒ\ƒbƒh‚Ì’è‹`
-    3 ƒtƒ@ƒCƒ‹ƒf[ƒ^‚©‚ç•ª•z¶¬Aˆø”:'ƒf[ƒ^ƒtƒ@ƒCƒ‹–¼','•ª•zo—Í–¼',–³‹‚·‚és,æ‚è‚Ş—ñ,•ªŠ„”,æ‚è‚Ş”ÍˆÍ‚Ì§ŒÀ,ƒJ[ƒlƒ‹•ª•z‚Ìƒoƒ“ƒh•
-    5,7 ”ÍˆÍ‚â•½‹Ï‚ğw’è‚µ‚Ä•ª•z‚ğ¶¬Aˆø”:Å¬’l,Å‘å’l,•½‹Ï’l,•W€•Î·,•ªŠ„”,•ª•zo—Í–¼
-    9 •ª•z‰‰ZiÏ¤‚Í‘½ŸŒ³*1ŸŒ³A˜a·‚Í‘½ŸŒ³*‘½ŸŒ³j
-    10 ƒOƒ‰ƒt•\¦
+##¥×¥í¥°¥é¥à¸À¸ì¤È¥¤¥ó¥İ¡¼¥È¤¹¤ë¥â¥¸¥å¡¼¥ë
+
+
+- python
+- glob
+- re
+- csv
+- os
+- pandas
+- copy
+- scipy
+- numpy
+- matplotlib
+- mpl_toolkits
+- sklearn
+
+
+## ¥Ä¡¼¥ë¤ÎÍøÍÑÊıË¡
+## How to use
+
+
+1 from bunpu import *   
+2 a=bunpu() 
+3 a.bunpu_data('input','output',1,[1,2],0,[20,10],[0],1.5) 
+4 b=bunpu() 
+5 b.bunpu_gene([-1.0,2.0],[0.5,4.0],[-0.1,2.8],[0.2,0.3],[20,20],'b') 
+6 c=bunpu() 
+7 c.bunpu_gene([2.0],[4.0],[2.8],[0.3],[20],'c') 
+8 d=bunpu() 
+9 d=b*c+a 
+10 d.bunpu_graph() 
+
+
+³Æ¹Ô¤Îµ¡Ç½ 
+1 ¥Ä¡¼¥ë¤Î¥¤¥ó¥İ¡¼¥È 
+2,4,6,8 Ê¬ÉÛ¥á¥½¥Ã¥É¤ÎÄêµÁ 
+3 ¥Õ¥¡¥¤¥ë¥Ç¡¼¥¿¤«¤éÊ¬ÉÛÀ¸À®¡¢°ú¿ô:'¥Ç¡¼¥¿¥Õ¥¡¥¤¥ëÌ¾','Ê¬ÉÛ½ĞÎÏÌ¾',Ìµ»ë¤¹¤ë¹Ô,¼è¤ê¹ş¤àÎó,Ê¬³ä¿ô,¼è¤ê¹ş¤àÈÏ°Ï¤ÎÀ©¸Â,¥«¡¼¥Í¥ëÊ¬ÉÛ¤Î¥Ğ¥ó¥ÉÉı 
+5,7 ÈÏ°Ï¤äÊ¿¶Ñ¤ò»ØÄê¤·¤ÆÊ¬ÉÛ¤òÀ¸À®¡¢°ú¿ô:ºÇ¾®ÃÍ,ºÇÂçÃÍ,Ê¿¶ÑÃÍ,É¸½àÊĞº¹,Ê¬³ä¿ô,Ê¬ÉÛ½ĞÎÏÌ¾ 
+9 Ê¬ÉÛ±é»»¡ÊÀÑ¾¦¤ÏÂ¿¼¡¸µ*1¼¡¸µ¡¢ÏÂº¹¤ÏÂ¿¼¡¸µ*Â¿¼¡¸µ¡Ë 
+10 ¥°¥é¥ÕÉ½¼¨ 
     
 
 
-##ƒ‰ƒCƒZƒ“ƒX
-##License
+## ¥é¥¤¥»¥ó¥¹
+## License
+¢í 2020 Shin Koike  bunpu@a1.rim.or.jp
 
-‚±‚Ìƒ\ƒtƒgƒEƒFƒA‚ğ‚»‚Ì‚Ü‚Ü‚Ì•¡»‚Æ‚µ‚Ä—˜—p‚·‚éê‡A–{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚ğ–³‚Å‹–‰Â‚µ‚Ü‚·B
+¤³¤Î¥½¥Õ¥È¥¦¥§¥¢¤ò¤½¤Î¤Ş¤Ş¤ÎÊ£À½¤È¤·¤ÆÍøÍÑ¤¹¤ë¾ì¹ç¡¢ËÜ¥½¥Õ¥È¥¦¥§¥¢¤ª¤è¤Óº£¸åºîÀ®¤µ¤ì¤ë¤â¤Î¤ò´Ş¤á¤¿¤½¤Î¥Ö¥é¥ó¥Á¤ÎÍøÍÑ¤òÌµ½ş¤Çµö²Ä¤·¤Ş¤¹¡£
 
-‚±‚Ìƒ\ƒtƒgƒEƒFƒA‚Í–¢Š®¬‚ÅA‰ü‘P‚Ì’ñˆÄ‚â‹@”\Šg’£‚Ì‹¦—Í‚ğ‹‚ß‚Ä‚¢‚Ü‚·A‚±‚Ìƒ\ƒtƒg‚Ì‰ü‘P‚â‹¦—Í‚Ìˆ×‚É‚ÉA•ÏXA’Ç‰ÁAŒ‹‡AˆÚA‚ğŠÜ‚Ş”h¶‚ğA
-—˜—p‰Â”\‚Èî•ñ‚Æ‚Æ‚à‚ÉAŒöŠJ‚ğ‘O’ñ‚Æ‚µ‚ÄA‚±‚Ìƒ\ƒtƒg‚ÌìÒ‚Ü‚½‚Í’˜ìŒ Ò‚É‚»‚Ìî•ñ’ñ‹Ÿ‚ğs‚¤‚±‚Æ‚ÅA‚»‚Ì—˜—p‚ğ‹–‰Â‚µ‚Ü‚·B
+¤³¤Î¥½¥Õ¥È¥¦¥§¥¢¤ÏÌ¤´°À®¤Ç¡¢²şÁ±¤ÎÄó°Æ¤äµ¡Ç½³ÈÄ¥¤Î¶¨ÎÏ¤òµá¤á¤Æ¤¤¤Ş¤¹¡¢¤³¤Î¥½¥Õ¥È¤Î²şÁ±¤ä¶¨ÎÏ¤Î°Ù¤Ë¤Ë¡¢ÊÑ¹¹¡¢ÄÉ²Ã¡¢·ë¹ç¡¢°Ü¿¢¤ò´Ş¤àÇÉÀ¸¤ò¡¢
+ÍøÍÑ²ÄÇ½¤Ê¾ğÊó¤È¤È¤â¤Ë¡¢¸ø³«¤òÁ°Äó¤È¤·¤Æ¡¢¤³¤Î¥½¥Õ¥È¤Îºî¼Ô¤Ş¤¿¤ÏÃøºî¸¢¼Ô¤Ë¤½¤Î¾ğÊóÄó¶¡¤ò¤ª´ê¤¤¤·¤Ş¤¹¡£
+¤½¤ÎÆâÍÆ¤Ï¸ø¶¦À­¤Ë´ğ¤Å¤¤¤ÆËÜ¥½¥Õ¥È¤Ş¤¿¤Ï¤½¤Î¥Ö¥é¥ó¥Á¤ËÈ¿±Ç¤µ¤»¤Æ¤¤¤­¤Ş¤¹¡£
 
-‚±‚Ìƒ\ƒtƒg‚ğ—˜—pEQl‚É‚·‚éê‡‚ÍA‚±‚Ìƒ\ƒtƒg‚Ì’˜ìŒ ‚Æ“Á‹–oŠèiPCT/JP2020/034566‚Æ‚»‚Ì•ªŠ„AŠÖ˜AoŠèj‚É‚¨‚¯‚éŒ —˜‚ğ‘¸d‚­‚¾‚³‚¢B
-‚±‚Ìƒ\ƒtƒgƒEƒFƒA‚Ìˆê•”•ª‚ğ—˜—p‚Ü‚½‚ÍQl‚É‚µ‚ÄA•ÏXA’Ç‰ÁAŒ‹‡AŒp³‚âˆÚA‚ğŠÜ‚Ş”h¶‚ğA”ñŒöŠJ‚Å”z•zA‚Ü‚½‚Í¤—p—˜—p‚·‚éê‡‚ÍìÒ‚É‘Š’k‚µ‚Ä‚­‚¾‚³‚¢B
+¤³¤Î¥½¥Õ¥È¤òÍøÍÑ¡¦»²¹Í¤Ë¤¹¤ë¾ì¹ç¤Ï¡¢¤³¤Î¥½¥Õ¥È¤ÎÃøºî¸¢¤ÈÆÃµö½Ğ´ê¡ÊPCT/JP2020/034566¤È¤½¤ÎÊ¬³ä¡¢´ØÏ¢½Ğ´ê¡Ë¤ª¤è¤Ó¤½¤Î¶¨ÎÏ¼Ô¤Ë¤ª¤±¤ë¸¢Íø¤òÂº½Å¤¯¤À¤µ¤¤¡£
+¤³¤Î¥½¥Õ¥È¥¦¥§¥¢¤Î°ìÉôÊ¬¤òÍøÍÑ¤Ş¤¿¤Ï»²¹Í¤Ë¤·¤Æ¡¢ÊÑ¹¹¡¢ÄÉ²Ã¡¢·ë¹ç¡¢·Ñ¾µ¤ä°Ü¿¢¤ò´Ş¤àÇÉÀ¸¤ò¡¢ÇÛÉÛ¤Ş¤¿¤Ï¾¦ÍÑÍøÍÑ¤¹¤ë¾ì¹ç¤Ïºî¼Ô¤ËÁêÃÌ¤·¤Æ¤¯¤À¤µ¤¤¡£
 
-ƒ\ƒtƒgƒEƒFƒA‚ÍA–¢Š®¬‚ÅA‰½‚ç‚Ì•ÛØ‚à‚È‚­’ñ‹Ÿ‚³‚ê‚Ü‚·B
-‚±‚±‚Å‚¢‚¤•ÛØ‚Æ‚ÍA¤•i«A“Á’è‚Ì–Ú“I‚Ö‚Ì“K‡«A‚¨‚æ‚ÑŒ —˜”ñNŠQ‚É‚Â‚¢‚Ä‚Ì•ÛØ‚àŠÜ‚İ‚Ü‚·‚ªA‚»‚ê‚ÉŒÀ’è‚³‚ê‚é‚à‚Ì‚Å‚Í‚ ‚è‚Ü‚¹‚ñB 
-‚±‚Ìƒ\ƒtƒgìÒ‚Ü‚½‚Í’˜ìŒ Ò‚ÍAŒ_–ñsˆ×A•s–@sˆ×A‚Ü‚½‚Í‚»‚êˆÈŠO‚Å‚ ‚ë‚¤‚ÆAƒ\ƒtƒgƒEƒFƒA‚É‹Nˆö‚Ü‚½‚ÍŠÖ˜A‚µA‚ ‚é‚¢‚Íƒ\ƒtƒgƒEƒFƒA‚Ìg—p‚Ü‚½‚Í
-‚»‚Ì‘¼‚Ìˆµ‚¢‚É‚æ‚Á‚Ä¶‚¶‚éˆêØ‚Ì¿‹A‘¹ŠQA‚»‚Ì‘¼‚Ì‹`–±‚É‚Â‚¢‚Ä‰½‚ç‚ÌÓ”C‚à•‰‚í‚È‚¢‚à‚Ì‚Æ‚µ‚Ü‚·B
+¥½¥Õ¥È¥¦¥§¥¢¤Ï¡¢Ì¤´°À®¤Ç¡¢²¿¤é¤ÎÊİ¾Ú¤â¤Ê¤¯Äó¶¡¤µ¤ì¤Ş¤¹¡£
+¤³¤³¤Ç¤¤¤¦Êİ¾Ú¤È¤Ï¡¢¾¦ÉÊÀ­¡¢ÆÃÄê¤ÎÌÜÅª¤Ø¤ÎÅ¬¹çÀ­¡¢¤ª¤è¤Ó¸¢ÍøÈó¿¯³²¤Ë¤Ä¤¤¤Æ¤ÎÊİ¾Ú¤â´Ş¤ß¤Ş¤¹¤¬¡¢¤½¤ì¤Ë¸ÂÄê¤µ¤ì¤ë¤â¤Î¤Ç¤Ï¤¢¤ê¤Ş¤»¤ó¡£ 
+¤³¤Î¥½¥Õ¥Èºî¼Ô¤Ş¤¿¤ÏÃøºî¸¢¼Ô¤Ï¡¢·ÀÌó¹Ô°Ù¡¢ÉÔË¡¹Ô°Ù¡¢¤Ş¤¿¤Ï¤½¤ì°Ê³°¤Ç¤¢¤í¤¦¤È¡¢¥½¥Õ¥È¥¦¥§¥¢¤Ëµ¯°ø¤Ş¤¿¤Ï´ØÏ¢¤·¡¢¤¢¤ë¤¤¤Ï¥½¥Õ¥È¥¦¥§¥¢¤Î»ÈÍÑ¤Ş¤¿¤Ï
+¤½¤ÎÂ¾¤Î°·¤¤¤Ë¤è¤Ã¤ÆÀ¸¤¸¤ë°ìÀÚ¤ÎÀÁµá¡¢Â»³²¡¢¤½¤ÎÂ¾¤ÎµÁÌ³¤Ë¤Ä¤¤¤Æ²¿¤é¤ÎÀÕÇ¤¤âÉé¤ï¤Ê¤¤¤â¤Î¤È¤·¤Ş¤¹¡£
 
-ˆÈã‚Ì•\¦‚¨‚æ‚Ñ–{‹–‘ø•\¦‚ğAƒ\ƒtƒgƒEƒFƒA‚Ì‚·‚×‚Ä‚Ì•¡»‚Ü‚½‚Í•”•ª‚Ì—˜—p‚Ü‚½‚Í•ª•zˆ—‚ğQl‚Æ‚·‚éê‡‚ÉAì¬‚³‚ê‚é’˜ì•¨‚É‹LÚ‚·‚é‚à‚Ì‚Æ‚µ‚Ü‚·B
+°Ê¾å¤ÎÉ½¼¨¤ª¤è¤ÓËÜµöÂúÉ½¼¨¤ò¡¢¥½¥Õ¥È¥¦¥§¥¢¤Î¤¹¤Ù¤Æ¤ÎÊ£À½¤Ş¤¿¤ÏÉôÊ¬¤ÎÍøÍÑ¤Ş¤¿¤ÏÊ¬ÉÛ½èÍı¤ò»²¹Í¤È¤¹¤ë¾ì¹ç¤Ë¡¢ºîÀ®¤µ¤ì¤ëÃøºîÊª¤Ëµ­ºÜ¤¹¤ë¤â¤Î¤È¤·¤Ş¤¹¡£
 
+¢í 2020 Shin Koike  bunpu@a1.rim.or.jp
 
-Permission is hereby granted, free of charge, to any person obtaining a exact copy of this software and associated documentation files (the "Software"), 
-to deal in the Software with restriction.
+Permission is hereby granted, free of charge, to any person obtaining a exact copy of this software,
+its branches and associated documentation files (the "Software"), to deal in the Software with restriction.
 
 This software is incomplete and we are seeking suggestions for improvement and cooperation in enhancements.
-Anyone who creates and uses, including changes, additions, mergers, and translation, to improve or cooperate with this software, 
-by providing it with the information available to the creator or copyright holder of this software on the premise of publication. Is possible.
+For the improvement and cooperation of this software, please provide the derivation
+including modification, addition, mergers,combination, translation with available information to the author
+or copyright holder of this software on the assumption that it will be published.
+The contents will be reflected in this software and its branches based on public nature and my leeway.
 
-When using or referring to this software, please correspond the copyright of this software and the rights in patent applications(PCT/JP2020/034566 and divisional other).
+When using or referring to this software, please correspond the copyright of this software
+and the rights in patent applications(PCT/JP2020/034566 and divisional other).
 Please contact with the author if you want to use or refer to a part of this software and distribute it privately or use it for commercial purposes.
 
 The software is incomplete and is provided without warranty.Warranties here include, but are not limited to, warranties of merchantability, 
