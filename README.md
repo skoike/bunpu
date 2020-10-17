@@ -1,31 +1,31 @@
-# ʬ�۱黻�δĶ����󶡤���
+# 分布演算の環境を提供する
 # Providing an environment for distribution calculation
 
 
-���ӥå��ǡ�������Ϥ�����ǽ���ο��ͱ黻�Ǥ��礭�ʥХ�ĥ���¸�ߤ��븽���������ǥ벽����ˤ����ٸ³������뤳�Ȥ˵��Ť���������к�������ˡ�Ȥ���ʬ�۱黻����Ƥ��Ƥ�����
-����Ϻ��ޤ��͡��ʱ��������Ƥ��Ƥ�������������������ǤϤ���ɬ��������ʬ�����򤵤�Ƥ��ʤ��Τǡ�ï�ˤǤ�Ȥ���ġ���Ȥ��ƹ����ȤäƤ�館�뤳�ȤǤ��β��ͤ������¥�ʤ��褦�ȹͤ�����
+　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
+それは今まで様々な応用例を提案してきたが、説明するだけではその必要性が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
 
-������ο��ͱ黻�Ǥϡ��Х�ĥ��Τ���ǡ����֤α黻��̤���ʬ�ۤ���Ƥ�Ƹ����Τ���ʬ�ۤ������ʤ�������ϥǡ����������䤷�Ƥ�������ʤ�������ϥ��ƥ�������ߥ�졼�����������ʬ�ۤ��󶡤Ǥ��ʤ����Ȥ�
-�Τ��Ƥ��롣������ͳ�ϡ����ͱ黻����Х�ĥ����İ����褦�Ȥ��Ƥ⡢¿���Ǥ���Ω��������ѥ�᡼���֤α黻�Ǥϡ�ʬ�ۤ�������뤿���ɬ�פ��ȹ礻������Ф��Ʒ�»���Ƥ�������̤γ�礬�礭���Τǡ�
-�����ˤ�ä�ʬ�ۤη������礭���ƶ���������ǽ�����⤤���ǡ����̤�黻�̤������뤳�Ȥ�ɬ�פ��ȹ礻�����̤��ؿ�Ū�����ä���Τǡ��ǡ��������䤷�Ƥ�������ʬ�ۤ������ʤ���
-�к��Ȥ��ơ������Υǡ����Ǥ⡢���줾��Υѥ�᡼���Υҥ��ȥ���फ��ʬ�ۤ�������ơ�ʬ�۱黻��Ԥ����Ȥǡ����ͱ黻�ξ����»����֤�������٤ι⤤�黻����ǽ�Ȥʤ롣
+　従来の数値演算では、バラツキのあるデータ間の演算結果から分布を求めても再現性のある分布が得られない、それはデータ数を増やしても改善しない。それはモンテカルロシミュレーションが正しい分布を提供できないことで
+知られている。その理由は、数値演算からバラツキを把握しようとしても、多少でも独立性があるパラメータ間の演算では、分布を形成するために必要な組合せ情報に対して欠損している情報量の割合が大きいので、
+偶然によって分布の形状が大きく影響を受ける可能性が高い、データ量や演算量が増えることで必要な組合せ情報量が指数的に増加するので、データを増やしても正しい分布は得られない。
+対策として、少数のデータでも、それぞれのパラメータのヒストグラムから分布を作成して、分布演算を行うことで、数値演算の情報欠損が補間されて精度の高い演算が可能となる。
 
-�����󤽤Υġ���ΰ�����������뤬�����ߤϥ٥��ȥ�λ�§�黻��ñ�����ʬ���Ǥ������٤Ǥ��롣�����͡���ʬ������˶��Ϥ���ĺ������ȯ��ʤ�뤳�Ȥ��Ǥ���С�
-�͡�����ʬ��������ޤ�������Τ˳�ĥ�Ǥ���ȹͤ��Ƥ��롣���Τ��Ȥ��͡��ʥХ�ĥ��򰷤�ʪ�����ϵ��Ѥ�Ҳ񸽾ݲ��Ϥ˲�����⤿�餷������򿼤�륹�����פȤ��Ƴ��ѤǤ����ǽ�������롣
+　今回そのツールの一部を公開するが、現在はベクトルの四則演算や単純な積分ができる程度である。今後様々な分野の方に協力して頂き、開発を進めることができれば、
+様々な微分方程式を含む数学全体に拡張できると考えている。このことは様々なバラツキを扱う物理解析技術や社会現象解析に改善をもたらし、理解を深めるスコープとして活用できる可能性がある。
 
-���Υġ������Ū�ϡ��Х�ĥ�������ǡ�������ҥ��ȥ�����ʬ�ۤ���Ф��ơ�����ʬ�ۤ�黻���ǤȤ���黻�ηϤ��ۤ��뤳�ȤǤ��롣�������Ǥ��Υġ���ϡ��ʲ��Τ��Ȥ���ǽ�Ǥ��롣
+このツールの目的は、バラツキがあるデータからヒストグラムで分布を抽出して、その分布を演算要素とする演算体系を構築することである。現時点でこのツールは、以下のことが可能である。
 
-### �ǡ����ե�����������󤫤���Ф����ǡ����Υҥ��ȥ�����ʬ�ۤ�����
-### �ϰϤ�ʿ���͡�ɸ���к�����ꤷ��ʬ�ۤ�����
-### �����������줿ʬ�ۤλ�§�黻����ط����˱�������������ǽ��
-### ʬ�ۤΥ����ɽ��
-### ʬ�����Ǥ�ե��������
-### �ʾ��1��������3�����Υ٥��ȥ�ʬ�۽���
+### データファイルの特定列から抽出したデータのヒストグラムと分布を生成
+### 範囲や平均値、標準偏差を指定して分布を生成
+### 前記生成された分布の四則演算（相関係数に応じた補正が可能）
+### 分布のグラフ表示
+### 分布要素をファイル出力
+### 以上の1次元から3次元のベクトル分布処理
 
-�饤���󥹤ϡ����Υ��եȤ򤽤Τޤ����Ѥ�������Ǥ���Хե꡼�����եȤ��ѹ��仲�ͤˤ��ƺ���������Τ����ۤ侦�����Ѥ�������κ⸢���ˤ�����ͭ���Ȥ��ޤ���
+ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利において有償とします。
 
 
-��While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
+　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
 and as a real example of how to deal with it, I have been published in various papers in Japan.I have been proposing various application examples of this method,
 but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it.
 
@@ -59,10 +59,10 @@ The license is free if you just use it as it is, If you change or use this soft 
 you will be charged for the intellectual property rights.
 
 
-## ��ʸ
+## 論文
 ## literature
 
-- �ӥå��ǡ�������Ѥ�������ꥹ���߷�,��ư�ֵ��Ѳ�20ǯ�������ؽѹֱ��
+- ビックデータを活用した制御リスク設計,自動車技術会20年秋季大会学術講演会
 - Risk design of control system utilizing big data,Society of Automotive Engineers of Japan 
 
 ## URL
@@ -70,7 +70,7 @@ you will be charged for the intellectual property rights.
 - http://www.na.rim.or.jp/~syn/kakuritsu.html
 
 
-##�ץ���������ȥ���ݡ��Ȥ���⥸�塼��
+##プログラム言語とインポートするモジュール
 
 
 - python
@@ -87,7 +87,7 @@ you will be charged for the intellectual property rights.
 - sklearn
 
 
-## �ġ����������ˡ
+## ツールの利用方法
 ## How to use
 
 
@@ -103,37 +103,44 @@ you will be charged for the intellectual property rights.
 10 d.bunpu_graph() 
 
 
-�ƹԤε�ǽ 
-1 �ġ���Υ���ݡ��� 
-2,4,6,8 ʬ�ۥ᥽�åɤ���� 
-3 �ե�����ǡ�������ʬ������������:'�ǡ����ե�����̾','ʬ�۽���̾',̵�뤹���,��������,ʬ���,�������ϰϤ�����,�����ͥ�ʬ�ۤΥХ���� 
-5,7 �ϰϤ�ʿ�Ѥ���ꤷ��ʬ�ۤ�����������:�Ǿ���,������,ʿ����,ɸ���к�,ʬ���,ʬ�۽���̾ 
-9 ʬ�۱黻���Ѿ���¿����*1�������º���¿����*¿������ 
-10 �����ɽ�� 
+
+
+各行の機能 
+1 ツールのインポート 
+2,4,6,8 分布メソッドの定義 
+3 ファイルデータから分布生成する。引数:'データファイル名','分布出力名',無視する行,取り込む列,分割数,取り込む範囲の制限,カーネル分布のバンド幅 
+5,7 範囲や平均を指定して分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名 
+9 分布演算（積商は多次元*1次元、和差は多次元*多次元） 
+10 グラフ表示 
     
+9の演算後に表示されるものの意味
+-bunpu+bunpu:通常の分布演算
+-bunpu+lean:分布範囲の差が大きい時に分布として演算されなかった場合
+-bunpu*vector:分布とベクトルの演算
+-上記表示に続く数字:演算結果の素の分布面積（体積）、相関係数0での分布演算の場合1に近い数字になる、ズレが大きい場合信頼性が低い
 
 
-## �饤����
+## ライセンス
 ## License
-��� 2020 Shin Koike  bunpu@a1.rim.or.jp
+© 2020 Shin Koike  bunpu@a1.rim.or.jp
 
-���Υ��եȥ������򤽤Τޤޤ�ʣ���Ȥ������Ѥ����硢�ܥ��եȥ���������Ӻ������������Τ�ޤ᤿���Υ֥��������Ѥ�̵���ǵ��Ĥ��ޤ���
+このソフトウェアをそのままの複製として利用する場合、本ソフトウェアおよび今後作成されるものを含めたそのブランチの利用を無償で許可します。
 
-���Υ��եȥ�������̤�����ǡ���������Ƥ䵡ǽ��ĥ�ζ��Ϥ���Ƥ��ޤ������Υ��եȤβ����䶨�Ϥΰ٤ˤˡ��ѹ����ɲá���硢�ܿ���ޤ�������
-���Ѳ�ǽ�ʾ���ȤȤ�ˡ�����������Ȥ��ơ����Υ��եȤκ�Ԥޤ�������Ԥˤ��ξ����󶡤򤪴ꤤ���ޤ���
-�������Ƥϸ������˴�Ť����ܥ��եȤޤ��Ϥ��Υ֥�����ȿ�Ǥ����Ƥ����ޤ���
+このソフトウェアは未完成で、改善の提案や機能拡張の協力を求めています、このソフトの改善や協力の為にに、変更、追加、結合、移植を含む派生を、
+利用可能な情報とともに、公開を前提として、このソフトの作者または著作権者にその情報提供をお願いします。
+その内容は公共性に基づいて本ソフトまたはそのブランチに反映させていきます。
 
-���Υ��եȤ����ѡ����ͤˤ�����ϡ����Υ��եȤ�������õ��д��PCT/JP2020/034566�Ȥ���ʬ�䡢��Ϣ�д�ˤ���Ӥ��ζ��ϼԤˤ����븢����º�Ť���������
-���Υ��եȥ������ΰ���ʬ�����Ѥޤ��ϻ��ͤˤ��ơ��ѹ����ɲá���硢�Ѿ���ܿ���ޤ����������ۤޤ��Ͼ������Ѥ�����Ϻ�Ԥ����̤��Ƥ���������
+このソフトを利用・参考にする場合は、このソフトの著作権と特許出願（PCT/JP2020/034566とその分割、関連出願）およびその協力者における権利を尊重ください。
+このソフトウェアの一部分を利用または参考にして、変更、追加、結合、継承や移植を含む派生を、配布または商用利用する場合は作者に相談してください。
 
-���եȥ������ϡ�̤�����ǡ�������ݾڤ�ʤ��󶡤���ޤ���
-�����Ǥ����ݾڤȤϡ����������������Ū�ؤ�Ŭ����������Ӹ����󿯳��ˤĤ��Ƥ��ݾڤ�ޤߤޤ���������˸��ꤵ����ΤǤϤ���ޤ��� 
-���Υ��եȺ�Ԥޤ�������Ԥϡ�����԰١���ˡ�԰١��ޤ��Ϥ���ʳ��Ǥ������ȡ����եȥ������˵����ޤ��ϴ�Ϣ�������뤤�ϥ��եȥ������λ��Ѥޤ���
-����¾�ΰ����ˤ�ä���������ڤ����ᡢ»��������¾�ε�̳�ˤĤ��Ʋ������Ǥ�����ʤ���ΤȤ��ޤ���
+ソフトウェアは、未完成で、何らの保証もなく提供されます。
+ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。 
+このソフト作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用または
+その他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。
 
-�ʾ��ɽ��������ܵ���ɽ���򡢥��եȥ������Τ��٤Ƥ�ʣ���ޤ�����ʬ�����Ѥޤ���ʬ�۽����򻲹ͤȤ�����ˡ��������������ʪ�˵��ܤ����ΤȤ��ޤ���
+以上の表示および本許諾表示を、ソフトウェアのすべての複製または部分の利用または分布処理を参考とする場合に、作成される著作物に記載するものとします。
 
-��� 2020 Shin Koike  bunpu@a1.rim.or.jp
+© 2020 Shin Koike  bunpu@a1.rim.or.jp
 
 Permission is hereby granted, free of charge, to any person obtaining a exact copy of this software,
 its branches and associated documentation files (the "Software"), to deal in the Software with restriction.
@@ -154,5 +161,7 @@ The author or copyright holder of this software, whether contractual, tort, or o
 We shall not be liable for any claims, damages or other obligations arising from any other dealings.
 
 The above copyright notice and this permission notice shall be included in all copies, portions or reference of the software related to dstribution .
+
+
 
 
