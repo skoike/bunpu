@@ -15,12 +15,12 @@
 
 このツールの目的は、バラツキがあるデータからヒストグラムで分布を抽出して、その分布を演算要素とする演算体系を構築することである。現時点でこのツールは、以下のことが可能である。
 
-### データファイルの特定列から抽出したデータのヒストグラムと分布を生成
-### 範囲や平均値、標準偏差を指定して分布を生成
-### 前記生成された分布の四則演算（相関係数に応じた補正が可能）
-### 分布のグラフ表示
-### 分布要素をファイル出力
-### 以上の1次元から3次元のベクトル分布処理
+- データファイルの特定列から抽出したデータのヒストグラムと分布を生成
+- 範囲や平均値、標準偏差を指定して分布を生成
+- 前記生成された分布の四則演算（相関係数に応じた補正が可能）
+- 分布のグラフ表示
+- 分布要素をファイル出力
+- 以上の1次元から3次元のベクトル分布処理
 
 ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利において有償とします。
 
@@ -48,12 +48,12 @@ the information loss of the numerical calculation is interpolated and the calcul
 The method is to construct a calculation system in which the distributed data is distributed in a histogram and the distribution is used as a calculation element.
 At the moment this tool can:
 
-### Generate a distribution from the histogram of the measured data
-### Generate distribution by specifying range, mean, and standard deviation
-### Four arithmetic operations between generated distributions
-### Graph display of distribution
-### Output distribution elements to a file
-### 1D to 3D vector distribution processing above all
+- Generate a distribution from the histogram of the measured data
+- Generate distribution by specifying range, mean, and standard deviation
+- Four arithmetic operations between generated distributions
+- Graph display of distribution
+- Output distribution elements to a file
+- 1D to 3D vector distribution processing above all
 
 The license is free if you just use it as it is, If you change or use this soft as reference for a distribution or commercial purposes,
 you will be charged for the intellectual property rights.
