@@ -22,11 +22,11 @@
 - 分布要素をファイル出力
 - 以上の1次元から3次元のベクトル分布処理
 
-ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利において有償とします。
+ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利と著作権において有償とします。
 
 
 　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
-and as a real example of how to deal with it, I have been published in various papers in Japan.I have been proposing various application examples of this method,
+and as a real example of how to deal with it.I have been proposing various application examples of this method,
 but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it.
 
 In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
@@ -55,7 +55,7 @@ At the moment this tool can:
 - 1D to 3D vector distribution processing above all
 
 The license is free if you just use it as it is, If you change or use this soft as reference for a distribution or commercial purposes,
-you will be charged for the intellectual property rights.
+you will be charged for the intellectual property rights and the copyright of this software.
 
 
 ## 論文
@@ -108,11 +108,11 @@ you will be charged for the intellectual property rights.
 
 1. ツールのインポート 
 2. 分布メソッドの定義 
-3. ファイルデータから分布生成する。引数:'データファイル名','分布出力名',無視する行,取り込む列,分割数,取り込む範囲の制限,カーネル分布のバンド幅
+3. ファイルデータから2次元分布生成する。引数:'データファイル名','分布出力名',無視する行,取り込む列,分割数,取り込む範囲の制限,カーネル分布のバンド幅
 4. 分布メソッドの定義 
-5. 範囲や平均を指定して分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名
+5. 範囲や平均を指定して2次元分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名
 6. 分布メソッドの定義
-7. 範囲や平均を指定して分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名
+7. 範囲や平均を指定して1次元分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名
 8. 分布メソッドの定義 
 9. 分布演算（積商は多次元×1次元＝多次元、和差は多次元＋多次元＝多次元） 
 10. グラフ表示 
@@ -124,6 +124,9 @@ you will be charged for the intellectual property rights.
 - bunpu+vector:分布とベクトルの演算
 - 上記表示に続く数字:演算結果の素の分布面積（体積、超体積）、相関係数0での分布演算結果の面積は必ず1に近い数字になる、1からのズレ2割以上大きい場合は結果が信頼できない
 
+課題
+- python3.8.5だと3D表示がおかしい（python3.6.9だと正常）
+
 
 ## ライセンス
 ## License
@@ -132,11 +135,11 @@ you will be charged for the intellectual property rights.
 このソフトウェアをそのままの複製として利用する場合、本ソフトウェアおよび今後作成されるものを含めたそのブランチの利用を無償で許可します。
 
 このソフトウェアは未完成で、改善の提案や機能拡張の協力を求めています、このソフトの改善や協力の為にに、変更、追加、結合、移植を含む派生を、
-利用可能な情報とともに、公開を前提として、このソフトの作者または著作権者にその情報提供をお願いします。
+利用可能な情報とともに、公開を前提として、前記アドレスにその情報提供をお願いします。
 その内容は公共性に基づいて本ソフトまたはそのブランチに反映させていきます。
 
 このソフトを利用・参考にする場合は、このソフトの著作権と特許出願（PCT/JP2020/034566とその分割、関連出願）およびその協力者における権利を尊重ください。
-このソフトウェアの一部分を利用または参考にして、変更、追加、結合、継承や移植を含む派生を、配布または商用利用する場合は作者に相談してください。
+このソフトウェアの一部分を利用または参考にして、変更、追加、結合、継承や移植を含む派生を、配布または商用利用する場合は前記アドレスに相談してください。
 
 ソフトウェアは、未完成で、何らの保証もなく提供されます。
 ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。 
@@ -152,13 +155,13 @@ its branches and associated documentation files (the "Software"), to deal in the
 
 This software is incomplete and we are seeking suggestions for improvement and cooperation in enhancements.
 For the improvement and cooperation of this software, please provide the derivation
-including modification, addition, mergers,combination, translation with available information to the author
-or copyright holder of this software on the assumption that it will be published.
+including modification, addition, mergers,combination, translation with available information to above address
+ the assumption that it will be published.
 The contents will be reflected in this software and its branches based on public nature and my leeway.
 
 When using or referring to this software, please correspond the copyright of this software
 and the rights in patent applications(PCT/JP2020/034566 and divisional other).
-Please contact with the author if you want to use or refer to a part of this software and distribute it privately or use it for commercial purposes.
+Please contact with above address if you want to use or refer to a part of this software and distribute it privately or use it for commercial purposes.
 
 The software is incomplete and is provided without warranty.Warranties here include, but are not limited to, warranties of merchantability, 
 fitness for a particular purpose, and non-infringement.

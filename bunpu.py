@@ -2495,7 +2495,7 @@ class bunpu(object):
             ax.set_xlim(tmin[0],tmax[0])
             ax.set_ylim(tmin[1],tmax[1])
 
-            H = ax.hist2d(data_np[:,0], data_np[:,1], bins=divn, normed=True, cmap=cm.gray)
+            H = ax.hist2d(data_np[:,0], data_np[:,1], bins=divn, cmap=cm.gray)
             fig.colorbar(H[3],ax=ax)
             outgraphname=outfilename[0]+'.png'
             plt.savefig(outgraphname)
@@ -2521,7 +2521,7 @@ class bunpu(object):
                 cset = ax.contour(xx, yy, f, colors='r')
                 ax.clabel(cset, inline=1, fontsize=10)
                 
-                H = ax.hist2d(data_np[:,0], data_np[:,1], bins=divn, normed=True, cmap=cm.gray)
+                H = ax.hist2d(data_np[:,0], data_np[:,1], bins=divn, cmap=cm.gray)
                 fig.colorbar(H[3],ax=ax)
                 outgraphname=outfilename[0]+'2.png'
                 plt.savefig(outgraphname)
@@ -2555,7 +2555,8 @@ class bunpu(object):
                 bw=(bw0[0]+bw0[1]+bw0[2])/3
 
             fig = plt.figure(figsize=(14,7))
-            ax = fig.add_subplot(111, projection='3d', aspect='equal')
+            ax = fig.add_subplot(111, projection='3d')
+            plt.figaspect(1)
             cmap = cm.binary
             cmap_data = cmap(np.arange(cmap.N))
             lnmap=len(cmap_data)
@@ -2575,8 +2576,8 @@ class bunpu(object):
             
             elif gr==1 or gr==3:
                 fig = plt.figure(figsize=(14,7))
-                ax = fig.add_subplot(111, projection='3d', aspect='equal')
-                
+                ax = fig.add_subplot(111, projection='3d')
+                plt.figaspect(1)
                 X = data_np.T
                 kde = stats.gaussian_kde(X)
                 f0 = np.linspace(tmin[0],tmax[0], divn[0])
@@ -5393,7 +5394,8 @@ class bunpu(object):
                     )
                 ax.view_init(elev=30, azim=10)
             elif gr==1 or gr==3:
-                ax = fig.add_subplot(111, projection='3d', aspect='equal')
+                ax = fig.add_subplot(111, projection='3d')
+                plt.figaspect(1)
                 cmap = cm.binary
                 cmap_data = cmap(np.arange(cmap.N))
                 lnmap=len(cmap_data)
