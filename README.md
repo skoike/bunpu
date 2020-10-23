@@ -2,8 +2,7 @@
 # Providing an environment for distribution calculation
 
 
-　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
-それは今まで様々な応用例を提案してきたが、説明するだけではその必要性が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
+　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。分布演算とは、数値に代えて確率分布を演算要素とした、四則演算や微分方程式などの解を求める方法である。それは今まで様々な応用例を提案してきたが、説明するだけではその必要性が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
 
 　従来の数値演算では、バラツキのあるデータ間の演算結果から分布を求めても再現性のある分布が得られない、それはデータ数を増やしても改善しない。
 その理由は、数値演算からバラツキを把握しようとしても、多少でも独立性があるパラメータ間の演算では、分布を形成するために必要な組合せ情報に対して欠損している情報量の割合が大きいので、
@@ -26,8 +25,7 @@
 
 
 　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
-and as a real example of how to deal with it.I have been proposing various application examples of this method,
-but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it.
+and I have proposed distribution calculation to deal with it. Distribution calculation is a method of solving solutions such as four arithmetic operations and differential equations using a probability distribution as an arithmetic element instead of a numerical value. I have been proposing various application examples of this method,but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it. 
 
 In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
 from the calculation results of a plurality of various data, which does not improve even if the number of data is increased.
