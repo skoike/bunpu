@@ -7,6 +7,7 @@
 今回提案する方法によって、計測された実データのヒストグラムを演算対象とすることでその応用範囲は無限に広がる。
 現在、物理現象や社会現象を推定する多くの方程式はパラメータを数値演算されているが、多くのパラメータはバラツキを持っており、分布演算に拡張することで精度向上につながる。
 従来から使われているモンテカルロシミュレーションはバラツキを考慮することができるが、この後述べる理由により演算結果として、無視できないレベルで誤差を持っており、正しい分布を出力することができない。
+分布演算を行うことで、初めて正確な演算結果の分布を求める事ができる。
 分布演算は、今まで様々な応用例を提案してきたが、説明するだけではその必要性が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
 
 　従来の数値演算では、バラツキのあるデータ間の演算結果から分布を求めても再現性のある分布が得られない、それはデータ数を増やしても改善しない。
@@ -38,7 +39,8 @@ Currently, many equations for estimating physical and social phenomena have thei
 but many parameters have variations, and extending to distribution calculation leads to improved accuracy.
 The Monte Carlo simulation that has been used conventionally can take into consideration the variation,
 but for the reason described later, the calculation result has an error at a non-negligible level, and the correct distribution cannot be output.
-I have been proposing various application examples of this method,but Few fellow understand its importance,
+It is possible to obtain an accurate distribution of calculation results for the first time by performing a distribution calculation.
+I have been proposing various application examples of this method, but Few fellow understand its importance,
 so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it. 
 
 In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
