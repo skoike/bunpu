@@ -2,7 +2,12 @@
 # Providing an environment for distribution calculation
 
 
-　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。分布演算とは、数値に代えて確率分布を演算要素とした、四則演算や微分方程式などの解を求める方法である。それは今まで様々な応用例を提案してきたが、説明するだけではその必要性が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
+　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
+ここで言う分布演算とは、数値に代えて確率分布を演算要素とした、演算方法である。従来から連続した関数表現の確率分布を畳込み積分によって演算する方法が提案されているが、
+今回提案する方法によって、計測された実データのヒストグラムを演算対象とすることでその応用範囲は無限に広がる。
+現在、物理現象や社会現象を推定する多くの方程式はパラメータを数値演算されているが、多くのパラメータはバラツキを持っており、分布演算に拡張することで精度向上につながる。
+従来から使われているモンテカルロシミュレーションはバラツキを考慮することができるが、この後述べる理由により演算結果として、無視できないレベルで誤差を持っており、正しい分布を出力することができない。
+分布演算は、今まで様々な応用例を提案してきたが、説明するだけではその必要性が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
 
 　従来の数値演算では、バラツキのあるデータ間の演算結果から分布を求めても再現性のある分布が得られない、それはデータ数を増やしても改善しない。
 その理由は、数値演算からバラツキを把握しようとしても、多少でも独立性があるパラメータ間の演算では、分布を形成するために必要な組合せ情報に対して欠損している情報量の割合が大きいので、
@@ -25,7 +30,16 @@
 
 
 　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
-and I have proposed distribution calculation to deal with it. Distribution calculation is a method of solving solutions such as four arithmetic operations and differential equations using a probability distribution as an arithmetic element instead of a numerical value. I have been proposing various application examples of this method,but Few fellow understand its importance, so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it. 
+and I have proposed distribution calculation to deal with it.　Distribution calculation is a method of solving solutions such as four arithmetic operations
+and differential equations using a probability distribution as an arithmetic element instead of a numerical value.
+Conventionally, it has been proposed to calculate the probability distribution of continuous function representation by convolution integral.
+But,by using the method proposed this time as the calculation target of the histogram of the measured actual data, the possibilities are endless.
+Currently, many equations for estimating physical and social phenomena have their parameters calculated numerically,
+but many parameters have variations, and extending to distribution calculation leads to improved accuracy.
+The Monte Carlo simulation that has been used conventionally can take into consideration the variation,
+but for the reason described later, the calculation result has an error at a non-negligible level, and the correct distribution cannot be output.
+I have been proposing various application examples of this method,but Few fellow understand its importance,
+so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it. 
 
 In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
 from the calculation results of a plurality of various data, which does not improve even if the number of data is increased.
