@@ -4,7 +4,7 @@
 
 　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
 ここで言う分布演算とは、数値に代えて確率分布を演算要素とした、演算方法である。従来から連続した関数表現の確率分布を畳込み積分によって演算する方法が提案されているが、
-今回提案する方法によって、計測された実データのヒストグラムを演算対象とすることでその応用範囲は無限に広がる。
+今回提案する方法によって、計測された実データのヒストグラムを演算対象とすることが可能となり、その応用範囲は無限に広がる。
 現在、物理現象や社会現象を推定する多くの方程式はパラメータを数値演算されているが、多くのパラメータはバラツキを持っており、分布演算に拡張することで精度向上につながる。
 従来から使われているモンテカルロシミュレーションはバラツキを考慮することができるが、この後述べる理由により演算結果として、無視できないレベルで誤差を持っており、正しい分布を出力することができない。
 分布演算を行うことで、初めて正確な演算結果の分布を求める事ができる。
@@ -34,7 +34,8 @@
 and I have proposed distribution calculation to deal with it.　Distribution calculation is a method of solving solutions such as four arithmetic operations
 and differential equations using a probability distribution as an arithmetic element instead of a numerical value.
 Conventionally, it has been proposed to calculate the probability distribution of continuous function representation by convolution integral.
-But,by using the method proposed this time as the calculation target of the histogram of the measured actual data, the possibilities are endless.
+But,by using the method proposed this time it is possible to perform calculation using the histogram of the measured actual data as the calculation element,
+the possibilities are endless.
 Currently, many equations for estimating physical and social phenomena have their parameters calculated numerically,
 but many parameters have variations, and extending to distribution calculation leads to improved accuracy.
 The Monte Carlo simulation that has been used conventionally can take into consideration the variation,
