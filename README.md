@@ -27,7 +27,7 @@
 - 分布要素をファイル出力
 - 以上の1次元から3次元のベクトル分布処理
 
-ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利と著作権において有償とします。
+ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利と著作権にご配慮ください。
 
 
 　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
@@ -70,7 +70,7 @@ At the moment this tool can:
 - 1D to 3D vector distribution processing above all
 
 The license is free if you just use it as it is, If you change or use this soft as reference for a distribution or commercial purposes,
-you will be charged for the intellectual property rights and the copyright of this software.
+you should respond to your obligations for the intellectual property rights and the copyright of this software.
 
 
 ## 論文
