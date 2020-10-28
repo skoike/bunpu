@@ -1,5 +1,5 @@
-# 分布演算の環境を提供する
-# Providing an environment for distribution calculation
+# 分布演算（確率分布ベクトル解析）
+# Distribution calculation(Probability distribution vector analysis)
 
 
 　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
