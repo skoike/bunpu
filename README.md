@@ -96,17 +96,11 @@ you should respond to your obligations for the intellectual property rights and 
 
 
 - python3.6
-- glob
-- re
-- csv
-- os
-- pandas
-- copy
-- scipy
-- numpy
-- matplotlib
-- mpl_toolkits
-- sklearn
+- pandas0.25.2
+- scipy1.2.0
+- numpy1.16.5
+- matplotlib3.0.2
+- scikit-learn0.21.3
 
 
 ## ツールの利用方法
