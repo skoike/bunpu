@@ -51,7 +51,7 @@ The above copyright notice and this permission notice shall be included in all c
 ・分布パラメータのファイル出力
 
 """
-from scipy import stats
+#from scipy import stats
 from scipy.stats import multivariate_normal,matrix_normal
 from scipy.stats import powerlognorm,norminvgauss
 import numpy as np
@@ -68,7 +68,8 @@ import os
 import pandas as pd
 import copy
 import matplotlib.colors as colors
-from sklearn.neighbors.kde import KernelDensity
+#from sklearn.neighbors.kde import KernelDensity#vr.0.22
+from sklearn.neighbors import KernelDensity#vr.0.24
 from scipy.stats import gaussian_kde
 from matplotlib.font_manager import FontProperties
 
@@ -2579,7 +2580,7 @@ class bunpu(object):
                 ax = fig.add_subplot(111, projection='3d')
                 plt.figaspect(1)
                 X = data_np.T
-                kde = stats.gaussian_kde(X)
+                kde = gaussian_kde(X)
                 f0 = np.linspace(tmin[0],tmax[0], divn[0])
                 f1 = np.linspace(tmin[1],tmax[1], divn[1])
                 f2 = np.linspace(tmin[2],tmax[2], divn[2])
@@ -2609,8 +2610,9 @@ class bunpu(object):
                 ploty, plotz = np.mgrid[tmin[1]:tmax[1]:(tmax[1]-tmin[1])/divn[1],tmin[2]:tmax[2]:(tmax[2]-tmin[2])/divn[2]]
                 ax.contour(plotdat, ploty, plotz, offset=tmin[0], zdir='x')
             outgraphname=outfilename[0]+'.png'
-            plt.savefig(outgraphname)
+            #plt.savefig(outgraphname)
             #plt.show()
+            plt.close()
             self.pmax=(scores.flatten()).max()
             self.div=divn
             self.para=[f0,f1,f2]
@@ -3054,7 +3056,7 @@ class bunpu(object):
                     x2[2]=x2[2]*chosei
                 if flagy==1:
                     y2[2]=y2[2]*chosei
-                zfun_smooth_rbf = interpolate.Rbf(y2[0], y2[1], y2[2], function='linear', smooth=0)  # default smooth=0 for interpolation滑らかな変化の場合
+                zfun_smooth_rbf = interpolate.Rbf(y2[0], y2[1], y2[2], function='linear', smooth=0)
             elif dim==3:
                 divtt=divt[0]*divt[1]*divt[2]
                 t=[np.linspace(tmin[0],tmax[0],divt[0]),np.linspace(tmin[1],tmax[1],divt[1]),np.linspace(tmin[2],tmax[2],divt[2])]
@@ -3064,12 +3066,11 @@ class bunpu(object):
                 p1=[0.]*divtt
                 p0=np.zeros((divt[2],divt[1],divt[0]))
                 lastp=np.zeros(divtt)
-                #>*1
                 if flagx==1:
                     x2[3]=x2[3]*chosei
                 if flagy==1:
                     y2[3]=y2[3]*chosei
-                zfun_smooth_rbf = interpolate.Rbf(y2[0], y2[1], y2[2], y2[3], function='linear', smooth=0)  # default smooth=0 for interpolation
+                zfun_smooth_rbf = interpolate.Rbf(y2[0], y2[1], y2[2], y2[3], function='linear', smooth=0)
             for i in range(dim):
                 x.append(np.arange(xmin[i],xmax[i],dt[i]))
                 if max(x[i])<xmax[i]:
@@ -5410,7 +5411,7 @@ class bunpu(object):
                 ax.set_xlim((x[0].min(),x[0].max()))
                 ax.set_ylim((x[1].min(),x[1].max()))
                 ax.set_zlim((x[2].min(),x[2].max()))
-            
+                
                 plotdat = np.sum(xm[3], axis=2)
                 plotdat = plotdat / np.max(plotdat)
                 plotx, ploty=np.mgrid[xmin0:xmax0:(xmax0-xmin0)/divn[0],xmin1:xmax1:(xmax1-xmin1)/divn[1]]
