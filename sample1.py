@@ -2,6 +2,8 @@
 """
 Created on Thu Mar. 28 12:15:27 2019
 @author: shin
+ファイルデータのヒストグラムから分布生成
+ヒストグラムから生成した分布で四則演算
 """
 
 
@@ -59,18 +61,23 @@ x2[3]=toyoso/toyo
 x2[3].bunpu_graph('ts／t')
 
 x3[0]=toyosonk+toyosonk
-x3[0].bunpu_graph('tsn+tsn')
+#x3[0].bunpu_graph('tsn+tsn')
+print('matplotlib2.2.2より新しいとsavefigを行うと表示が壊れるので表示のみとします、2.2.2ならコメントを外してください')
+x3[0].bunpu_graph()
 x3[0].bunpu_file('tsn+tsn.csv')
 
 x3[1]=toyosonk-toyosonk
-x3[1].bunpu_graph('tsn-tsn')
+#x3[1].bunpu_graph('tsn-tsn')
+x3[0].bunpu_graph()
 x3[1].bunpu_file('tsn-tsn.csv')
 
 x3[2]=toyosonk*toyo
-x3[2].bunpu_graph('tsn＊t')
+#x3[2].bunpu_graph('tsn＊t')
+x3[0].bunpu_graph()
 x3[2].bunpu_file('tsn＊t.csv')
 
 x3[0]=toyosonk/toyo
-x3[0].bunpu_graph('tsn／t')
+#x3[0].bunpu_graph('tsn／t')
+x3[0].bunpu_graph()
 x3[0].bunpu_file('tsn／t.csv')
         

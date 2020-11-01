@@ -2,6 +2,8 @@
 """
 Created on Thu Mar. 28 12:15:27 2019
 @author: shin
+範囲、平均、標準偏差を指定して分布生成
+生成した分布で四則演算
 """
 
 
@@ -72,19 +74,24 @@ z2.bunpu_file('2d x／y')
 
 z3=bunpu()
 z3=x3+y3
-z3.bunpu_graph('3d x+y')
+#z3.bunpu_graph('3d x+y')
+print('matplotlib2.2.2より新しいとsavefigを行うと表示が壊れるので表示のみとします、2.2.2ならコメントを外してください')
+z3.bunpu_graph()
 
 z3=bunpu()
 z3=x3-y3
-z3.bunpu_graph('3d x-y')
+#z3.bunpu_graph('3d x-y')
+z3.bunpu_graph()
 
 z3=bunpu()
 z3=x3*y1
-z3.bunpu_graph('3d x＊y',1)
+#z3.bunpu_graph('3d x＊y',1)
+z3.bunpu_graph()
 z3.bunpu_file('3d x＊y')
 
 z3=bunpu()
 z3=x3/y1
-z3.bunpu_graph('3d x／y',1)
+#z3.bunpu_graph('3d x／y',1)
+z3.bunpu_graph()
 z3.bunpu_file('3d x／y')
 

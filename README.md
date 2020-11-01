@@ -3,7 +3,8 @@
 
 
 　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
-分布演算は、今まで様々な応用例を提案してきたが、説明するだけではその効果が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
+分布演算は、機能を拡張することでベクトル解析と確率統計を包含する演算体系になると考えている。従来の方法ではできなかった両者のはざまにある確率演算が可能となる。
+実際に今まで様々な応用例を提案してきたが、説明するだけではその効果が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
 
 　ここで言う分布演算とは、数値に代えて確率分布を演算要素とした、演算方法である。従来から連続した関数表現の確率分布を畳込み積分によって演算する方法が提案されているが、
 今回提案する方法によって、計測された実データのヒストグラムを演算対象として容易に四則演算ができるので、その応用範囲は広がる。
@@ -34,6 +35,8 @@
 
 　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
 and I have proposed distribution calculation to deal with it.
+I believe that distribution arithmetic will become an arithmetic system that includes vector analysis and probability statistics by expanding its functions.
+It is possible to perform probability calculations between the two, which was not possible with conventional methods.
 I have been proposing various application examples of this method, but Few fellow understand its advantageous effect,
 so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it. 
 
@@ -145,7 +148,7 @@ you should respond to your obligations for the intellectual property rights and 
 - 上記表示に続く数字:演算結果の素の分布面積（体積、超体積）、相関係数0での分布演算結果の面積は必ず1に近い数字になる、1からのズレ2割以上大きい場合は結果が信頼できない
 
 課題
-- python3.8.5だと3D表示がおかしい（python3.6.9だと正常）
+- python3.8.5だと3D表示がおかしい（python3.6.9だと正常）→matplotlib2.2.2だと正常、新しいとsavefigがおかしい、サンプルのsavefigを表示だけにする
 
 
 ## ライセンス
