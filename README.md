@@ -93,7 +93,7 @@ you should respond to your obligations for the intellectual property rights and 
 
 
 ##プログラム言語とインポートするモジュール
-
+##import module
 
 - python3.6
 - pandas0.25.2
@@ -120,7 +120,6 @@ you should respond to your obligations for the intellectual property rights and 
 
 
 
-
 各行の機能 
 
 1. ツールのインポート 
@@ -141,12 +140,23 @@ you should respond to your obligations for the intellectual property rights and 
 - bunpu+vector:分布とベクトルの演算
 - 上記表示に続く数字:演算結果の素の分布面積（体積、超体積）、相関係数0での分布演算結果の面積は必ず1に近い数字になる、1からのズレ2割以上大きい場合は結果が信頼できない
 
+サンプル
+
+- sample0.py　最小値、最大値、平均値、標準偏差を指定して分布作成、その分布を四則演算、1次元～3次元
+- sample1.py　ファイルからデータを読み込んで分布作成、その分布を四則演算、1次元～3次元
+- sample2.py　作動頻度分布×生涯寿命分布＝生涯作動回数分布をもとめ、ストレスストレングスで目標故障率を満足する耐久回数を求める
+- sample3.py　拡散方程式の解、
+- sample4.py　運動方程式の解、3次元放物線運動
+
+
+
+
 課題
 - python3.8.5だと3D表示がおかしい（python3.6.9だと正常）→matplotlib2.2.2だと正常、新しいとsavefigがおかしい、サンプルのsavefigを表示だけにする
 
 
 ## ライセンス
-## License
+
 © 2020 Shin Koike  bunpu@a1.rim.or.jp
 
 このソフトウェアをそのままの複製として利用する場合、本ソフトウェアおよび今後作成されるものを含めたそのブランチの利用を無償で許可します。
@@ -164,6 +174,8 @@ you should respond to your obligations for the intellectual property rights and 
 その他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。
 
 以上の表示および本許諾表示を、ソフトウェアのすべての複製または部分の利用または分布処理を参考とする場合に、作成される著作物に記載するものとします。
+
+## License
 
 © 2020 Shin Koike  bunpu@a1.rim.or.jp
 
