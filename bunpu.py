@@ -2343,7 +2343,6 @@ class bunpu(object):
     def __mul__(self,other):
 
         divt=self.div
-
         WW=bunpu()
         WW=self.bunpu_product(other,divt)
         return WW
@@ -2808,14 +2807,13 @@ class bunpu(object):
             z=0
     
         
-    def bunpu_add(self,other,divt0=[],corel=[0]):
+    def bunpu_add(self,other,divt0=[],corel=[0],shw=0):
             
         r=corel
         max_x=0
         max_y=0
         max_p=0
-        X,X1,X0,x0min,x0max,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,0,divt0)
-        
+        X,X1,X0,x0min,x0max,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,0,divt0)#today,X(para)だけが3重カッコになっている
         if flag0!=0:
             if flag0!=3:
                 Y=m
@@ -3176,9 +3174,10 @@ class bunpu(object):
             menseki=menseki/chosei
         if flagy==1:
             menseki=menseki/chosei
-        #flag:0 分布、1 otherが狭い、2　selfが狭い、3　otherがベクトル
-        flaginf=['bunpu+bunpu','bunpu+lean','lean+bunpu','bunpu+vector']
-        print(flaginf[flag0],menseki)
+        if shw==0:
+            #flag:0 分布、1 otherが狭い、2　selfが狭い、3　otherがベクトル
+            flaginf=['bunpu+bunpu','bunpu+lean','lean+bunpu','bunpu+vector']
+            print(flaginf[flag0],menseki)
         #
         if dim==1:
             W=[t]
@@ -3205,7 +3204,7 @@ class bunpu(object):
         WW.pmax=p.max()
         return WW
     
-    def bunpu_sub(self,other,divt0=[],corel=[0]):
+    def bunpu_sub(self,other,divt0=[],corel=[0],shw=0):
         r=corel        
         max_x=0
         max_y=0
@@ -3562,8 +3561,9 @@ class bunpu(object):
             menseki=menseki/chosei
         if flagy==1:
             menseki=menseki/chosei
-        flaginf=['bunpu-bunpu','bunpu-lean','lean-bunpu','bunpu-vector']
-        print(flaginf[flag0],menseki)
+        if shw==0:
+            flaginf=['bunpu-bunpu','bunpu-lean','lean-bunpu','bunpu-vector']
+            print(flaginf[flag0],menseki)
         #
         if dim==1:
             W=[t]
@@ -3592,7 +3592,7 @@ class bunpu(object):
 
 
 
-    def bunpu_simu(self,other,dt,corel=0,vdiv=10):
+    def bunpu_simu(self,other,dt,corel=0,vdiv=[10],shw=0):
         X0=self.mesh
         X1=self.flatten
         dim=self.dim
@@ -3611,7 +3611,7 @@ class bunpu(object):
         
         #
         Z=bunpu()
-        Z=self.bunpu_add(other,div,corel)
+        Z=self.bunpu_add(other,div,corel,shw)
         zmin=Z.xmin
         zmax=Z.xmax
         Z0=Z.mesh
@@ -3626,17 +3626,17 @@ class bunpu(object):
             tmax.append((self.xmax[i]*(ndt-1)+zmax[i])/ndt)
             tmin.append((self.xmin[i]*(ndt-1)+zmin[i])/ndt)
             divt*=div[i]
-            divz*=(2*vdiv-1)
+            divz*=(2*vdiv[i]-1)
 
         tw,tw0,pw0,tw1,pw1,dt=predistrb(tmin,tmax,div,dim)
         tw1tmp=tw1
         flag=1
         if dim==1 and flag==0:
-            xh,xmx_value,xmx_index,xh_value,xh_div,xlayer=self.bunpu_contour(vdiv)#
-            zh,zmx_value,zmx_index,zh_value,zh_div,zlayer=Z.bunpu_contour(vdiv)
+            xh,xmx_value,xmx_index,xh_value,xh_div,xlayer=self.bunpu_contour(vdiv[0])#
+            zh,zmx_value,zmx_index,zh_value,zh_div,zlayer=Z.bunpu_contour(vdiv[0])
         else:
-            xmx_value2,xmx_index2,xdiv_flatten,xdiv_value,xdiv_flattens,xdiv_valus=self.bunpu_contour2(vdiv)
-            zmx_value2,zmx_index2,zdiv_flatten,zdiv_value,zdiv_flattens,zdiv_valus=Z.bunpu_contour2(vdiv)
+            xmx_value2,xmx_index2,xdiv_flatten,xdiv_value,xdiv_flattens,xdiv_valus=self.bunpu_contour2(vdiv[0])
+            zmx_value2,zmx_index2,zdiv_flatten,zdiv_value,zdiv_flattens,zdiv_valus=Z.bunpu_contour2(vdiv[0])
 
         nmin=0
         nmax=divt-1
@@ -3660,7 +3660,7 @@ class bunpu(object):
         
         zptmptest=[]
         if dim==1 and flag==0:
-            for i in range(vdiv+1):
+            for i in range(vdiv[0]+1):
             #
             
                 nz0=len(zh_div[0][i])
@@ -3725,19 +3725,19 @@ class bunpu(object):
         if dim==1:
             zfun_smooth_rbf = interpolate.Rbf(ztmp, zptmp, function='linear', smooth=0)
         elif dim==2:
-            zptmpmsh0=zptmp.reshape(2*vdiv-1,2*vdiv-1)
+            zptmpmsh0=zptmp.reshape(2*vdiv[0]-1,2*vdiv[1]-1)
             zptmpmsh=np.array(zptmpmsh0)
             ztmpmsh=[]
             for i in range(dim):
-                ztmpmsh0=(ztmp[i].reshape(2*vdiv-1,2*vdiv-1)).tolist()
+                ztmpmsh0=(ztmp[i].reshape(2*vdiv[0]-1,2*vdiv[1]-1)).tolist()
                 ztmpmsh.append(np.array(ztmpmsh0))
             zfun_smooth_rbf = interpolate.Rbf(ztmpmsh[0],ztmpmsh[1], zptmpmsh, function='linear', smooth=0)#
 
         elif dim==3:
-            zptmpmsh=zptmp.reshape(2*vdiv-1,2*vdiv-1,2*vdiv-1)
+            zptmpmsh=zptmp.reshape(2*vdiv[0]-1,2*vdiv[1]-1,2*vdiv[2]-1)
             ztmpmsh=[]
             for i in range(dim):
-                ztmpmsh.append(ztmp[i].reshape(2*vdiv-1,2*vdiv-1,2*vdiv-1))
+                ztmpmsh.append(ztmp[i].reshape(2*vdiv[0]-1,2*vdiv[1]-1,2*vdiv[2]-1))
             zfun_smooth_rbf = interpolate.Rbf(ztmpmsh[0],ztmpmsh[1],ztmpmsh[2], zptmpmsh, function='linear', smooth=0)
         menseki=0
 
@@ -3760,7 +3760,8 @@ class bunpu(object):
                 pw0[tq1][tq2][tmod]=pw1[i]
                 menseki+=pw1[i]*dt[0]*dt[1]*dt[2]
         W=bunpu()
-        print('simu:menseki',menseki)
+        if shw==0:
+            print('simu:menseki',menseki)
         if dim==1:
             W.para=[tw]
             W.flatten=[tw1,pw1/menseki]
@@ -3781,7 +3782,7 @@ class bunpu(object):
         W.pmax=(pw1/menseki).max()
         return W
 
-    def bunpu_product(self,other,divt=[],divs=[],corel=[0]):
+    def bunpu_product(self,other,divt=[],divs=[],corel=[0],shw=0):
         filename='x・y_log'
         logname=filename+'.csv'
         log = open(logname,'w' , encoding='shift_jis' )
@@ -3790,7 +3791,7 @@ class bunpu(object):
         writer.writerow(info)
         x2=self.flatten
         x20=self.mesh
-        x,x2,x20,xmin,xmax,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,1)#
+        x,x2,x20,xmin,xmax,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,1,divt)#
         if flag0!=0:
             if flag0!=3:
                 Y=m
@@ -4332,8 +4333,9 @@ class bunpu(object):
 
                     plt.savefig("test"+str(ti))
         #
-        flaginf=['bunpu*bunpu','bunpu*lean','lean*bunpu','bunpu*vector']
-        print(flaginf[flag0],menseki)
+        if shw==0:
+            flaginf=['bunpu*bunpu','bunpu*lean','lean*bunpu','bunpu*vector']
+            print(flaginf[flag0],menseki)
         if menseki>0:
             if dim==1:
                 p00=p0/menseki
@@ -4351,7 +4353,7 @@ class bunpu(object):
                 p00=p0
         #
         if dim==1:
-            W=[t]
+            W=[t[0]]
             W0=[t0[0],p00]
             W1=[t1[0],p]
         elif dim==2:
@@ -4374,7 +4376,7 @@ class bunpu(object):
         WW.pmax=p.max()
         return WW
         
-    def bunpu_multiplier(self,multifact=2,divt0=0):
+    def bunpu_multiplier(self,multifact=2,divt0=0,shw=0):
         xpara=self.para
         xmesh=self.mesh
         xfltn=self.flatten
@@ -4572,7 +4574,8 @@ class bunpu(object):
             else:
                 p0=p00
             p1=p0.flatten()
-        print('multiplier:menseki',menseki)
+        if shw==0:
+            print('multiplier:menseki',menseki)
         if dim==1:
             W=[t[0]]
             W0=[t[0],p0]
@@ -4599,14 +4602,14 @@ class bunpu(object):
                 
 
 
-    def bunpu_division(self,other,divt=[],divs=[],corel=[0]):
+    def bunpu_division(self,other,divt=[],divs=[],corel=[0],shw=0):
         filename='x・y_log'
         logname=filename+'.csv'
         log = open(logname,'w' , encoding='shift_jis' )
         info=['tパラメータ','p値']
         writer = csv.writer(log, lineterminator='\n')
         writer.writerow(info)
-        x,x2,x20,xmin,xmax,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,1)
+        x,x2,x20,xmin,xmax,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,1,divt)
 
         if flag0!=0:
             if flag0!=3:
@@ -5054,8 +5057,9 @@ class bunpu(object):
                 elif dim==3:
                     menseki+=p1[ti]*(dt[0]*dt[1]*dt[2])
         #
-        flaginf=['bunpu/bunpu','bunpu/lean','lean/bunpu','bunpu/vector']
-        print(flaginf[flag0],menseki)
+        if shw==0:
+            flaginf=['bunpu/bunpu','bunpu/lean','lean/bunpu','bunpu/vector']
+            print(flaginf[flag0],menseki)
         if menseki>0:
             if dim==1:
                 p00=p0/menseki
@@ -5072,7 +5076,7 @@ class bunpu(object):
                 p00=p0
         #
         if dim==1:
-            W=[t]
+            W=[t[0]]
             W0=[t0[0],p00]
             W1=[t1[0],p]
         elif dim==2:
@@ -5240,10 +5244,9 @@ class bunpu(object):
                 div1=len(x[i])
 
         if dim==1:
-            zfun_smooth_rbf = interpolate.Rbf(x0[0], x0[1], function='linear', smooth=0) 
+            zfun_smooth_rbf = interpolate.Rbf(x0[0], x0[1], function='linear', smooth=0)
             x2=np.arange(xmin[0],xmax[0],dx[0])
             y2=[]
-
             if np.max(x2) < xmax[0]:
                 x2=np.append(x2,xmax[0])
             divx=len(x2)
@@ -6017,19 +6020,33 @@ class bunpu(object):
             yran=[]
             ratio=12
             xdim=self.dim
+            ydim=other.dim
             for i in range(xdim):
                 if calc==0:
                     xran.append(self.xmax[i]-self.xmin[i])
                     yran.append(other.xmax[i]-other.xmin[i])
+                    if yran[i]==0 or xran[i]/yran[i]>ratio:
+                        flag0.append(1)
+                    elif xran[i]==0 or yran[i]/xran[i]>ratio:
+                        flag0.append(2)
+                    else:
+                        flag0.append(0)
                 elif calc==1:
-                    xran.append((self.xmax[i]-self.xmin[i])/(self.xmax[i]+self.xmin[i]))
-                    yran.append((other.xmax[0]-other.xmin[0])/(other.xmax[0]+other.xmin[0]))
-                if yran[i]==0 or xran[i]/yran[i]>ratio:
-                    flag0.append(1)
-                elif xran[i]==0 or yran[i]/xran[i]>ratio:
-                    flag0.append(2)
-                else:
-                    flag0.append(0)
+                    if self.xmax[i]+self.xmin[i] != 0:
+                        xran.append((self.xmax[i]-self.xmin[i])/(self.xmax[i]+self.xmin[i]))
+                    else:
+                        xran.append((self.xmax[i]-self.xmin[i])/self.xmax[i])
+                    if i < ydim:
+                        if other.xmax[i]+other.xmin[i] != 0:
+                            yran.append((other.xmax[0]-other.xmin[0])/(other.xmax[0]+other.xmin[0]))
+                        else:
+                            yran.append((other.xmax[0]-other.xmin[0])/other.xmax[0])
+                    if yran[0]==0 or xran[i]/yran[0]>ratio:
+                        flag0.append(1)
+                    elif xran[i]==0 or yran[0]/xran[i]>ratio:
+                        flag0.append(2)
+                    else:
+                        flag0.append(0)
             if flag0==[]:
                 flag=0
             elif (xdim==1 and flag0[0]==1):
