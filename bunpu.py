@@ -2827,7 +2827,7 @@ class bunpu(object):
                     t0=t
                     tmin=[x0min[0]+y0min[0]]
                     tmax=[x0max[0]+y0max[0]]
-                    p1=X1[1]*(x0max[0]-x0min[0])/(tmax[0]-tmin[0])
+                    p1=[X1[1][i]*(x0max[0]-x0min[0])/(tmax[0]-tmin[0]) for i in range(len(X1[1]))]
                     p0=p1
 
                     divtt=divt[0]
@@ -3100,7 +3100,8 @@ class bunpu(object):
                     #
                     for i in range(dim):
                         if dim==1:
-                            yh[i]=round(t1[ti]-x2[i][xi],10)
+                            #yh[i]=round(t1[ti]-x2[i][xi],10)
+                            yh[i]=np.round(t1[ti]-x2[i][xi],decimals=9)
                             flag[i]=cor2ran(x2[i][xi],xmin[i],xmax[i],yh[i],ymin[i],ymax[i],corel[i])
                         else:
                             yh[i]=t1[i][ti]-(x2[i].flatten())[xi]
@@ -3223,7 +3224,7 @@ class bunpu(object):
                     t0=t
                     tmin=[x0min[0]-y0min[0]]
                     tmax=[x0max[0]-y0max[0]]
-                    p1=X1[1]*(x0max[0]-x0min[0])/(tmax[0]-tmin[0])
+                    p1=[X1[1][i]*(x0max[0]-x0min[0])/(tmax[0]-tmin[0]) for i in range(len(X1[1]))]
                     p0=p1
                     divtt=divt[0]
                     max_p=max(p1)
@@ -3801,8 +3802,8 @@ class bunpu(object):
                     y0=np.linspace(y0min[0],y0max[0],len(x2[0]))
                     t10=[x2[0][i]*y0[i] for i in range(len(x2[0]))]
                     t00=t10
-                    tmin=(xmin[0]*y0min[0])
-                    tmax=(xmax[0]*y0max[0])
+                    tmin=[xmin[0]*y0min[0]]
+                    tmax=[xmax[0]*y0max[0]]
                     p1=x2[1]
                     p0=x2[1]
                     divtt=divt[0]
@@ -5100,8 +5101,8 @@ class bunpu(object):
         return WW
                 
         
-        
-    def shrink(self,limit=0,divlow=[]):
+    def bunpu_shrink(self,limitp=0.001,divlow=[]):
+
         X=self.para
         X1=self.flatten
         X0=self.mesh
@@ -5117,97 +5118,51 @@ class bunpu(object):
             xmin=self.xmin
             xmax=self.xmax
             dim=self.dim
+            #divx=self.div
             dx=self.dx
         if divlow==[]:
             divlow=[10*dim]
         
         #
         if dim==1:
-            t=[X0[0][i] for i in range(len(X0[0])) if X0[1][i]>limit]
-            p=[X0[1][i] for i in range(len(X0[0])) if X0[1][i]>limit]
+            menseki_low=0
+            long_low=0
+            cnt_low=0
+            menseki_hi=0
+            long_hi=0
+            cnt_hi=divx[0]
+            for i in range(divx[0]):
+                menseki_low += X0[1][i]*dx[0]
+                
+                if menseki_low < limitp[0] and cnt_low+1<cnt_hi:
+                    cnt_low=long_low//dx[0]
+                long_low += dx[0]
+                menseki_hi += X0[1][divx[0]-i-1]*dx[0]
+
+                if menseki_hi < limitp[0] and cnt_low+1<cnt_hi:
+                    cnt_hi=divx[0]-long_hi//dx[0]
+                long_hi += dx[0]
+            t0=[X0[0][i] for i in range(divx[0]) if i >= cnt_low-1 and i <= cnt_hi+1]
+            p0=[X0[1][i] for i in range(divx[0]) if i >= cnt_low-1 and i <= cnt_hi+1]
+            #t0=[X0[0][i] for i in range(divx[0]) if i <= cnt_hi]
+            #p0=[X0[1][i] for i in range(divx[0]) if i <= cnt_hi]
+            if cnt_hi-cnt_low < divlow[0] and len(t0)>=2:
+                t=np.linspace(min(t0),max(t0),divlow[0])
+                base = interpolate.Rbf(t0, p0, function='linear', smooth=0)
+                p=[base(t[i]) for i in range(divlow[0])]
+            else:
+                t=t0
+                p=p0
             W=[t,p]
             W0=[t,p]
             W1=[t,p]
-            tmax=max(t)
-            tmin=min(t)
+            tmax=[max(t)]
+            tmin=[min(t)]
             divt=[len(t)]
-        elif dim==2:
-            x1=[[],[]]
-            matp=[[],[]]
-            x1tmp=[[],[]]
-            matptmp=[[],[]]
+            dt=[(tmax[0]-tmin[0])/(divt[0]-1)]
+        elif dim>=2:
+            print('under constract')
             
-            p0=[]
-            p00=[]
-            p1=[]
-
-            tmax=[]
-            tmin=[]
-            divt=[]
-            cnt1=0
-            cnt2=0
-            for i in range(len(X[0])):
-                flag=0
-                flag2=0
-                flag3=0
-                flag4=0
-                for j in range(len(X[1])):
-                    if (i+2<=len(X0[2][0])-1 and X0[2][j][i+2]>limit) or (i+1<=len(X0[2][0])-1 and X0[2][j][i+1]>limit) \
-                       or (i-1>=0 and X0[2][j][i-1]>limit) or (i-2>=0 and X0[2][j][i-2]>limit) or X0[2][j][i]>limit:
-                        flag=1
-                if flag==1:
-                    x1[0].append(X[0][i])
-                    matp[0].append(i)
-                    flag2=1
-
-            for i in range(len(X[1])):
-                flag=0
-                flag2=0
-                flag3=0
-                flag4=0
-                for j in matp[0]:
-                    if (i+2<=len(X0[2])-1 and X0[2][i+2][j]>limit) or (i+1<=len(X0[2])-1 and X0[2][i+1][j]>limit) \
-                       or (i-1<=0 and X0[2][i-1][j]>limit) or (i-2<=0 and X0[2][i-2][j]>limit) or X0[2][i][j]>limit :
-                        flag=1
-                if flag==1:
-                    x1[1].append(X[1][i])
-                    matp[1].append(i)
-                    flag2=1
-            for i in matp[1]:
-                pp=[]
-                for j in matp[0]:
-                    pp.append(X0[2][i][j])
-                p00.append(pp)
-            
-            p0=np.array(p00)
-            p1=p0.flatten()
-            #
-            tmax.append(max(x1[0]))
-            tmax.append(max(x1[1]))
-            tmin.append(min(x1[0]))
-            tmin.append(min(x1[1]))
-            divt.append(len(x1[0]))
-            divt.append(len(x1[1]))
-            dt=dx
-            t=[x1[0],x1[1]]
-            xa,xb=np.meshgrid(x1[0],x1[1])
-
-            if divt[0]<divlow[0] or divt[1]<divlow[1]:
-                t=[np.linspace(tmin[0],tmax[0],divlow[0]),np.linspace(tmin[1],tmax[1],divlow[1])]
-                base_x = interpolate.Rbf(xa,xb,p0, function='linear', smooth=0)  #
-                xa,xb=np.meshgrid(t[0],t[1])
-                p0=np.array([[base_x(i,j) for j in t[1]] for i in t[0]])
-                p1=p0.flatten()
-                dt.append((tmax[0]-tmin[0])/(divlow[0]-1))
-                dt.append((tmax[1]-tmin[1])/(divlow[1]-1))
-
-                divt=divlow
-            t0=[xa,xb]
-            t1=[xa.flatten(),xb.flatten()]
-            W=[t[0],t[1]]
-            W0=[t0[0],t0[1],p0]
-            W1=[t1[0],t1[1],p1]
-            #
         WW=bunpu()
         WW.para=W
         WW.mesh=W0
@@ -5217,8 +5172,8 @@ class bunpu(object):
         WW.dim=dim
         WW.xmin=tmin
         WW.xmax=tmax
-        WW.pmax=p1.max()
-        return WW
+
+        return WW        
                    
     
     def gene2(self,xmin,xmax,xmean,xdev,xskew,div=100,filename=''):#
@@ -5524,7 +5479,8 @@ class bunpu(object):
             return df
     
     def kaiseki(self):
-        X=np.array(self.mesh)
+        #X=np.array(self.mesh)
+        X=self.mesh
         X1=self.para
         dim=len(X)-1
         xmin=[]
@@ -5546,8 +5502,8 @@ class bunpu(object):
                 divt.append(div[i])
                 xmin.append(min(X[i]))
                 xmax.append(max(X[i]))
-                xf.append(X[i].tolist())
-
+                #xf.append(X[i].tolist())
+                xf.append(X[i])
             elif dim==2:
                 if i==0:
                     x.append(X[0][0,:])
@@ -6196,7 +6152,31 @@ class bunpu(object):
 
         return X,X1,X0,x0min,x0max,dim,dx,divx,m,ymin,ymax,divt0,flag
                 
-    
-    
+    def bunpu_percentile(self, percent, d):
+
+        dim=self.dim
+        x=self.mesh
+        menseki=0
+        lastmen=0
+        dx=self.dx
+        if dim==1:
+            limitpara=0
+            if d[0]>0:
+                per=percent
+            elif d[0]<0:
+                per=1-percent
+            for i in range(self.div[0]):
+                lastmen=menseki
+                menseki += x[1][i]*dx[0]
+                if lastmen<per and menseki>=per:
+                    #limitpara=(x[0][i]*(menseki-per)+x[0][i-1]*(per-lastmen))/dx[0]
+                    limitpara=x[0][i]
+                    
+        else:
+            print('under constract')
+            limitpara=0
+        return limitpara
+
+        
     def __exit__(self, exception_type, exception_value, traceback):
         print('END')
