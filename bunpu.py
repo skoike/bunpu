@@ -2382,12 +2382,14 @@ class bunpu(object):
         if filename[1]=='.csv':
             if dirname==[]:
                 df = pd.read_csv(infile,usecols=colum,skiprows=skipline,na_values=999,encoding='cp932')
+                
                 dt = df.values
+                    
             else:
                 dt=[]
                 allFiles = glob.glob(dirname+infile)
                 for file_ in allFiles:
-                    df = pd.read_csv(file_,usecols=columf,skiprows=skipline,na_values=999,encoding='cp932')
+                    df = pd.read_csv(file_,usecols=colum,skiprows=skipline,na_values=999,encoding='cp932')
                     dt.extend(df.values)
             
         elif filename[1]=='.xlsx':
@@ -2421,8 +2423,12 @@ class bunpu(object):
             limitcol=limit[0]
             lowlimit=limit[1]
             uplimit=limit[2]
+        col=np.array(colum)
+        tmp=col.argsort()
         for i in range(len(data)):
-            xx=data[i]
+            xx=[]
+            for j in range(len(tmp)):
+                xx.append(data[i][tmp[j]])
             if flag==0:
                 pu_data.append(xx)
             elif xx[limitcol]<=uplimit and xx[limitcol]>=lowlimit:# or np.isnan(xx[limitcol]):
@@ -5480,7 +5486,11 @@ class bunpu(object):
     
     def kaiseki(self):
         #X=np.array(self.mesh)
-        X=self.mesh
+        XX=self.mesh
+        if type(XX)==list:
+            X=np.array(XX)
+        else:
+            X=XX
         X1=self.para
         dim=len(X)-1
         xmin=[]
@@ -6161,6 +6171,7 @@ class bunpu(object):
         dx=self.dx
         if dim==1:
             limitpara=0
+            flag=0
             if d[0]>0:
                 per=percent
             elif d[0]<0:
@@ -6168,15 +6179,91 @@ class bunpu(object):
             for i in range(self.div[0]):
                 lastmen=menseki
                 menseki += x[1][i]*dx[0]
-                if lastmen<per and menseki>=per:
+                if menseki>=per and flag==0:
+                    flag=1
                     #limitpara=(x[0][i]*(menseki-per)+x[0][i-1]*(per-lastmen))/dx[0]
                     limitpara=x[0][i]
+        elif dim==2:
+            a=1
                     
         else:
             print('under constract')
             limitpara=0
         return limitpara
 
+    def bunpu_percent(self, pos1,pos2, dirc):
+
+        dim=self.dim
+        x1=self.flatten
+        x=self.mesh
+        menseki=0
+        lastmen=0
+        dx=self.dx
+        div=self.div
+        if dim==1:
+            flag=0
+            for i in range(div[0]):
+                lastmen=menseki
+                if (dirc[0]>=0 and x[0][i]<=pos[0]) or (dirc[0]<0 and x[0][i]>=pos[0]):
+                    menseki += x[1][i]*dx
+                elif (dirc[0]>=0 and x[0][i]>pos[0] and lastmen<=pos[0]) or (dirc[0]<0 and x[0][i]<pos[0] and lastmen>=pos[0]):
+                    flag=1
+                    menseki+=(x[1][i]*(pos[0]-x[0][i])+x[1][i-1]*(poz[0]-lastmen))
+                outbunpu=[pos,[1]]
+        elif dim==2:
+            #
+            #
+            inbunpu=[[],[]]
+            outbunpu=[[],[]]
+            poslg1=pos1[0]*dirc[0]+pos1[1]*dirc[1]
+            poslg2=pos2[0]*dirc[0]+pos2[1]*dirc[1]
+            for i in range(len(x1[0])):
+                xlg=x1[0][i]*dirc[0]+x1[1][i]*dirc[1]
+                if (poslg1==poslg2 and xlg>=poslg1) or (poslg1>poslg2 and xlg>=poslg2 and xlg<=poslg1) or (poslg1<poslg2 and xlg<=poslg2 and xlg>=poslg1):
+                    menseki+=x1[2][i]*dx[0]*dx[1]
+                    inbunpu[0].append(((x1[0][i]-dirc[0]*xlg/(dirc[0]**2+dirc[1]**2))**2+(x1[1][i]-dirc[1]*xlg/(dirc[0]**2+dirc[1]**2))**2)**0.5)
+                    inbunpu[1].append(x1[2][i])
+
+            if menseki==0:
+                outbunpu[0].append(0)
+                outbunpu[1].append(0)
+            else:
+                maxb=max(inbunpu[0])
+                minb=min(inbunpu[0])
+                nin=len(inbunpu[0])
+                divout=int((maxb-minb)//min(dx[0],dx[1]))
+                if divout>1:
+                    dxb=(maxb-minb)/(divout-1)
+                    outbunpu[0]=(np.linspace(maxb,minb,divout)).tolist()
+                    #
+                    j=0
+                    lastp=0
+                    for j in range(divout):
+                        num=0
+                        pin=0
+                        for i in range(len(inbunpu[0])):
+                            if inbunpu[0][i]>=outbunpu[0][j]-dxb/2 and inbunpu[0][i]<outbunpu[0][j]+dxb/2:
+                                num+=1
+                                pin+=inbunpu[1][i]
+                        if num!=0:
+                            outbunpu[1].append(pin/num)        
+                            lastp=pin/num
+                        else:
+                            outbunpu[1].append(0)        
+                            
+                else:
+                    pin=0
+                    xin=0
+                    for i in range(nin):
+                        xin+=inbunpu[0][i]
+                        pin+=inbunpu[1][i]
+                    outbunpu[0].append(xin/nin)
+                    outbunpu[1].append(pin/nin)
+        else:
+            print('under constract')
+            limitpara=0
+        return menseki,outbunpu
+    
         
     def __exit__(self, exception_type, exception_value, traceback):
         print('END')
