@@ -14,6 +14,7 @@
 微分方程式を分布演算に拡張することで、初めて正確な演算結果の分布を求める事ができる。
 
 　従来の数値演算では、相互に独立なバラツキのあるデータ間の演算結果から分布を求めても再現性のある分布が得られない、それはデータ数を増やしても改善しない。
+それぞれのパラメータが特定分布に収束しても演算後の分布は収束しない。演算結果に対しては大数の法則が成立しない。
 その理由は、数値演算からバラツキを把握しようとしても、多少でも独立性があるパラメータ間の演算では、分布を形成するために必要な組合せ情報に対して欠損している情報量の割合が大きいので、
 偶然によって分布の形状が大きく影響を受ける可能性が高い、データ量や演算量が増えることで必要な組合せ情報量が指数的に増加するので、データを増やしても正しい分布は得られない。
 対策として、少数のデータでも、それぞれのパラメータのヒストグラムから分布を作成して、分布演算を行うことで、数値演算の情報欠損が補間されて精度の高い演算が可能となる。
@@ -54,6 +55,7 @@ It is possible to obtain an accurate distribution of calculation results for the
 
 In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
 from the calculation results of a plurality of various data, which does not improve even if the number of data is increased.
+Even if each parameter converges to a specific distribution, the distribution after calculation does not converge. The law of large numbers does not hold for the calculation result.
 The reason is that even if we try to grasp the variation from the numerical calculation, in operations between independent parameters,
 the ratio of the amount of missing information to the combinational information required to form the distribution is large,
 so there is a high possibility that the shape of the distribution will be greatly affected by chance.
@@ -117,28 +119,33 @@ you should respond to your obligations for the intellectual property rights and 
 8. d=bunpu() 
 9. d=b*c+a 
 10. d.bunpu_graph() 
+11. d.bunpu_file('output')
+12. print(d.mesh)
 
 
 
 各行の機能 
 
-1. ツールのインポート 
-2. 分布メソッドの定義 
+1. 分布クラスツールのインポート 
+2. 分布クラスからインスタンスの定義
 3. ファイルデータから2次元分布生成する。引数:'データファイル名','分布出力名',無視する行,取り込む列,分割数,取り込む範囲の制限,カーネル分布のバンド幅
-4. 分布メソッドの定義 
+4. 分布クラスからインスタンスの定義
 5. 範囲や平均を指定して2次元分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名
-6. 分布メソッドの定義
+6. 分布クラスからインスタンスの定義
 7. 範囲や平均を指定して1次元分布を生成、引数:最小値,最大値,平均値,標準偏差,分割数,分布出力名
-8. 分布メソッドの定義 
+8. 分布クラスからインスタンスの定義
 9. 分布演算（積商は多次元×1次元＝多次元、和差は多次元＋多次元＝多次元） 
 10. グラフ表示 
+11. 分布のパラメータ、確率値をファイル出力
+12. 分布のパラメータと確率値（メソッド）をコンソールに表示
     
     
 9の演算後に表示されるものの意味
 - bunpu+bunpu:通常の分布演算
 - bunpu+lean:分布範囲の差が大きい時に分布として演算されなかった場合
 - bunpu+vector:分布とベクトルの演算
-- 上記表示に続く数字:演算結果の素の分布面積（体積、超体積）、相関係数0での分布演算結果の面積は必ず1に近い数字になる、1からのズレ2割以上大きい場合は結果が信頼できない
+- 上記表示に続く数字:演算結果の素の分布面積（体積、超体積）、相関係数0での分布演算結果の面積は必ず1に近い数字になる、1からのズレ2割以上大きい場合は結果が信頼できない、相関係数が0以外の数字を指定した場合１以下になる。
+
 
 サンプル
 
