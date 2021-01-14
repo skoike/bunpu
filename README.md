@@ -87,12 +87,12 @@ you should respond to your obligations for the intellectual property rights and 
 ## literature
 
 - ビックデータを活用した制御リスク設計,自動車技術会20年秋季大会学術講演会
-- Risk design of control system utilizing big data,Society of Automotive Engineers of Japan
-- https://www.jstage.jst.go.jp/article/jsaeronbun/52/1/52_20214041/_article/-char/ja
+  - Risk design of control system utilizing big data,Society of Automotive Engineers of Japan
+  - https://www.jstage.jst.go.jp/article/jsaeronbun/52/1/52_20214041/_article/-char/ja
 
 - 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18予定）
-- https://www.gakkai-web.net/ipsj/83/program83.html
-- セッション2B-03
+  - https://www.gakkai-web.net/ipsj/83/program83.html
+  - セッション2B-03
 
 ## URL
 
