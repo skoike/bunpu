@@ -55,6 +55,7 @@ The above copyright notice and this permission notice shall be included in all c
 from scipy.stats import multivariate_normal,matrix_normal
 from scipy.stats import powerlognorm,norminvgauss
 import numpy as np
+#import cupy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy import signal, interpolate
@@ -2319,6 +2320,7 @@ class bunpu(object):
         self.hist=0
         self.kh=0
         self.pmax=1
+        self.cmap=0
 
     def __enter__(self):
         print('START')
@@ -2355,9 +2357,9 @@ class bunpu(object):
         WW=self.bunpu_division(other,divt)
         return WW
     
-    def bunpu_data(self,infilename,outdataname,skipline,colum,divn=100, limit=0,kh=0):
-        fp = FontProperties(fname=r'C:\Windows\Fonts\msgothic.ttc',size=24)
-
+    def bunpu_data(self,infilename,outdataname,skipline,colum,divn=100, limit=0,kh=0, fontsize=24):
+        fp = FontProperties(fname=r'C:\Windows\Fonts\msgothic.ttc',size=fontsize)
+        plt.rcParams["font.size"] = fontsize
         if kh!=0:
             bw=kh
         if type(infilename) is list:
@@ -2523,9 +2525,11 @@ class bunpu(object):
                 ax = fig.gca()
                 ax.set_xlim(tmin[0],tmax[0])
                 ax.set_ylim(tmin[1],tmax[1])
-                
-                cset = ax.contour(xx, yy, f, colors='r')
-                ax.clabel(cset, inline=1, fontsize=10)
+                if fontsize>15:
+                    cset = ax.contour(xx, yy, f, linewidths=4, colors='r')
+                else:
+                    cset = ax.contour(xx, yy, f, colors='r')
+                ax.clabel(cset, inline=1, fontsize=fontsize)
                 
                 H = ax.hist2d(data_np[:,0], data_np[:,1], bins=divn, cmap=cm.gray)
                 fig.colorbar(H[3],ax=ax)
@@ -2813,12 +2817,13 @@ class bunpu(object):
             z=0
     
         
-    def bunpu_add(self,other,divt0=[],corel=[0],shw=0):
+    def bunpu_add(self,other,divt0=[],corel=[0],shw=0,cormap=0):
             
         r=corel
         max_x=0
         max_y=0
         max_p=0
+        cmap=0
         X,X1,X0,x0min,x0max,dim,dx,divx,m,y0min,y0max,divt0,flag0=self.bunpu_filter(other,0,divt0)#today,X(para)だけが3重カッコになっている
         if flag0!=0:
             if flag0!=3:
@@ -3087,6 +3092,12 @@ class bunpu(object):
                 corel=[corel[0],corel[0]]
             elif len(corel)==1 and dim==3:
                 corel=[corel[0],corel[0],corel[0]]
+            if type(cormap)==list:
+                cmap=np.zeros((divtt,divxt))
+            elif type(cormap)==int and cormap==1:
+                cmap=np.zeros((divtt,divxt))
+            else:
+                cmap=0
             for ti in range(divtt):
                 if dim>=2:
                     tq,tmod=divmod(ti,divt[0])
@@ -3116,7 +3127,13 @@ class bunpu(object):
                     if all(flag)==1.0:
                         if dim==1:
                             pyh = zfun_smooth_rbf(yh[0])
-                            p1[ti]+=pyh*dt[0]*x2[1][xi]
+                            ptmp2=pyh*dt[0]*x2[1][xi]
+                            if type(cormap)==list:
+                                ptmp2=ptmp2*cormap[ti][xi]
+                                cmap[ti][xi]=ptmp2
+                            elif type(cormap)==int and cormap==1:
+                                cmap[ti][xi]=ptmp2
+                            p1[ti]+=ptmp2
                             p0[ti]=p1[ti]
                             #
                         elif dim==2:
@@ -3125,8 +3142,14 @@ class bunpu(object):
                                 pyh = ptmp 
                             else:
                                 pyh = 0
-                            p1[ti]+=pyh*dt[0]*dt[1]*(x2[2].flatten())[xi]
-                            p0[tq][tmod]+= pyh*dt[0]*dt[1]*(x2[2].flatten())[xi]
+                            ptmp2=pyh*dt[0]*dt[1]*(x2[2].flatten())[xi]
+                            if type(cormap)==list:
+                                ptmp2=ptmp2*cormap[ti][xi]
+                                cmap[ti][xi]=ptmp2
+                            elif type(cormap)==int and cormap==1:
+                                cmap[ti][xi]=ptmp2
+                            p1[ti]+=ptmp2
+                            p0[tq][tmod]+= ptmp2
                             if max_x <= (x2[2].flatten())[xi]:
                                 max_x=(x2[2].flatten())[xi]
                             if max_y <= pyh:
@@ -3139,8 +3162,14 @@ class bunpu(object):
                                 pyh = ptmp 
                             else:
                                 pyh = 0
-                            p1[ti]+= pyh*dt[0]*dt[1]*dt[2]*(x2[3].flatten())[xi]
-                            p0[tq1][tq2][tmod]+= pyh*dt[0]*dt[1]*dt[2]*(x2[3].flatten())[xi]
+                            ptmp2=pyh*dt[0]*dt[1]*dt[2]*(x2[3].flatten())[xi]
+                            if type(cormap)==list:
+                                ptmp2=ptmp2*cormap[ti][xi]
+                                cmap[ti][xi]=ptmp2
+                            elif type(cormap)==int and cormap==1:
+                                cmap[ti][xi]=ptmp2
+                            p1[ti]+= ptmp2
+                            p0[tq1][tq2][tmod]+= ptmp2
                             if max_x <= (x2[3].flatten())[xi]:
                                 max_x=(x2[3].flatten())[xi]
                             if max_y <= pyh:
@@ -3200,6 +3229,7 @@ class bunpu(object):
             W1=[t1[0],t1[1],t1[2],p]
 
         WW=bunpu()
+        WW.cmap=cmap
         WW.para=W
         WW.flatten=W1
         WW.mesh=W0
@@ -3599,7 +3629,7 @@ class bunpu(object):
 
 
 
-    def bunpu_simu(self,other,dt,corel=0,vdiv=[10],shw=0):
+    def bunpu_simu(self,other,dt,corel=0,vdiv=[10],shw=0,cormap=0):
         X0=self.mesh
         X1=self.flatten
         dim=self.dim
@@ -3618,7 +3648,7 @@ class bunpu(object):
         
         #
         Z=bunpu()
-        Z=self.bunpu_add(other,div,corel,shw)
+        Z=self.bunpu_add(other,div,corel,shw,cormap)
         zmin=Z.xmin
         zmax=Z.xmax
         Z0=Z.mesh
@@ -3781,6 +3811,7 @@ class bunpu(object):
             W.para=[tw[0],tw[1],tw[2]]
             W.flatten=[tw1[0],tw1[1],tw1[2],pw1/menseki]
             W.mesh=[tw0[0],tw0[1],tw0[2],pw0/menseki]
+        W.cmap=Z.cmap
         W.dim=dim
         W.xmin=tmin
         W.xmax=tmax
@@ -3925,14 +3956,14 @@ class bunpu(object):
                     tmin=[]
                     tmax=[]
                     t10.append([x2[0][i]*Y[0] for i in range(len(x2[0]))])
-                    t10.append([x2[1][i]*Y[1] for i in range(len(x2[1]))])
+                    t10.append([x2[1][i]*Y[0] for i in range(len(x2[1]))])
                     t00.append([[x20[0][i][j]*Y[0] for j in range(len(x20[0][0]))] for i in range(len(x20[0]))])
-                    t00.append([[x20[1][i][j]*Y[1] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
+                    t00.append([[x20[1][i][j]*Y[0] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
                     
                     tmin.append(xmin[0]*Y[0])
-                    tmin.append(xmin[1]*Y[1])
+                    tmin.append(xmin[1]*Y[0])
                     tmax.append(xmax[0]*Y[0])
-                    tmax.append(xmax[1]*Y[1])
+                    tmax.append(xmax[1]*Y[0])
                     p1=x2[2]
                     p0=x20[2]
                     divtt=divt[0]*divt[1]
@@ -3944,17 +3975,17 @@ class bunpu(object):
                     tmin=[]
                     tmax=[]
                     t10.append([x2[0][i]*Y[0] for i in range(len(x2[0]))])
-                    t10.append([x2[1][i]*Y[1] for i in range(len(x2[1]))])
-                    t10.append([x2[2][i]*Y[2] for i in range(len(x2[2]))])
+                    t10.append([x2[1][i]*Y[0] for i in range(len(x2[1]))])
+                    t10.append([x2[2][i]*Y[0] for i in range(len(x2[2]))])
                     t00.append([[[x20[0][i][j][k]*Y[0] for k in range(len(x20[0][0][0]))] for j in range(len(x20[0][0]))] for i in range(len(x20[0]))])
-                    t00.append([[[x20[1][i][j][k]*Y[1] for k in range(len(x20[1][0][0]))] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
-                    t00.append([[[x20[2][i][j][k]*Y[2] for k in range(len(x20[2][0][0]))] for j in range(len(x20[2][0]))] for i in range(len(x20[2]))])
+                    t00.append([[[x20[1][i][j][k]*Y[0] for k in range(len(x20[1][0][0]))] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
+                    t00.append([[[x20[2][i][j][k]*Y[0] for k in range(len(x20[2][0][0]))] for j in range(len(x20[2][0]))] for i in range(len(x20[2]))])
                     tmin.append(xmin[0]*Y[0])
-                    tmin.append(xmin[1]*Y[1])
-                    tmin.append(xmin[2]*Y[2])
+                    tmin.append(xmin[1]*Y[0])
+                    tmin.append(xmin[2]*Y[0])
                     tmax.append(xmax[0]*Y[0])
-                    tmax.append(xmax[1]*Y[1])
-                    tmax.append(xmax[2]*Y[2])
+                    tmax.append(xmax[1]*Y[0])
+                    tmax.append(xmax[2]*Y[0])
                     p1=x2[3]
                     p0=x20[3]
                     divtt=divt[0]*divt[1]*divt[2]
@@ -4383,7 +4414,7 @@ class bunpu(object):
         WW.pmax=p.max()
         return WW
         
-    def bunpu_multiplier(self,multifact=2,divt0=0,shw=0):
+    def bunpu_multiplier(self,multifact=2,divt0=0,neg=0,shw=0):
         xpara=self.para
         xmesh=self.mesh
         xfltn=self.flatten
@@ -4402,11 +4433,11 @@ class bunpu(object):
         divtt=1
         dt=[]
         for i in range(dim):
-            if xmax[i]>=0 or multifact%2!=0:
+            if xmax[i]>=0 or multifact%2!=0 or neg==0:
                 tmax.append(xmax[i]**multifact)
             else:
                 tmax.append(-1*xmax[i]**multifact)
-            if xmin[i]>=0 or multifact%2!=0:
+            if xmin[i]>=0 or multifact%2!=0 or neg==0:
                 tmin.append(xmin[i]**multifact)
             else:
                 tmin.append(-1*xmin[i]**multifact)
@@ -4417,7 +4448,10 @@ class bunpu(object):
         if dim==1:
             x0=[]
             for i in range(divx[0]):
-                x0.append(xmesh[0][i]**multifact)
+                if xmesh[0][i]>=0 or multifact%2!=0 or neg==0:
+                    x0.append(xmesh[0][i]**multifact)
+                else:
+                    x0.append(-1*xmesh[0][i]**multifact)
             p=np.zeros(divx[0])
             for i in range(divx[0]):
                 if i==0:
@@ -4439,16 +4473,16 @@ class bunpu(object):
             x0=[]
             x1=[]
             for i in range(divx[0]):
-                if xpara[0][i]<0 and multifact%2==0:
-                    x0.append(-1*xpara[0][i]**multifact)
-                else:
+                if xpara[0][i]>=0 or multifact%2!=0 or neg==0:
                     x0.append(xpara[0][i]**multifact)
+                else:
+                    x0.append(-1*xpara[0][i]**multifact)
                 
             for i in range(divx[1]):
-                if xpara[1][i]<0 and multifact%2==0:
-                    x1.append(-1*xpara[1][i]**multifact)
-                else:
+                if xpara[1][i]>=0 or multifact%2!=0 or neg==0:
                     x1.append(xpara[1][i]**multifact)
+                else:
+                    x1.append(-1*xpara[1][i]**multifact)
                 
             xx,yy=np.meshgrid(x0,x1)
             p=np.zeros((divx[1],divx[0]))
@@ -4521,11 +4555,20 @@ class bunpu(object):
             x1=[]
             x2=[]
             for i in range(divx[0]):
-                x0.append(xpara[0][i]**multifact)
+                if xpara[0][i]>=0 or multifact%2!=0 or neg==0:
+                    x0.append(xpara[0][i]**multifact)
+                else:
+                    x0.append(-1*xpara[0][i]**multifact)
             for i in range(divx[1]):
-                x1.append(xpara[1][i]**multifact)
+                if xpara[1][i]>=0 or multifact%2!=0 or neg==0:
+                    x1.append(xpara[1][i]**multifact)
+                else:
+                    x1.append(-1*xpara[1][i]**multifact)
             for i in range(divx[2]):
-                x2.append(xpara[2][i]**multifact)
+                if xpara[2][i]>=0 or multifact%2!=0 or neg==0:
+                    x2.append(xpara[2][i]**multifact)
+                else:
+                    x2.append(-1*xpara[2][i]**multifact)
             xx,yy,zz=np.meshgrid(x0,x1,x2)
             p=np.zeros((divx[0],divx[1],divx[2]))
             for i in range(divx[2]):
@@ -4744,14 +4787,14 @@ class bunpu(object):
                     tmin=[]
                     tmax=[]
                     t10.append([x2[0][i]/Y[0] for i in range(len(x2[0]))])
-                    t10.append([x2[1][i]/Y[1] for i in range(len(x2[1]))])
+                    t10.append([x2[1][i]/Y[0] for i in range(len(x2[1]))])
                     t00.append([[x20[0][i][j]/Y[0] for j in range(len(x20[0][0]))] for i in range(len(x20[0]))])
-                    t00.append([[x20[1][i][j]/Y[1] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
+                    t00.append([[x20[1][i][j]/Y[0] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
                     
                     tmin.append(xmin[0]/Y[0])
-                    tmin.append(xmin[1]/Y[1])
+                    tmin.append(xmin[1]/Y[0])
                     tmax.append(xmax[0]/Y[0])
-                    tmax.append(xmax[1]/Y[1])
+                    tmax.append(xmax[1]/Y[0])
                     p1=x2[2]
                     p0=x20[2]
                     divtt=divt[0]*divt[1]
@@ -4762,17 +4805,17 @@ class bunpu(object):
                     tmin=[]
                     tmax=[]
                     t10.append([x2[0][i]/Y[0] for i in range(len(x2[0]))])
-                    t10.append([x2[1][i]/Y[1] for i in range(len(x2[1]))])
-                    t10.append([x2[2][i]/Y[2] for i in range(len(x2[2]))])
+                    t10.append([x2[1][i]/Y[0] for i in range(len(x2[1]))])
+                    t10.append([x2[2][i]/Y[0] for i in range(len(x2[2]))])
                     t00.append([[[x20[0][i][j][k]/Y[0] for k in range(len(x20[0][0][0]))] for j in range(len(x20[0][0]))] for i in range(len(x20[0]))])
-                    t00.append([[[x20[1][i][j][k]/Y[1] for k in range(len(x20[1][0][0]))] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
-                    t00.append([[[x20[2][i][j][k]/Y[2] for k in range(len(x20[2][0][0]))] for j in range(len(x20[2][0]))] for i in range(len(x20[2]))])
+                    t00.append([[[x20[1][i][j][k]/Y[0] for k in range(len(x20[1][0][0]))] for j in range(len(x20[1][0]))] for i in range(len(x20[1]))])
+                    t00.append([[[x20[2][i][j][k]/Y[0] for k in range(len(x20[2][0][0]))] for j in range(len(x20[2][0]))] for i in range(len(x20[2]))])
                     tmin.append(xmin[0]/Y[0])
-                    tmin.append(xmin[1]/Y[1])
-                    tmin.append(xmin[2]/Y[2])
+                    tmin.append(xmin[1]/Y[0])
+                    tmin.append(xmin[2]/Y[0])
                     tmax.append(xmax[0]/Y[0])
-                    tmax.append(xmax[1]/Y[1])
-                    tmax.append(xmax[2]/Y[2])
+                    tmax.append(xmax[1]/Y[0])
+                    tmax.append(xmax[2]/Y[0])
                     p1=x2[3]
                     p0=x20[3]
                     divtt=divt[0]*divt[1]*divt[2]
@@ -5274,7 +5317,7 @@ class bunpu(object):
             
 
     
-    def bunpu_graph(self,filename='' ,gr=0,levels=5):
+    def bunpu_graph(self,filename='' ,gr=0,levels=5,linewidth=4,fsize=(14,7),yscale=0,xscale=0):
         fp = FontProperties(fname=r'C:\Windows\Fonts\msgothic.ttc',size=24)
         x=self.flatten
         if self.dim!=[]:
@@ -5290,6 +5333,10 @@ class bunpu(object):
             ax = fig.add_subplot(111)
             if filename!='':
                 outgraphname=filename+'.png'
+            if yscale != 0:
+                ax.ylim(yscale)
+            if xscale != 0:
+                ax.xlim(xscale)
             ax.plot(x[0], x[1], label="origin",linewidth = 4)
             ax.set_title(u''+'分布', fontproperties=fp,fontsize=24)
             ax.set_xlabel(u''+'X軸', fontproperties=fp,fontsize=24)
@@ -5778,7 +5825,7 @@ class bunpu(object):
             div_parae=div_paras2
             base_dis = interpolate.Rbf(parae[0],xe,function='linear', smooth=0)  #
             for j in range(len(div_paras[0])):
-                div_value.append(base_dis(div_paras[0][j]))
+                div_value.append(max(0,base_dis(div_paras[0][j])))
             div_valus=div_value
             div_paras=div_paras2
         elif dim==2:
@@ -5789,7 +5836,7 @@ class bunpu(object):
             for j in range(len(div_parae[0])):
                 value_tmp=[]
                 for k in range(len(div_parae[0][j])):
-                    value_tmp.append(base_dis(div_parae[0][j][k],div_parae[1][j][k]))
+                    value_tmp.append(max(0,base_dis(div_parae[0][j][k],div_parae[1][j][k])))
                 div_value.append(value_tmp)
             div_parae[0],div_parae[1]=np.meshgrid(div_paras2[0],div_paras2[1])
             div_paras[0]=div_parae[0].flatten()
@@ -5805,7 +5852,7 @@ class bunpu(object):
                 for k in range(len(div_parae[0][j])):
                     value_tmp2=[]
                     for h in range(len(div_parae[0][j][k])):
-                        value_tmp2.append(base_dis(div_parae[0][j][k][h],div_parae[1][j][k][h],div_parae[2][j][k][h]))
+                        value_tmp2.append(max(0,base_dis(div_parae[0][j][k][h],div_parae[1][j][k][h],div_parae[2][j][k][h])))
                     value_tmp1.append(value_tmp2)
                 div_value.append(value_tmp1)
             div_parae[0],div_parae[1],div_parae[2]=np.meshgrid(div_paras2[0],div_paras2[1],div_paras2[2])
@@ -5813,7 +5860,6 @@ class bunpu(object):
             div_paras[1]=div_parae[1].flatten()
             div_paras[2]=div_parae[2].flatten()
             div_valus=(np.array(div_value)).flatten()
-
         return max_value, max_index,div_parae,div_value,div_paras,div_valus
                                     
     def bunpu_contour3(self,vdiv):
@@ -5941,7 +5987,7 @@ class bunpu(object):
             div_parae=div_paras[0]
             base_dis = interpolate.Rbf(parae[0],xe,function='linear', smooth=0)  #
             for j in range(len(div_paras[0])):
-                div_value.append(base_dis(div_paras[0][j]))
+                div_value.append(max(0,base_dis(div_paras[0][j])))
             div_valus=div_value
         elif dim==2:
             div_parae=[[],[]]
@@ -5951,7 +5997,7 @@ class bunpu(object):
             for j in range(len(div_parae[0])):
                 value_tmp=[]
                 for k in range(len(div_parae[0][j])):
-                    value_tmp.append(base_dis(div_parae[0][j][k],div_parae[1][j][k]))
+                    value_tmp.append(max(0,base_dis(div_parae[0][j][k],div_parae[1][j][k])))
                 div_value.append(value_tmp)
             div_paras[0]=div_parae[0].flatten()
             div_paras[1]=div_parae[1].flatten()
@@ -5966,7 +6012,7 @@ class bunpu(object):
                 for k in range(len(div_paras[0][j])):
                     value_tmp2=[]
                     for h in range(len(div_paras[0][j][k])):
-                        div_tmp2.append(base_dis(div_parae[0][j][k][h],div_parae[1][j][k][h],div_parae[2][j][k][h]))
+                        div_tmp2.append(max(0,base_dis(div_parae[0][j][k][h],div_parae[1][j][k][h],div_parae[2][j][k][h])))
                     value_tmp1.append(value_tmp2)
                 div_value.append(value_tmp1)
             div_paras[0]=div_parae[0].flatten()
@@ -6238,6 +6284,7 @@ class bunpu(object):
                     #
                     j=0
                     lastp=0
+                    fg=0
                     for j in range(divout):
                         num=0
                         pin=0
@@ -6245,9 +6292,16 @@ class bunpu(object):
                             if inbunpu[0][i]>=outbunpu[0][j]-dxb/2 and inbunpu[0][i]<outbunpu[0][j]+dxb/2:
                                 num+=1
                                 pin+=inbunpu[1][i]
-                        if num!=0:
+                        if num==0 and j>0 and j<divout-1:
+                            outbunpu[1].append(lastp)
+                            fg=1
+                        elif num!=0:
                             outbunpu[1].append(pin/num)        
                             lastp=pin/num
+                            if fg==1:
+                                lastoutbunpu=outbunpu[1][j-1]
+                                outbunpu[1][j-1]=(lastoutbunpu+lastp)/2
+                                fg=0
                         else:
                             outbunpu[1].append(0)        
                             
