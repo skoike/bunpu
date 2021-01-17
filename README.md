@@ -92,10 +92,9 @@ you should respond to your obligations for the intellectual property rights and 
 
 - 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18予定）
   - https://www.gakkai-web.net/ipsj/83/program83.html
-  - セッション2B-03
+  - セッション1B-03
 
 ## URL
-
 - http://www.na.rim.or.jp/~syn/kakuritsu.html
 
 
