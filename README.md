@@ -2,27 +2,18 @@
 # Distribution calculation(Probability distribution vector analysis)
 
 
-　ビックデータを解析する中で従来の数値演算では大きなバラツキが存在する現実世界をモデル化するには精度限界があることに気づき、それを対策する方法として分布演算を提案してきた。
-分布演算は、機能を拡張することでベクトル解析と確率統計を包含する演算体系になると考えている。従来の方法ではできなかった両者のはざまにある確率演算が可能となる。
-実際に今まで様々な応用例を提案してきたが、説明するだけではその効果が十分に理解されていないので、誰にでも使えるツールとして広く使ってもらえることでその価値の理解を促進しようと考えた。
+　既存の様々な数学の数値パラメータを分布に置換えて確率演算を包含する分布演算を実現する。
+既存のモンテカルロシミュレーションや確率過程では全てのパスを演算できなければ正しい分布が求まらないが、それはランダムウォークなどの特殊な分布を除いて困難。
+分布演算はそもそもパスを求める必要がなく、ヒストグラムなどから求めた任意の分布から最も確からしい結果の分布を求めることができる。
 
-　ここで言う分布演算とは、数値に代えて確率分布を演算要素とした、演算方法である。従来から連続した関数表現の確率分布を畳込み積分によって演算する方法が提案されているが、
-今回提案する方法によって、計測された実データのヒストグラムを演算対象として容易に四則演算ができるので、その応用範囲は広がる。
-現在、物理現象や社会現象を推定する多くの方程式はパラメータを数値演算されているが、多くのパラメータはバラツキを持っており、その範囲が狭ければよいが、ある程度の範囲がある場合は
-その中でやみくもに答えを求めていることになる。従って分布演算に拡張することで精度向上につながる。
-従来から使われているモンテカルロシミュレーションはバラツキを考慮することができるが、同様に演算結果は無視できないレベルで誤差を持っており、正しい分布を出力することができない。
-微分方程式を分布演算に拡張することで、初めて正確な演算結果の分布を求める事ができる。
+　分布演算は、モンテカルロシミュレーションや確率過程の様に、個別のパスを演算しないが、時系列の分布間に相関関係を持たせることが可能で、速度vと位置xの
+時系列の相関関係で様々な運動の特徴を表すことができる。例えば、ランダムウォークは、xが正相関の加算、vが独立加算。マルコフ連鎖はx,v正相関の加算、
+ホワイトノイズはxが独立加算、フィードバック制御は逆相関の加算で模擬できると考えている。
 
-　従来の数値演算では、相互に独立なバラツキのあるデータ間の演算結果から分布を求めても再現性のある分布が得られない、それはデータ数を増やしても改善しない。
-それぞれのパラメータが特定分布に収束しても演算後の分布は収束しない。演算結果に対しては大数の法則が成立しない。
-その理由は、数値演算からバラツキを把握しようとしても、多少でも独立性があるパラメータ間の演算では、分布を形成するために必要な組合せ情報に対して欠損している情報量の割合が大きいので、
-偶然によって分布の形状が大きく影響を受ける可能性が高い、データ量や演算量が増えることで必要な組合せ情報量が指数的に増加するので、データを増やしても正しい分布は得られない。
-対策として、少数のデータでも、それぞれのパラメータのヒストグラムから分布を作成して、分布演算を行うことで、数値演算の情報欠損が補間されて精度の高い演算が可能となる。
-
-　今回そのツールの一部を公開するが、現在はベクトルの四則演算や単純な積分ができる程度である。今後様々な分野の方に協力して頂き、開発を進めることができれば、
+　今回そのツールの一部を公開するが、現在はベクトルの四則演算や単純な時系列積分などができる程度である。今後様々な分野の方に協力して頂き、開発を進めることができれば、
 様々な微分方程式を含む数学全体に拡張できると考えている。このことは様々なバラツキを扱う物理解析技術や社会現象解析に改善をもたらし、理解を深めるスコープとして活用できる可能性がある。
 
-このツールの目的は、バラツキがあるデータからヒストグラムで分布を抽出して、その分布を演算要素とする演算体系を構築することである。現時点でこのツールは、以下のことが可能である。
+現時点でこのツールは、以下のことが可能である。
 
 - データファイルの特定列から抽出したデータのヒストグラムと分布を生成
 - 範囲や平均値、標準偏差を指定して分布を生成
@@ -33,38 +24,19 @@
 
 ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利と著作権にご配慮ください。
 
+ Realize the calculation by distribution including probability operations by replacing various existing mathematical parameters with distributions.
+In the existing Monte Carlo simulation and stochastic process, the correct distribution cannot be obtained unless all paths can be calculated,
+but it is difficult except for special distributions such as random walks.
+In the calculation by distribution, it is not necessary to obtain the path in the first place,
+and the distribution of the most probable result can be obtained from an arbitrary distribution obtained from a histogram or the like.
 
-　While analyzing big data, I noticed that there is a limit to the accuracy of modeling the real world with conventional numerical operations,
-and I have proposed distribution calculation to deal with it.
-I believe that distribution arithmetic will become an arithmetic system that includes vector analysis and probability statistics by expanding its functions.
-It is possible to perform probability calculations between the two, which was not possible with conventional methods.
-I have been proposing various application examples of this method, but Few fellow understand its advantageous effect,
-so I promote understanding of its value by making it widely used as a tool that anyone can use. I thought about it. 
+ the calculation by distribution does not calculate individual paths like Monte Carlo simulation and stochastic process,
+ but it is possible to have a correlation between time series distributions,
+ and the velocity v and position x Various movement characteristics can be represented by time-series correlation.
+ For example, I think that random walk can be simulated by adding x positive correlation and v independent correlation,
+ Markov chains adding x, v positive correlations, white noise adding independent x and feedback control adding inverse correlation.
 
- Distribution calculation is a method of solving solutions such as four arithmetic operations
-and differential equations using a probability distribution as an arithmetic element instead of a numerical value.
-Conventionally, it has been proposed to calculate the probability distribution of continuous function representation by convolution integral.
-But,by using the method proposed this time it is possible to perform calculation using the histogram of the measured actual data as the calculation element,
-the possibilities are endless.
-Currently, many equations for estimating physical and social phenomena have their parameters calculated numerically,
-but many parameters have variations, If there is a certain margin of error, in that process, anyone should be blindly seeking an answer.
-So to extend to distribution calculation leads to improved accuracy.
-The Monte Carlo simulation that has been used conventionally can take into consideration the variation,
-but for same reason, the calculation result has an error at a non-negligible level, and the correct distribution cannot be output.
-It is possible to obtain an accurate distribution of calculation results for the first time by performing a distribution calculation.
-
-In the conventional numerical calculation, a reproducible distribution cannot be obtained, if the distribution is obtained
-from the calculation results of a plurality of various data, which does not improve even if the number of data is increased.
-Even if each parameter converges to a specific distribution, the distribution after calculation does not converge. The law of large numbers does not hold for the calculation result.
-The reason is that even if we try to grasp the variation from the numerical calculation, in operations between independent parameters,
-the ratio of the amount of missing information to the combinational information required to form the distribution is large,
-so there is a high possibility that the shape of the distribution will be greatly affected by chance.
-As the amount of data and the amount of calculation increase, the amount of combination information required increases exponentially,
-so even if the amount of data is increased, the correct distribution cannot be obtained.
-
-As a answer, even for a small amount of data, by creating a distribution from the histogram of each parameter and performing the distribution calculation,
-the information loss of the numerical calculation is interpolated and the calculation with high accuracy becomes possible.
- Currently, the method is limited to four arithmetic operations and simple integration of vectors,
+  Currently, the method is limited to four arithmetic operations and simple integration of vectors(time series analysis),
  but I believe that it can be extended to the entire mathematics including various differential equations by advancing development.
  This may bring improvements to various physical analysis technology and social phenomenon analysis that handle various variations
  and can be used as a scope to deepen understanding.
