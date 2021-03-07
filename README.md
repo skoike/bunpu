@@ -17,7 +17,7 @@
 
 - データファイルの特定列から抽出したデータのヒストグラムと分布を生成
 - 範囲や平均値、標準偏差を指定して分布を生成
-- 前記生成された分布の四則演算（相関係数に応じた補正が可能）
+- 前記生成された分布の四則演算や時系列積分（相関係数に応じた補正が可能）
 - 分布のグラフ表示
 - 分布要素をファイル出力
 - 以上の1次元から3次元のベクトル分布処理
@@ -46,7 +46,7 @@ At the moment this tool can:
 
 - Generate a distribution from the histogram of the measured data
 - Generate distribution by specifying range, mean, and standard deviation
-- Four arithmetic operations between generated distributions
+- Four arithmetic operations between generated distributions and time series integral
 - Graph display of distribution
 - Output distribution elements to a file
 - 1D to 3D vector distribution processing above all
