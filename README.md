@@ -58,6 +58,10 @@ you should respond to your obligations for the intellectual property rights and 
 ## 論文
 ## literature
 
+- 市場走行データを活用した設計方法,Toyota Technical Review 2018/5 Vol64.p95
+  - Design Method Using Real-World Vehicle Data,Toyota Technical Review 2018/9 Vol64.p96
+  - https://shop.ohmsha.co.jp/shopdetail/000000005659/
+
 - ビックデータを活用した制御リスク設計,自動車技術会20年秋季大会学術講演会
   - Risk design of control system utilizing big data,Society of Automotive Engineers of Japan
   - https://www.jstage.jst.go.jp/article/jsaeronbun/52/1/52_20214041/_article/-char/ja
