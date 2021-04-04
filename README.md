@@ -66,9 +66,9 @@ you should respond to your obligations for the intellectual property rights and 
   - Risk design of control system utilizing big data,Society of Automotive Engineers of Japan
   - https://www.jstage.jst.go.jp/article/jsaeronbun/52/1/52_20214041/_article/-char/ja
 
-- 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18予定）
-  - https://www.gakkai-web.net/ipsj/83/program83.html
-  - セッション1B-03
+- 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18）
+  - https://www.ipsj.or.jp/event/taikai/83/ipsj_web2021/data/pdf/1B-03.html
+
 
 ## URL
 - http://www.na.rim.or.jp/~syn/kakuritsu.html
