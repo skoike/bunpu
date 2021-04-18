@@ -61,8 +61,8 @@ you should respond to your obligations for the intellectual property rights and 
 - 市場走行データを活用した設計方法,Toyota Technical Review 2018/5 Vol64.p95
   - Design Method Using Real-World Vehicle Data,Toyota Technical Review 2018/9 Vol64.p96
   - https://shop.ohmsha.co.jp/shopdetail/000000005659/
-  - アクチュエータの走行距離あたりの作動頻度分布と生涯走行距離分布の積からストレスストレングス分布を作成して、耐久条件を求める.
-  - レーダクルーズのブレーキ制御頻度分布と日当たり走行分布とお客様の入庫日数分布から、入庫時に記録が上書きされないメモリーと記録要件を設計する.
+  - アクチュエータの走行距離あたりの作動頻度分布と生涯走行距離分布の積から生涯作動回数のストレスストレングス分布を作成して、耐久条件を求める.
+  - レーダクルーズのブレーキ制御頻度分布と日当たり走行分布とお客様の入庫日数分布から、入庫時に記録が上書きされないメモリーと制御記録要件を設計する.
 
 - ビックデータを活用した制御リスク設計,自動車技術会20年秋季大会学術講演会
   - Risk design of control system utilizing big data,Society of Automotive Engineers of Japan
@@ -71,7 +71,7 @@ you should respond to your obligations for the intellectual property rights and 
 
 - 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18）
   - https://www.ipsj.or.jp/event/taikai/83/ipsj_web2021/data/pdf/1B-03.html
-  - モンテカルロシミュレーションと分布演算、それぞれを使って放物線運動を行う飛距離の分布を求め、正確な分布を求めるために分布演算が必要であることを示す.
+  - モンテカルロシミュレーションと分布演算、それぞれを使って放物線運動を行う飛距離の分布を求めて比較、正確な分布を求めるために分布演算が必要であることを示す.
 
 ## URL
 - http://www.na.rim.or.jp/~syn/kakuritsu.html
