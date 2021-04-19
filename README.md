@@ -1,5 +1,5 @@
 # 分布演算（確率分布ベクトル解析）
-# Distribution calculation(Probability distribution vector analysis)
+# Calculation by distribution (Probability distribution vector analysis)
 
 
 　既存の様々な数学の数値パラメータを分布に置換えて確率演算を包含する分布演算を実現する。
