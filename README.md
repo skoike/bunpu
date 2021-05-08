@@ -1,4 +1,5 @@
-# 確率分布ベクトル解析
+# ＜確率分布ベクトル解析＞
+# <Probability Distribution Vector Analysis>
 
 # ばらつきを扱うための演算方法
 #  分布演算による設計、解析、捉え方の提案
