@@ -1,14 +1,48 @@
-# 分布演算（確率分布ベクトル解析）
-# Calculation by distribution (Probability distribution vector analysis)
+# ばらつきを扱うための演算方法
+#　分布演算による設計、解析、捉え方の提案
 
+# Mathematical method for handling dispersion
+#  Proposal of new design, new analysis, and understanding using Calculation by distribution
 
-　既存の様々な数学の数値パラメータを分布に置換えて確率演算を包含する分布演算を実現する。
-既存のモンテカルロシミュレーションや確率過程では全てのパスを演算できなければ正しい分布が求まらないが、それはランダムウォークなどの特殊な分布を除いて困難。
-分布演算はそもそもパスを求める必要がなく、ヒストグラムなどから求めた任意の分布から最も確からしい結果の分布を求めることができる。
+モノやコトの設計には必ずばらつきに対する配慮が必要であり
+ソフトやハードの性能や信頼性を保証することは
+多くの場合で、そのバランスを設計することにほかならない。
 
-　分布演算は、モンテカルロシミュレーションや確率過程の様に、個別のパスを演算しないが、時系列の分布間に相関関係を持たせることが可能で、速度vと位置xの
-時系列の相関関係で様々な運動の特徴を表すことができる。例えば、ランダムウォークは、xが正相関の加算、vが独立加算。マルコフ連鎖はx,v正相関の加算、
-ホワイトノイズはxが独立加算、フィードバック制御は逆相関の加算で模擬できると考えている。
+性能や信頼性を示す、設計の目的パラメータ（耐久性、性能値、安全率など）を演算する場合、
+従来の数学ではモノやコトのバラツキが特定の状態でのパラメータを
+把握して、それらの値を演算して設計することはできるが、
+目的パラメータの正確な分布を把握して厳密なバランスを設計するには限界がある。
+
+従来の数学では、演算対象であるパラメータの平均値や上下限値を使ったり、
+個々のパラメータのバラツキを分布に従った乱数として与えて、演算結果の分布を求めて設計する
+ことは可能である。しかし、個々のパラメータが大きなバラツキをもったり、
+複雑なモノやシステムの設計においては、数値演算で求めた分布は形状の精度には限界がある。
+正確でない分布を使ってバランスを設計した場合、結果に誤差が発生する。
+
+それぞれのパラメータに対して大数の法則が成立したとしても
+性能や信頼性を示す、設計の目的パラメータはそれらの値の組合せであり、
+組合せに対しては大数の法則が成立しない場合が多いからである。
+
+パラメータの値を使って設計を行う演算を数値演算とすると、
+ここで説明する方法はパラメータを値として演算するのではなく
+パラメータをそれぞれ分布として、分布相互の演算を定義して演算する方法で、
+ここではそれを分布演算と呼ぶ。
+
+分布演算は、個々のパラメータをヒストグラムなどから求めた分布として扱い、演算毎に
+最も確からしい結果の分布を求めることで設計や解析を行う。
+筆者は、過去に様々な設計において分布演算を使うことで、数値演算との違いを実感してきた。
+数値演算を使った設計が実際には数倍も誤差を持ち、過剰品質や性能妥協であるにも関わらず、
+気づかれないことは良くあることだ。
+
+従来方式の中に確率過程という方法があり、これによって正しい演算結果の分布が得られる場合
+がある。ところが、確率過程によって結果の分布が得られるケースは、結果に至る演算過程が全て求められる
+ことが前提であり、ランダムウォークなどから得られる特殊な分布以外を扱うばあい、結果の
+分布が得られない。個々の値の演算結果を求める必要がある点で、これも従来の数値演算
+のひとつである。つまり分布演算は、個々の値を使わず、パラメータを分布という集合で
+扱い、ランダムウォークなどの演算過程はパラメータ間の相関関係として定義される。
+
+ここでは、その分布演算について説明する。
+
 
 　今回そのツールの一部を公開するが、現在はベクトルの四則演算や単純な時系列積分などができる程度である。今後様々な分野の方に協力して頂き、開発を進めることができれば、
 様々な微分方程式を含む数学全体に拡張できると考えている。このことは様々なバラツキを扱う物理解析技術や社会現象解析に改善をもたらし、理解を深めるスコープとして活用できる可能性がある。
@@ -24,17 +58,45 @@
 
 ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利と著作権にご配慮ください。
 
- Realize the calculation by distribution including probability operations by replacing various existing mathematical parameters with distributions.
-In the existing Monte Carlo simulation and stochastic process, the correct distribution cannot be obtained unless all paths can be calculated,
-but it is difficult except for special distributions such as random walks.
-In the calculation by distribution, it is not necessary to obtain the path in the first place,
-and the distribution of the most probable result can be obtained from an arbitrary distribution obtained from a histogram or the like.
 
- the calculation by distribution does not calculate individual paths like Monte Carlo simulation and stochastic process,
- but it is possible to have a correlation between time series distributions,
- and the velocity v and position x Various movement characteristics can be represented by time-series correlation.
- For example, I think that random walk can be simulated by adding x positive correlation and v independent correlation,
- Markov chains adding x, v positive correlations, white noise adding independent x and feedback control adding inverse correlation.
+It is necessary to consider variations and dispersion when designing somethings or analysing phenomenons.
+Guaranteeing the performance and reliability of software and hardware
+In many cases, it's all about designing that balance.
+
+When calculating design target parameters (durability, performance value, safety factor, etc.) that indicate performance and reliability.
+In conventional methods, the variation of somethings and phenomenons is the parameter in a specific state.
+You can figure it out and calculate and design those values,
+There is a limit to grasping the exact distribution of the target parameters and designing the exact balance.
+
+In conventional mathematics, the average value and upper and lower limit values of the parameters to be calculated are used.
+Give the variation of each parameter as a random number according to the distribution, and design by finding the distribution of the calculation result.
+It is possible. However, individual parameters have large variations,
+In the design of complicated objects and systems, the accuracy of the shape of the distribution obtained by numerical calculation is limited.
+If you design the balance with an inaccurate distribution, the results will be inaccurate.
+
+Even if the law of large numbers holds for each parameter
+The design target parameter, which indicates performance and reliability, is a combination of these values.
+This is because the law of large numbers often does not hold for combinations.
+
+If the operation that designs using the value of the parameter is Calcutation by numerical value,
+The method described here does not calculate the parameter as a value.
+With each parameter as a distribution, a method of defining and calculating operations between distributions,
+Here, it is called Calculation by distribution.
+
+The calculation by distribution treats each parameter as a distribution obtained from a histogram, etc., and for each operation
+Design and analyze by finding the most probable distribution of results.
+In the past, the author has realized the difference from the calcutation by numerical value by using the calculation by distribution  in various designs.
+Despite the fact that numerical design is actually several times more error-prone, over-quality and performance compromises.
+It's common to go unnoticed.
+
+When there is a method called stochastic process in the conventional method, and the distribution of correct calculation results can be obtained by this method.
+There is. However, in the case where the distribution of the result is obtained by the stochastic process, all the arithmetic processes leading to the result are required.
+Is the premise, and when dealing with anything other than the special distribution obtained from random walks, etc., the result
+No distribution is available. This is also the conventional calculation by numerical value in that it is necessary to obtain the calculation result of each value.
+It is one of. In other words, the calculation by distribution does not use individual values, but a set of parameters called distribution.
+Arithmetic processes such as handling and random walks are defined as correlations between parameter distributions.
+
+Here, the distribution calculation will be described.
 
   Currently, the method is limited to four arithmetic operations and simple integration of vectors(time series analysis),
  but I believe that it can be extended to the entire mathematics including various differential equations by advancing development.
