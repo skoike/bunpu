@@ -7,7 +7,7 @@
 # Mathematical method for handling dispersion
 #  Proposal of new design, new analysis, and understanding using Calculation by distribution
 
-モノやコトの設計には必ずばらつきに対する配慮が必要であり
+モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
 ソフトやハードの性能や信頼性を保証することは
 多くの場合、そのバランスを設計することにほかならない。
 
@@ -15,7 +15,7 @@
 その正確な分布を把握して厳密なバランスを設計するには従来の数学では限界がある。
 
 従来の数学では、演算対象であるパラメータの平均値や上下限値を使ったり、正規分布の様に特定の関数を使った
-分布を用いて設計したり、個々のパラメータのバラツキを分布に従った乱数として与えて、演算結果の分布を求めて設計することは可能である。
+分布を用いて設計したり、個々のパラメータのバラツキを分布に従った乱数として与えて、個々の演算結果から分布を求めて設計することは可能である。
 しかし、実際には平均値や上下限値で設計が成立しない場合が多く、演算結果の分布を正確に求めて背反のバランスを設計する必要があるにもかかわらず、
 個々のパラメータが大きなバラツキをもったり、
 複雑なモノやシステムの設計においては考慮するパラメータも多いので、数値演算や関数近似で求めた分布にはその形状の精度には限界がある。
@@ -24,9 +24,9 @@
 
 それぞれのパラメータに対して大数の法則が成立したとしても、
 設計結果の性能や信頼性を示す目的パラメータは、それらの値の組合せであり、
-組合せに対しては大数の法則が成立しない場合が多いからである。（下記論文参照）
+複雑な組合せに対しては大数の法則が成立しない場合が多いからである。
 
-パラメータを値として使って設計を行う演算を数値演算と呼ぶとすると、
+パラメータを値として使って設計や解析を行う演算を数値演算と呼ぶとすると、
 ここで説明する方法はパラメータを値として演算するのではなく
 パラメータをそれぞれ分布として、分布相互の演算を定義して演算する方法で、
 ここではそれを分布演算と呼ぶ。
@@ -35,14 +35,18 @@
 最も確からしい結果の分布を求めることで設計や解析を行う。
 筆者は、過去に様々な設計において分布演算を使うことで、数値演算との違いを実感してきた。
 数値演算を使った設計が実際には数倍も誤差を持ち、過剰品質や性能妥協であるにも関わらず、
-気づかれないことは良くあることだ。
+気づかれないことは良くあることだ。数値演算を使った設計で、分布演算の設計に勝とうとしたら、
+膨大な試作を行い、際限なく適合評価を繰り返す必要があるだろう。
+
+筆者は、下記に記したいくつかの論文にて、ハードやソフトの設計や解析において、この分布演算と従来の数値演算の比較を行い、
+現実のモノやコトを正しく設計したり、解析するためには分布演算が必要であることを示してきた。
 
 従来方式の中に確率過程という方法があり、これによって正しい演算結果の分布が得られる場合
 がある。ところが、確率過程によって結果の分布が得られるケースは、無数に存在する結果に至る個々の演算過程が全て求められる
-ことが前提であり、ランダムウォークなどから得られる特殊な分布以外を扱うばあい、結果の
-分布が得られない。個々の値の演算結果を求める必要がある点で、これも従来の数値演算
+ことが前提であり、ランダムウォークなどから得られる特殊な分布を除いて、結果の
+分布が得られない。結果の分布を得るために個々の値の演算結果を求める必要がある点で、これも従来の数値演算
 のひとつである。つまり分布演算は、個々の値を使わず、パラメータを分布という集合で
-扱い、ランダムウォークなどの個々の演算過程はパラメータ間の相関関係として定義される。
+扱い、ランダムウォークや運動軌跡などの個々の演算過程はパラメータ間の相関関係として定義される。
 
 私は、運動方程式を含む、ほとんどの現象の方程式の解は分布演算に拡張されるべきだと思っており、
 そこで扱われる分布の厳密な形状を把握することが、様々な現象の正しい理解につながると考えている。
@@ -94,6 +98,9 @@ Design and analyze by finding the most probable distribution of results.
 In the past, the author has realized the difference from the calcutation by numerical value by using the calculation by distribution  in various designs.
 Despite the fact that numerical design is actually several times more error-prone, over-quality and performance compromises.
 It's common to go unnoticed.
+
+In some of the papers listed below, I compared this the calculation by distributions with conventional numerical operations in the design and analysis of hardware and software.
+I have shown that the calculation by distributions are necessary to correctly design and analyze real things and things.
 
 When there is a method called stochastic process in the conventional method, and the distribution of correct calculation results can be obtained by this method.
 There is. However, in the case where the distribution of the result is obtained by the stochastic process, all the arithmetic processes leading to the result are required.
