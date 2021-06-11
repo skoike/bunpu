@@ -147,6 +147,8 @@ you should respond to your obligations for the intellectual property rights and 
 - 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18）
   - https://www.ipsj.or.jp/event/taikai/83/ipsj_web2021/data/pdf/1B-03.html
   - モンテカルロシミュレーションと分布演算、それぞれを使って放物線運動を行う飛距離の分布を求めて比較、正確な分布を求めるために分布演算が必要であることを示す.
+  - 6/2にこの論文発表にて優秀賞を受賞しました。以下の83回大会優秀賞に全文が公開されています。
+  - https://www.ipsj.or.jp/award/taikaiyusyu.html
 
 ## URL
 - http://www.na.rim.or.jp/~syn/kakuritsu.html
