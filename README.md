@@ -51,7 +51,15 @@
 私は、運動方程式を含む、ほとんどの現象の方程式の解は分布演算に拡張されるべきだと思っており、
 そこで扱われる分布の厳密な形状を把握することが、様々な現象の正しい理解につながると考えている。
 
-ここでは、その分布演算について説明する。
+<以上の概要>
+
+- 設計や解析を行う際にバラツキを正確に扱うことは性能や信頼性を保証するために重要である
+- 上記を実現する最も良い方法は目的パラメータの分布を求めて、そのバランスを設計することである
+- モンテカルロシミュレーションや確率過程、パーセンタイルでは、正しい分布を得ることはできない
+- 個々のパラメータをヒストグラムから求めた分布とし、分布間の演算を定義して結果の分布を求める分布演算を提案　
+- 従来方法は、個々の値や経路を求める数値演算であるが、分布演算はバラツキを集合とし、個々を扱わない（包含する）集合演算
+- 分布演算は、様々な方程式のパラメータやベクトルをそのまま分布に置換えることで結果の解を求めることができる
+- 軌跡やランダムウォークといった過程は時系列の分布間で相関関係を与えることで定義できる
 
 
 　今回そのツールの一部を公開するが、現在はベクトルの四則演算や単純な時系列積分などができる程度である。今後様々な分野の方に協力して頂き、開発を進めることができれば、
@@ -117,6 +125,21 @@ Here, the distribution calculation will be described.
  and can be used as a scope to deepen understanding.
 
 The method is to construct a calculation system in which the distributed data is distributed in a histogram and the distribution is used as a calculation element.
+
+<summary>
+
+- Accurate handling of dispersion when designing and analyzing is important to ensure performance and reliability.
+- The best way to achieve the above is to calculate the distribution of the target parameters and design the balance.
+- Correct distribution cannot be obtained by Monte Carlo simulation, stochastic process, or percentile, or such an conventional method.
+- I propose Calculation by distribution that defines the calculation between distributions and obtains the resulting distribution,
+  with each parameter as the distribution obtained from the histogram.
+- The conventional method is a numerical operation for calculating individual values and paths,
+  but the calculation by distribution is a aggregation operation that dose not handle only individual(but includes).
+- In the calculation by distribution, the solution of the result can be obtained
+  by replacing the parameters and vectors of various equations with the distribution as they are.
+- Processes such as trajectories or random walks can be defined by giving correlations between time-series distributions.
+
+
 At the moment this tool can:
 
 - Generate a distribution from the histogram of the measured data
