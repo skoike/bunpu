@@ -126,7 +126,7 @@ Here, the distribution calculation will be described.
 
 The method is to construct a calculation system in which the distributed data is distributed in a histogram and the distribution is used as a calculation element.
 
-<summary>
+summary
 
 - Accurate handling of dispersion when designing and analyzing is important to ensure performance and reliability.
 - The best way to achieve the above is to calculate the distribution of the target parameters and design the balance.
