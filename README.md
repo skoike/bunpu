@@ -131,10 +131,10 @@ summary
 - Processes such as trajectories or random walks can be defined by giving correlations between time-series distributions.
 
 
-  Currently, the method is limited to four arithmetic operations and simple integration of vectors(time series analysis),
- but I believe that it can be extended to the entire mathematics including various differential equations by advancing development.
- This may bring improvements to various physical analysis technology and social phenomenon analysis that handle various variations
- and can be used as a scope to deepen understanding.
+Currently, the method is limited to four arithmetic operations and simple integration of vectors(time series analysis),
+but I believe that it can be extended to the entire mathematics including various differential equations by advancing development.
+This may bring improvements to various physical analysis technology and social phenomenon analysis that handle various variations
+and can be used as a scope to deepen understanding.
 
 The method is to construct a calculation system in which the distributed data is distributed in a histogram and the distribution is used as a calculation element.
 
