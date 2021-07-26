@@ -174,10 +174,34 @@ you should respond to your obligations for the intellectual property rights and 
 ## URL
 - http://www.na.rim.or.jp/~syn/kakuritsu.html
 
+##ツール
 
-## プログラム言語とインポートするモジュール
+ツールはpython モジュールに加えて、windows10の実行形式を追加した。
+windows10の実行形式はGUIによって分布の生成と四則演算など基本的な機能が可能。
+更に複雑な演算はpython モジュールをインポートしてプログラミングが可能である。
+
+## windows10実行形式
+- bunpu.exe
+## How to use bunpu.exe
+
+- インプット分布の選択
+  - parameter:パラメータを指定して分布を生成[最小値],[最大値],[平均値],[標準偏差],[分割数]　例　[-1.0,2.0],[0.5,4.0],[-0.1,2.8],[0.2,0.3],[20,20]
+  - data_file:ファイルデータから分布を生成、'データファイル名','分布出力名(選択)',無視する行,[取り込む列],[分割数],0,カーネル分布のバンド幅　例　toyota_sony_nikkei.txt,2,[5,11],[20,20],0,20
+  - distribution_file:アウトプットした分布の再利用、.npzファイルを選択
+  - 上記2番目と3番目はselect_file1,2で選択しても良い
+- 演算の選択
+  - add:加算
+  - sub:減算
+  - product:乗算
+  - division:除算
+- execute
+  - アウトプットデータ名を指定して演算
+  
+
+## pythonでインポートするモジュール
 ## import module
-
+- bunpu.py
+## python要件
 - python3.6
 - pandas0.25.2
 - scipy1.2.0
@@ -187,7 +211,7 @@ you should respond to your obligations for the intellectual property rights and 
 
 
 ## ツールの利用方法
-## How to use
+## How to use python module
 
 
 1. from bunpu import *   
