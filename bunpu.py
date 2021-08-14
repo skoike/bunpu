@@ -6237,25 +6237,91 @@ class bunpu(object):
             limitpara=0
         return limitpara
 
-    def bunpu_percent(self, pos1,pos2, dirc):
 
+    def bunpu_percent(self, filename=[],pos1=[],pos2=[], dirc=[]):
         dim=self.dim
         x1=self.flatten
         x=self.mesh
+        xmax=self.xmax
+        xmin=self.xmin
         menseki=0
         lastmen=0
         dx=self.dx
         div=self.div
         if dim==1:
             flag=0
+            flag1=0
+            if pos1[0]==pos2[0] and dirc[0]>=0:
+                flag=1
+                flag1=1
+                pos2[0]=xmax[0]+dx[0]
+            elif pos1[0]==pos2[0] and dirc[0]<0:
+                flag=3
+                flag1=1
+                pos2[0]=xmin[0]-dx[0]
+            elif pos1[0]<pos2[0] and dirc[0]>=0:
+                flag=1
+            elif pos1[0]<pos2[0] and dirc[0]<0:
+                flag=2
+            elif pos1[0]>pos2[0] and dirc[0]>=0:
+                flag=3
+            elif pos1[0]>pos2[0] and dirc[0]<0:
+                flag=4
             for i in range(div[0]):
                 lastmen=menseki
-                if (dirc[0]>=0 and x[0][i]<=pos[0]) or (dirc[0]<0 and x[0][i]>=pos[0]):
-                    menseki += x[1][i]*dx
-                elif (dirc[0]>=0 and x[0][i]>pos[0] and lastmen<=pos[0]) or (dirc[0]<0 and x[0][i]<pos[0] and lastmen>=pos[0]):
-                    flag=1
-                    menseki+=(x[1][i]*(pos[0]-x[0][i])+x[1][i-1]*(poz[0]-lastmen))
-                outbunpu=[pos,[1]]
+                if (flag==1 and x[0][i]>=pos1[0] and x[0][i]<=pos2[0]) or (flag==2 and (x[0][i]<=pos1[0] or x[0][i]>=pos2[0])) or \
+                  (flag==3 and x[0][i]<=pos1[0] and x[0][i]>=pos2[0]) or (flag==4 and (x[0][i]>=pos1[0] or x[0][i]<=pos2[0])):
+                    menseki += x[1][i]*dx[0]
+                elif i>=1:#posがi~i-1の間にある場合
+                    if (flag==1 and x[0][i-1]>=pos1[0] and x[0][i-1]<=pos2[0]) or (flag==4 and (x[0][i-1]>=pos1[0] or x[0][i-1]<=pos2[0])):#x[i-1]<pos1<x[i]
+                        menseki+=(x[1][i]*(pos1[0]-x[0][i-1])+x[1][i-1]*(x[0][i]-pos1[0]))
+                    elif (flag==2 and (x[0][i-1]<=pos1[0] or x[0][i-1]>=pos2[0])) or (flag==3 and x[0][i-1]<=pos1[0] and x[0][i-1]>=pos2[0]):#x[i-1]<pos2[i]<x[i]
+                        menseki+=(x[1][i]*(pos2[0]-x[0][i-1])+x[1][i-1]*(x[0][i]-pos2[0]))
+                elif i<=div[0]-2:#posがi~i+1の間にある場合
+                    if (flag==2 and (x[0][i+1]<=pos1[0] or x[0][i+1]>=pos2[0])) or (flag==3 and x[0][i+1]<=pos1[0] and x[0][i+1]>=pos2[0]):#x[i]<pos1<x[i+1]
+                        menseki+=(x[1][i]*(x[0][i+1]-pos1[0])+x[1][i+1]*(pos1[0]-x[0][i]))
+                    elif (flag==1 and x[0][i+1]>=pos1[0] and x[0][i+1]<=pos2[0]) or (flag==4 and (x[0][i+1]>=pos1[0] or x[0][i+1]<=pos2[0])):#x[i]<pos2<x[i+1]
+                        menseki+=(x[1][i]*(x[0][i+1]-pos2[0])+x[1][i+1]*(pos2[0]-x[0][i]))
+            if flag1==1:
+                outbunpu=[[pos1[0],1],[pos1[0],1]]
+            else:
+                outbunpu=[[pos1[0],1],[pos2[0],1]]
+
+            #グラフ
+            #分布×ベクトル
+            if filename==[]:
+                filename=['output','unit']
+                
+            fg=plt.figure(figsize=(14,7))
+            ax1 = fg.add_subplot(111)
+            ln1 = ax1.plot(x[0],x[1],'b-',label=filename[0])
+            
+            ax2 = ax1.twinx()
+            if flag1==0:
+                ln2 =ax2.plot([xmin[0],pos1[0],pos1[0],pos2[0],pos2[0],xmax[0]],[0,0,1,1,0,0],'r-', label="border")
+            elif flag1==1:
+                ln2 =ax2.plot([xmin[0],pos1[0],pos1[0],pos1[0],pos1[0],xmax[0]],[0,0,1,1,0,0],'r-', label="border")
+            h1, l1 = ax1.get_legend_handles_labels()
+            h2, l2 = ax2.get_legend_handles_labels()
+            ax1.legend(h1+h2, l1+l2, loc='upper right')
+            
+            fp = FontProperties(fname=r'C:\Windows\Fonts\msgothic.ttc',size=24)
+            ax1.set_xlabel(u''+filename[1], fontproperties=fp)
+            ax1.set_ylabel(r'probability')
+            ax1.grid(True)
+            ax2.set_ylabel(r'border')
+            
+            plt.title(u''+filename[0], fontproperties=fp) 
+            plt.xlabel(u''+filename[1], fontproperties=fp)
+            posx=pos1[0]
+            posy1=0.5
+
+            plt.text(posx,posy1,'menseki='+str(menseki),fontproperties=fp)
+
+            outfilename=filename[0]
+            outgraphname=outfilename+'.png'
+            plt.savefig(outgraphname)
+                
         elif dim==2:
             #
             #
@@ -6316,7 +6382,10 @@ class bunpu(object):
         else:
             print('under constract')
             limitpara=0
+            menseki=0
+            outbunpu=0
         return menseki,outbunpu
+
     
         
     def __exit__(self, exception_type, exception_value, traceback):
