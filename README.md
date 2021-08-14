@@ -274,7 +274,7 @@ windows10の実行形式はGUIによって分布の生成と四則演算など�
 
 © 2020 Shin Koike  bunpu@a1.rim.or.jp
 
-このソフトウェアをそのままの複製として利用する場合、本ソフトウェアおよび今後作成されるものを含めたそのブランチの利用を無償で許可します。
+このソフトウェアをそのままの複製を学習や研究を目的として利用する場合、本ソフトウェアおよび今後作成されるものを含めたそのブランチの利用を無償で許可します。
 
 このソフトウェアは未完成で、改善の提案や機能拡張の協力を求めています、このソフトの改善や協力の為にに、変更、追加、結合、移植を含む派生を、
 利用可能な情報とともに、公開を前提として、前記アドレスにその情報提供をお願いします。
@@ -295,7 +295,7 @@ windows10の実行形式はGUIによって分布の生成と四則演算など�
 © 2020 Shin Koike  bunpu@a1.rim.or.jp
 
 Permission is hereby granted, free of charge, to any person obtaining a exact copy of this software,
-its branches and associated documentation files (the "Software"), to deal in the Software with restriction.
+its branches and associated documentation files (the "Software"),for learning or research purposes, to deal in the Software with restriction.
 
 This software is incomplete and we are seeking suggestions for improvement and cooperation in enhancements.
 For the improvement and cooperation of this software, please provide the derivation
