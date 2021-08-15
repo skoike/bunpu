@@ -7,8 +7,10 @@
 # Mathematical method for handling dispersion
 #  Proposal of new design, new analysis, and understanding using Calculation by distribution
 
-動画
+説明動画
 - https://youtu.be/z9IyAOP9CsM
+実習動画
+- https://youtu.be/3ThsLkDD5Hg
 
 モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
 ソフトやハードの性能や信頼性を保証することは
