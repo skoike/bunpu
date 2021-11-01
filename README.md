@@ -16,6 +16,9 @@
 実習動画その２、分布による比較
 - https://youtu.be/2HE2y9h46fg
 
+実習動画その３、分布によるベクトルと相関関係
+-https://youtu.be/c3sTc6fyDtg
+
 
 モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
 ソフトやハードの性能や信頼性を保証することは
@@ -188,7 +191,8 @@ you should respond to your obligations for the intellectual property rights and 
 
 ツールはpython モジュールに加えて、windows10の実行形式を追加した。
 windows10の実行形式はGUIによって分布の生成と四則演算など基本的な機能が可能。
-更に複雑な演算はpython モジュールをインポートしてプログラミングが可能である。
+pythonモジュールは当面引き上げて、bunpu.exeだけとする。
+
 
 ## windows10実行形式
 - bunpu.exe
@@ -204,6 +208,8 @@ windows10の実行形式はGUIによって分布の生成と四則演算など�
   - sub:減算
   - product:乗算
   - division:除算
+  - percent:分布のパーセンタイルを求める
+  - percent2:分布と分布のバランスを求める（演習動画２参照）
 - execute
   - アウトプットデータ名を指定して演算
   
