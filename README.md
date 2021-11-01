@@ -17,7 +17,7 @@
 - https://youtu.be/2HE2y9h46fg
 
 実習動画その３、分布によるベクトルと相関関係
--https://youtu.be/c3sTc6fyDtg
+- https://youtu.be/c3sTc6fyDtg
 
 
 モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
