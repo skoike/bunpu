@@ -175,7 +175,7 @@ you should respond to your obligations for the intellectual property rights and 
 
 - ビックデータを活用した制御リスク設計,自動車技術会20年秋季大会学術講演会
   - Risk design of control system utilizing big data,Society of Automotive Engineers of Japan
-  - https://www.jstage.jst.go.jp/article/jsaeronbun/52/1/52_20214041/_article/-char/ja
+  - https://shop.ohmsha.co.jp/shopdetail/000000005824/Z-EY/page1/order/
   - レーダー認識位置分布(m)と相対速度分布(m/sec)と車線変更制御完了時間(sec)から安全な車線変更制御設計を行う.
 
 - 確率分布ベクトル解析について、情報処理学会第83回全国大会（2021 3/18）
