@@ -25,6 +25,9 @@
 実習動画その５、ハードの信頼性保証
 - https://www.youtube.com/watch?v=Kw4yhx-qa4o
 
+実習動画その6、ツールの使い方説明
+- https://www.youtube.com/watch?v=T2Lo8zvGK44
+
 
 モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
 ソフトやハードの性能や信頼性を保証することは
