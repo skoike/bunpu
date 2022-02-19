@@ -28,6 +28,8 @@
 実習動画その６、ツールの使い方説明
 - https://www.youtube.com/watch?v=T2Lo8zvGK44
 
+実習動画その７、微分方程式の分布解
+- https://www.youtube.com/watch?v=8GrTqCC4XVA
 
 モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
 ソフトやハードの性能や信頼性を保証することは
