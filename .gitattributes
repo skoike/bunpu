@@ -1,2 +1,4 @@
 bunpu.exe filter=lfs diff=lfs merge=lfs -text
 bunpu.zip filter=lfs diff=lfs merge=lfs -text
+bunpu_win10.exe filter=lfs diff=lfs merge=lfs -text
+bunpu_win11.exe filter=lfs diff=lfs merge=lfs -text
