@@ -1,158 +1,47 @@
-# ＜確率分布ベクトル解析＞
-# ＜Probability Distribution Vector Analysis＞
+# ＜バラツキの対処法＞
+# ＜How to deal with bariance＞
 
-# ばらつきを扱うための演算方法
-#  分布演算による設計、解析、捉え方の提案
+#  分布演算によりバラツキを厳密に扱う設計、解析、演算結果の判断方法、捉え方の提案
 
 # Mathematical method for handling dispersion
 #  Proposal of new design, new analysis, and understanding using Calculation by distribution
 
-背景、概要の説明動画
-- https://youtu.be/z9IyAOP9CsM
+2023年2月18日技術評論社から発売の“バラツキの対処法”で説明した演算を行うためのソフトウェアです。
+書籍ではこのソフトウェアを電卓と呼びましたが、これは一般的な電卓で扱う数字を分布に置換えて、
+分布どうしをを演算するための電卓です。
 
-実習動画その１、分布による演算
-- https://youtu.be/3ThsLkDD5Hg
+　このソフトウェアはそのままの複製を学習や研究を目的として利用する場合に限り、フリーに使ってもらえます。
+それ以外の以下のケースなどは、ライセンス記述にあるアドレスに相談ください。
+個別のニーズに応じた技術サポートを、可能な範囲で2023年5月以降から有償で対応できるようにします。
 
-実習動画その２、分布による比較
-- https://youtu.be/2HE2y9h46fg
-
-実習動画その３、分布によるベクトルと相関関係
-- https://youtu.be/c3sTc6fyDtg
-
-実習動画その４、ランダムなイベントを扱うソフト設計
-- https://www.youtube.com/watch?v=KhST_esQotU
-
-実習動画その５、ハードの信頼性保証
-- https://www.youtube.com/watch?v=Kw4yhx-qa4o
-
-実習動画その６、ツールの使い方説明
-- https://www.youtube.com/watch?v=T2Lo8zvGK44
-
-実習動画その７、微分方程式の分布解
-- https://www.youtube.com/watch?v=8GrTqCC4XVA
-
-モノやコトの設計や解析には必ずばらつきに対する配慮が必要であり
-ソフトやハードの性能や信頼性を保証することは
-多くの場合、そのバランスを設計することにほかならない。
-
-ところが、性能や信頼性を示す、設計の目的パラメータ（性能値、耐久性、on-off性能、安全率など）を演算する場合、
-その正確な分布を把握して厳密なバランスを設計するには従来の数学では限界がある。
-
-従来の数学では、演算対象であるパラメータの平均値や上下限値を使ったり、正規分布の様に特定の関数を使った
-分布を用いて設計したり、個々のパラメータのバラツキを分布に従った乱数として与えて、その全ての演算結果から分布を求めて設計することは可能である。
-しかし、実際には平均値や上下限値で設計が成立しない場合が多く、演算結果の分布を正確に求めて背反のバランスを設計する必要があるにもかかわらず、
-個々のパラメータが大きなバラツキをもったり、
-複雑なモノやシステムの設計においては考慮するパラメータも多いので、モンテカルロ法などの数値演算や関数近似で求めた分布にはその形状の精度には限界がある。
-正確でない分布を使ってバランスを設計した場合、結果に誤差が発生する。
-多くの人は、そのことに薄々気づいているので過剰品質や性能妥協になることが多い。
-
-それぞれのパラメータに対して大数の法則が成立したとしても、
-設計結果の性能や信頼性を示す目的パラメータは、それらの値の組合せであり、
-複雑な組合せに対しては大数の法則が成立しない場合が多いからである。
-
-パラメータを値として使って設計や解析を行う演算を数値演算と呼ぶとすると、
-ここで説明する方法はパラメータを値として演算するのではなく
-パラメータをそれぞれ分布として、分布相互の演算を定義して演算する方法で、
-ここではそれを分布演算と呼ぶ。
-
-分布演算は、個々のパラメータをヒストグラムなどから求めた分布として扱い、演算毎に
-最も確からしい結果の分布を求めることで設計や解析を行う。
-筆者は、過去に様々な設計において分布演算を使うことで、数値演算との違いを実感してきた。
-数値演算を使った設計が実際には数倍も誤差を持ち、過剰品質や性能妥協であるにも関わらず、
-気づかれないことは良くあることだ。数値演算を使った設計で、分布演算の設計に勝とうとしたら、
-膨大な試作を行い、際限なく適合評価を繰り返す必要があるだろう。
-
-筆者は、下記に記したいくつかの論文にて、ハードやソフトの設計や解析において、この分布演算と従来の数値演算の比較を行い、
-現実のモノやコトを正しく設計したり、解析するためには分布演算が必要であることを示してきた。
-
-従来方式の中に確率過程という方法があり、これによって正しい演算結果の分布が得られる場合
-がある。ところが、確率過程によって結果の分布が得られるケースは、無数に存在する結果に至る個々の演算過程が全て求められる
-ことが前提であり、ランダムウォークなどから得られる特殊な分布を除いて、結果の
-分布が得られない。結果の分布を得るために個々の値の演算結果を求める必要がある点で、これも従来の数値演算
-のひとつである。つまり分布演算は、個々の値を使わず、パラメータを分布という集合で
-扱い、ランダムウォークや運動軌跡などの個々の演算過程はパラメータ間の相関関係として定義される。
-
-私は、運動方程式を含む、ほとんどの現象の方程式の解は分布演算に拡張されるべきだと思っており、
-そこで扱われる分布の厳密な形状を把握することが、様々な現象の正しい理解につながると考えている。
-
-<以上の概要>
-
-- 設計や解析を行う際にバラツキを正確に扱うことは性能や信頼性を保証するために重要である
-- 上記を実現する最も良い方法は目的パラメータの分布を求めて、そのバランスを設計することである
-- モンテカルロシミュレーションや確率過程、パーセンタイルでは、正しい分布を得ることはできない
-- 個々のパラメータをヒストグラムから求めた分布とし、分布間の演算を定義して結果の分布を求める分布演算を提案　
-- 従来方法は、個々の値や経路を求める数値演算であるが、分布演算はバラツキを集合とし、個々を扱わない（包含する）集合演算
-- 分布演算は、様々な方程式のパラメータやベクトルをそのまま分布に置換えることで結果の解を求めることができる
-- 軌跡やランダムウォークといった過程は時系列の分布間で相関関係を与えることで定義できる
+・本技術を利用したモノやサービスを産業活動（商用）として行う場合
+・本技術の関数スクリプト(python)を入手して自由度の高い活用を行う場合。
+・本技術を参考にして類似のソフトウェアを開発・配布する場合。
+・本技術を活用する為のコンサルティング、説明、講演などが必要な場合。
+・ユーザーニーズにあわせて本技術を応用するためのツールカスタマイズ。
 
 
-　今回そのツールの一部を公開するが、現在はベクトルの四則演算や単純な時系列積分などができる程度である。今後様々な分野の方に協力して頂き、開発を進めることができれば、
-様々な微分方程式を含む数学全体に拡張できると考えている。このことは様々なバラツキを扱う物理解析技術や社会現象解析に改善をもたらし、理解を深めるスコープとして活用できる可能性がある。
+Windows10で開発していましたが、Windows11ではうまく動かなかったので、
+それぞれの環境でコンパイルしたものを用意しました。
+
+Windows10用→bunpu_win10.exe
+Windows11用→bunpu_win11.exe
+
+その他csvファイルが多数ありますが、これは上記ツールで練習用に使うダミーデータです。
+使い方は“バラツキの対処法”を参照ください。
+
+
 
 現時点でこのツールは、以下のことが可能である。
 
 - データファイルの特定列から抽出したデータのヒストグラムと分布を生成
 - 範囲や平均値、標準偏差を指定して分布を生成
-- 前記生成された分布の四則演算や時系列積分（相関係数に応じた補正が可能）
+- 前記生成された分布の四則演算や時系列積分（シミュレーション）
 - 分布のグラフ表示
 - 分布要素をファイル出力
 - 以上の1次元から3次元のベクトル分布処理
 
 ライセンスは、このソフトをそのまま利用するだけであればフリー、ソフトの変更や参考にして作成したものの配布や商用利用する場合は知財権利と著作権にご配慮ください。
-
-
-It is necessary to consider variations and dispersion when designing somethings or analysing phenomenons.
-Guaranteeing the performance and reliability of software and hardware
-In many cases, it's all about designing that balance.
-
-When calculating design target parameters (durability, performance value, safety factor, etc.) that indicate performance and reliability.
-In conventional methods, the variation of somethings and phenomenons is the parameter in a specific state.
-You can figure it out and calculate and design those values,
-There is a limit to grasping the exact distribution of the target parameters and designing the exact balance.
-
-In conventional mathematics, the average value and upper and lower limit values of the parameters to be calculated are used.
-Give the variation of each parameter as a random number according to the distribution, and design by finding the distribution of the calculation result.
-It is possible. However, individual parameters have large variations,
-In the design of complicated objects and systems, the accuracy of the shape of the distribution obtained by numerical calculation is limited.
-If you design the balance with an inaccurate distribution, the results will be inaccurate.
-
-Even if the law of large numbers holds for each parameter
-The design target parameter, which indicates performance and reliability, is a combination of these values.
-This is because the law of large numbers often does not hold for combinations.
-
-If the operation that designs using the value of the parameter is Calcutation by numerical value,
-The method described here does not calculate the parameter as a value.
-With each parameter as a distribution, a method of defining and calculating operations between distributions,
-Here, it is called Calculation by distribution.
-
-The calculation by distribution treats each parameter as a distribution obtained from a histogram, etc., and for each operation
-Design and analyze by finding the most probable distribution of results.
-In the past, the author has realized the difference from the calcutation by numerical value by using the calculation by distribution  in various designs.
-Despite the fact that numerical design is actually several times more error-prone, over-quality and performance compromises.
-It's common to go unnoticed.
-
-In some of the papers listed below, I compared this the calculation by distributions with conventional numerical operations in the design and analysis of hardware and software.
-I have shown that the calculation by distributions are necessary to correctly design and analyze real things and things.
-
-When there is a method called stochastic process in the conventional method, and the distribution of correct calculation results can be obtained by this method.
-There is. However, in the case where the distribution of the result is obtained by the stochastic process, all the arithmetic processes leading to the result are required.
-Is the premise, and when dealing with anything other than the special distribution obtained from random walks, etc., the result
-No distribution is available. This is also the conventional calculation by numerical value in that it is necessary to obtain the calculation result of each value.
-It is one of. In other words, the calculation by distribution does not use individual values, but a set of parameters called distribution.
-Arithmetic processes such as handling and random walks are defined as correlations between parameter distributions.
-
-summary
-
-- Accurate handling of dispersion when designing and analyzing is important to ensure performance and reliability.
-- The best way to achieve the above is to calculate the distribution of the target parameters and design the balance.
-- Correct distribution cannot be obtained by Monte Carlo simulation, stochastic process, or percentile, or such an conventional method.
-- I propose Calculation by distribution that defines the calculation between distributions and obtains the resulting distribution,
-  with each parameter as the distribution obtained from the histogram.
-- The conventional method is a numerical operation for calculating individual values and paths,
-  but the calculation by distribution is a aggregation operation that dose not handle only individual(but includes).
-- In the calculation by distribution, the solution of the result can be obtained
-  by replacing the parameters and vectors of various equations with the distribution as they are.
-- Processes such as trajectories or random walks can be defined by giving correlations between time-series distributions.
 
 
 Currently, the method is limited to four arithmetic operations and simple integration of vectors(time series analysis),
@@ -225,17 +114,6 @@ pythonモジュールは当面引き上げて、bunpu.exeだけとする。
   - アウトプットデータ名を指定して演算
   
 
-## pythonでインポートするモジュール
-## import module
-- bunpu.py
-## python要件
-- python3.6
-- pandas0.25.2
-- scipy1.2.0
-- numpy1.16.5
-- matplotlib3.0.2
-- scikit-learn0.21.3
-
 
 ## ツールの利用方法
 ## How to use python module
@@ -277,17 +155,6 @@ pythonモジュールは当面引き上げて、bunpu.exeだけとする。
 - bunpu+lean:分布範囲の差が大きい時に分布として演算されなかった場合
 - bunpu+vector:分布とベクトルの演算
 - 上記表示に続く数字:演算結果の素の分布面積（体積、超体積）、相関係数0での分布演算結果の面積は必ず1に近い数字になる、1からのズレ2割以上大きい場合は結果が信頼できない、相関係数が0以外の数字を指定した場合１以下になる。
-
-
-サンプル
-
-- sample0.py　最小値、最大値、平均値、標準偏差を指定して分布作成、その分布を四則演算、1次元～3次元
-- sample1.py　ファイルからデータを読み込んで分布作成、その分布を四則演算、1次元～3次元
-- sample2.py　作動頻度分布×生涯寿命分布＝生涯作動回数分布をもとめ、ストレスストレングスで目標故障率を満足する耐久回数を求める
-- sample3.py　拡散方程式の解、
-- sample4.py　運動方程式の解、3次元放物線運動
-
-
 
 
 課題
