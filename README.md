@@ -31,9 +31,8 @@
 Windows10で開発していましたが、Windows11ではうまく動かなかったので、
 それぞれの環境でコンパイルしたものを用意しました。
 
-Windows10用→bunpu_win10.exe
-
-Windows11用→bunpu_win11.exe
+- Windows10用→bunpu_win10.exe
+- Windows11用→bunpu_win11.exe
 
 その他csvファイルが多数ありますが、これは上記ツールで練習用に使うダミーデータです。
 使い方は“バラツキの対処法”を参照ください。
