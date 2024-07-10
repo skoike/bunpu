@@ -14,6 +14,22 @@ This software is used to perform the calculations explained in "Baratsuki no tai
 This software was released before publication, but the latest software developed after publication is at the address below.
 
 https://github.com/skoike/bunpu2
+https://github.com/skoike/bunpu3
+
+ソフト比較と使い方/Software comparison and how to use
+https://www.youtube.com/watch?v=pnTQOt4HYwg
+
+バラツキの対処法、概要と応用例/How to deal with variance, overview and application examples
+https://www.youtube.com/watch?v=YHU92qjDdDA&t=0s  
+
+バラツキの対処法、数学における位置づけ/How to deal with variance, Position in mathematics
+https://www.youtube.com/watch?v=bGJhkxFb-2M&t=0s
+
+ソフトの置き場/Software storage
+https://github.com/skoike/bunpu
+https://github.com/skoike/bunpu2
+https://github.com/skoike/bunpu3
+
 
 　出版前に公開したソフトは、プルダウンメニューで関数を指定するものですが、最新のソフトはユーザーが作成した
 プログラムを実行するもので、関数を組合わせることで自由なシミュレーションソフトを作成できます。
