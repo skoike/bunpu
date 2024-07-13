@@ -27,16 +27,16 @@ This software was released before publication, but the latest software developed
 
 ソフトの置き場/Software storage
 - https://github.com/skoike/bunpu
- 　ウィンドウズで立ち上がるインターフェースを持ち、プルダウンメニューで演算を指定する
- 　It has a Windows-based interface and allows you to specify operations using pull-down menus.
+*ウィンドウズで立ち上がるインターフェースを持ち、プルダウンメニューで演算を指定する
+*It has a Windows-based interface and allows you to specify operations using pull-down menus.
 
 - https://github.com/skoike/bunpu2
- - ウィンドウズで立ち上がるインターフェースを持ち、ユーザーが作ったスクリプトを実行する
- - It has a Windows-based interface and runs user-created scripts.
+*ウィンドウズで立ち上がるインターフェースを持ち、ユーザーが作ったスクリプトを実行する
+*It has a Windows-based interface and runs user-created scripts.
 
 - https://github.com/skoike/bunpu3
- 　pythonのライブラリとして機能する
- 　It works as a python library
+*pythonのライブラリとして機能する
+*It works as a python library
 
 
 
