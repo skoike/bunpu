@@ -23,7 +23,7 @@ This software was released before publication, but the latest software developed
 - https://www.youtube.com/watch?v=YHU92qjDdDA&t=0s  
 
 バラツキの対処法、数学における位置づけ/How to deal with variance, Position in mathematics
--https://www.youtube.com/watch?v=bGJhkxFb-2M&t=0s
+- https://www.youtube.com/watch?v=bGJhkxFb-2M&t=0s
 
 ソフトの置き場/Software storage
 - https://github.com/skoike/bunpu
