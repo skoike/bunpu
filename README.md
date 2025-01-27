@@ -16,32 +16,6 @@ This software was released before publication, but the latest software developed
 - https://github.com/skoike/bunpu2
 - https://github.com/skoike/bunpu3
 
-ソフト比較と使い方/Software comparison and how to use
-- https://www.youtube.com/watch?v=pnTQOt4HYwg
-
-バラツキの対処法、概要と応用例/How to deal with variance, overview and application examples
-- https://www.youtube.com/watch?v=YHU92qjDdDA&t=0s  
-
-バラツキの対処法、数学における位置づけ/How to deal with variance, Position in mathematics
-- https://www.youtube.com/watch?v=bGJhkxFb-2M&t=0s
-
-ソフトの置き場/Software storage
-
-ウィンドウズで立ち上がるインターフェースを持ち、プルダウンメニューで演算を指定する
-It has a Windows-based interface and allows you to specify operations using pull-down menus.
-- https://github.com/skoike/bunpu
-
-ウィンドウズで立ち上がるインターフェースを持ち、ユーザーが作ったスクリプトを実行する
-It has a Windows-based interface and runs user-created scripts.
-- https://github.com/skoike/bunpu2
-
- 　pythonのライブラリとして機能する
- 　It works as a python library
-- https://github.com/skoike/bunpu3
-
-
-
-
 　出版前に公開したソフトは、プルダウンメニューで関数を指定するものですが、最新のソフトはユーザーが作成した
 プログラムを実行するもので、関数を組合わせることで自由なシミュレーションソフトを作成できます。
 初めて使う人は、ここにある出版前のソフトを使ってみるのが良いでしょう。
@@ -64,11 +38,12 @@ Especially when there are multiple elements with variance, the error increases.
 This variation handling method provides an environment for handling distribution calculations that strictly reflects the distribution shape of the variation in the calculation results, 
 which is not available in existing numerical calculations.
 
+
 　このソフトウェアはそのままの複製を学習や研究を目的として利用する場合に限り、フリーに使ってもらえます。
-それ以外の以下のケースなどは、ライセンス記述にあるアドレスに相談ください。
+それ以外の以下のケースなどは、ライセンス記述にあるアドレス(bunpu@a1.rim.or.jp)に相談ください。
 個別のニーズへの対応は、主に法人を対象として行います。
 メールに対する回答は、その要否や期限についてこちらで判断させていただきます。
-(3)~(6)はライセンス契約が前提となります。
+(3)~(6)は有償でライセンス契約を締結することが前提となります。
 
 - 本技術に対するご意見、間違いや改善の提案。(1)
 - 本技術を活用する為のコンサルティング、説明、講演などが必要な場合。(2)
@@ -79,11 +54,10 @@ which is not available in existing numerical calculations.
 - 本技術を参考にして類似のソフトウェアを開発・配布する場合。(6)
 
 This software may be used free of charge only if you use an exact copy for educational or research purposes.
-For other cases such as those listed below, please contact the address listed in the license description.
+For other cases such as those listed below, please contact the address(bunpu@a1.rim.or.jp) listed in the license description.
 We respond to individual needs primarily for corporations.
 We will decide whether or not a response to the email is necessary and the deadline.
-For (3) to (6) a license agreement must be concluded.
-
+For (3) to (6) are subject a fee-based license agreement must be concluded.
 
 - Opinions, mistakes and suggestions for improvement regarding this technology. (1)
 - If consulting, explanations, lectures, etc. are required to utilize this technology. (2)
@@ -92,6 +66,7 @@ For (3) to (6) a license agreement must be concluded.
   (You are free to use it for reviewing or trial use.)
 - Get or refer to the function script (python) of this technology and use it with a high degree of freedom.(5)
 - When developing and distributing similar software using this technology as a reference. (6)
+
 
 Windows10、Windows11それぞれの環境でコンパイルしたものを用意しました。
 まだ、開発途上なので、全ての演算を精度良くカバーできているわけではありません。
@@ -141,7 +116,7 @@ you should respond to your obligations for the intellectual property rights and 
 
 ## ライセンス
 
-© 2020-2024 Shin Koike  bunpu@a1.rim.or.jp
+© 2020-2025 Shin Koike  bunpu@a1.rim.or.jp
 
 このソフトウェアをそのままの複製を学習や研究を目的として利用する場合、本ソフトウェアおよび今後作成されるものを含めたそのブランチの利用を無償で許可します。
 
@@ -165,7 +140,7 @@ you should respond to your obligations for the intellectual property rights and 
 
 ## License
 
-© 2020-2024 Shin Koike  bunpu@a1.rim.or.jp
+© 2020-2025 Shin Koike  bunpu@a1.rim.or.jp
 
 Permission is hereby granted, free of charge, to any person obtaining a exact copy of this software,
 its branches and associated documentation files (the "Software"),for learning or research purposes, to deal in the Software with restriction.
