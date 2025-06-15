@@ -13,7 +13,6 @@
 This software is used to perform the calculations explained in "Baratsuki no taisyohou (How to deal with variance - Mathematics to maximize quality)"
 This software was released before publication, but the latest software developed after publication is at the address below.
 
-- https://github.com/skoike/bunpu2
 - https://github.com/skoike/bunpu3
 
 　出版前に公開したソフトは、プルダウンメニューで関数を指定するものですが、最新のソフトはユーザーが作成した
@@ -112,6 +111,11 @@ At the moment this tool can:
 The license is free if you just use it as it is, If you change or use this soft as reference for a distribution or commercial purposes,
 you should respond to your obligations for the intellectual property rights and the copyright of this software.
 
+# 注意事項/notes
+
+　ソフトの機能向上や改善は、bunpu3のリポジトリにあるソフトで行っていきます。それ以外のbunpu,bunpu2は一部機能のメンテナンスだけ行うので、全ての機能を使う場合はbunpu3を活用ください。
+
+ Software enhancements and improvements will be made to the software in the bunpu3 repository. Other than that, bunpu,bunpu2 will only maintain some functions, so please use bunpu3 if you want to use all functions.
 
 
 ## ライセンス
@@ -124,7 +128,7 @@ you should respond to your obligations for the intellectual property rights and 
 利用可能な情報とともに、公開を前提として、前記アドレスにその情報提供をお願いします。
 その内容は公共性に基づいて本ソフトまたはそのブランチに反映させていきます。
 
-このソフトを利用・参考にする場合は、このソフトの著作権と特許出願（PCT/JP2020/034566とその分割、関連出願）およびその協力者における権利を尊重ください。
+このソフトを利用・参考にする場合は、このソフトの著作権と特許出願（7649452とその分割、関連出願）およびその協力者における権利を尊重ください。
 このソフトウェアの一部分を利用または参考にして、変更、追加、結合、継承や移植を含む派生を、配布または商用利用する場合は前記アドレスに相談してください。
 
 ソフトウェアは、未完成で、何らの保証もなく提供されます。
@@ -152,7 +156,7 @@ including modification, addition, mergers,combination, translation with availabl
 The contents will be reflected in this software and its branches based on public nature and my leeway.
 
 When using or referring to this software, please correspond the copyright of this software
-and the rights in patent applications(PCT/JP2020/034566 and divisional other).
+and the rights in patent applications(JP7649452 and divisional other).
 Please contact with above address if you want to use or refer to a part of this software and distribute it privately or use it for commercial purposes.
 
 The software is incomplete and is provided without warranty.Warranties here include, but are not limited to, warranties of merchantability, 
