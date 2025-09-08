@@ -8,20 +8,33 @@
 #       that is, a tool that realizes distribution calculations.
 
 “バラツキの対処法 ～品質を最大限に引き出す数学～”の中で説明した演算を行うためのソフトウェアです。
-このソフトは出版前に公開したものですが、出版後に開発した最新のソフトは以下のアドレスにあります。
+今回、出版後に開発した機能を追加しました。シミュレーションだけは、出版時のものをそのまま装備してありますが、
+制限が多いので、以下のbunpu3リポジトリにあるpythonライブラリを使うことを推奨します。
+シミュレーション以外の分布を使った全ての判断指標などは、このソフトで利用可能です。
+使い方は、書籍のほかに、下記動画や添付のfunction.pdf（関数一覧のメニューやformat参照）を参照ください。
 
 This software is used to perform the calculations explained in "Baratsuki no taisyohou (How to deal with variance - Mathematics to maximize quality)"
-This software was released before publication, but the latest software developed after publication is at the address below.
+At this time, I have added features that were developed after the publication. Only the simulation remains as it was at the time of publication, but since it has many limitations, I recommend using the Python library available in the following bunpu3 repository. All evaluation metrics and other functions that use distributions, except for the simulation, can be utilized with this software.
+For instructions on how to use the software, please refer not only to the book but also to the video below and the attached function.pdf (see the function list menu and format).
+
+#複雑なモデル化を実現するpythonライブラリ/Python library enabling more complex modeling
 
 - https://github.com/skoike/bunpu3
 
-　出版前に公開したソフトは、プルダウンメニューで関数を指定するものですが、最新のソフトはユーザーが作成した
+# 説明動画/Explanation Video
+
+このソフトが実現する技術の内容と応用例/The technology and application examples realized by this software
+
+- https://www.youtube.com/channel/UCjXvGHNXIkW4Ogh7Md-6M6g  Japanese
+- https://www.youtube.com/channel/UCCU5shcq5VxuYEEwVhWmXSg  English
+
+　出版前に公開したソフトは、プルダウンメニューで関数を指定するものですが、リポジトリbunpu3のソフトはユーザーが作成した
 プログラムを実行するもので、関数を組合わせることで自由なシミュレーションソフトを作成できます。
 初めて使う人は、ここにある出版前のソフトを使ってみるのが良いでしょう。
 更に高度な演算やシミュレーションを行う場合は、上記のアドレスにある最新のソフトを使ってください。
 
 The software released before publication allows you to specify functions using a pull-down menu, 
-but the latest software executes programs created by users, allowing you to create your own simulation software by combining functions.
+but the software in the bunpu3 repository executes programs created by users, allowing you to create your own simulation software by combining functions.
 If you are a first-time user, you may want to try using the pre-publication software available here.
 If you wish to perform more advanced calculations or simulations, please use the latest software available at the address above.
 
@@ -29,6 +42,7 @@ If you wish to perform more advanced calculations or simulations, please use the
 標準偏差は、正規分布以外では正しい確率を保証しないし、一般的なバラツキが正規分布に従うことなどありません。
 モンテカルロシミュレーションや確率過程も同様に一般的なバラツキに適用すると誤差があります。特にバラツキを持つ要素が複数ある場合には誤差が拡大します。
 バラツキの対処法は、そういった既存の数値演算に無い、バラツキの分布形状を演算結果に厳密に反映させる分布演算を扱う環境を提供します。
+更に、演算後の分布を使って分布間の関係を確率的に評価することができる様々な判断指標を提供します。
 
 Existing numerical calculations cannot handle variance correctly, so invisible errors remain.
 The standard deviation does not guarantee the correct probability for anything other than a normal distribution, and the general variation does not follow a normal distribution.
@@ -36,7 +50,7 @@ Monte Carlo simulations and stochastic processes similarly have errors when appl
 Especially when there are multiple elements with variance, the error increases.
 This variation handling method provides an environment for handling distribution calculations that strictly reflects the distribution shape of the variation in the calculation results, 
 which is not available in existing numerical calculations.
-
+Furthermore, this method provides various indices that enable probabilistic evaluation of relationships between distributions using the post-computation distribution.
 
 　このソフトウェアはそのままの複製を学習や研究を目的として利用する場合に限り、フリーに使ってもらえます。
 それ以外の以下のケースなどは、ライセンス記述にあるアドレス(bunpu@a1.rim.or.jp)に相談ください。
@@ -128,7 +142,7 @@ you should respond to your obligations for the intellectual property rights and 
 利用可能な情報とともに、公開を前提として、前記アドレスにその情報提供をお願いします。
 その内容は公共性に基づいて本ソフトまたはそのブランチに反映させていきます。
 
-このソフトを利用・参考にする場合は、このソフトの著作権と特許出願（7649452とその分割、関連出願）およびその協力者における権利を尊重ください。
+このソフトを利用・参考にする場合は、このソフトの著作権と特許（7649452とその分割、関連出願）およびその協力者における権利を尊重ください。
 このソフトウェアの一部分を利用または参考にして、変更、追加、結合、継承や移植を含む派生を、配布または商用利用する場合は前記アドレスに相談してください。
 
 ソフトウェアは、未完成で、何らの保証もなく提供されます。
